@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Quest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Japanese Learning App</h1>
+    
+    <h2>Word List:</h2>
+    <ul>
+        {% for word in words %}
+            <li>{{ word.japanese }} - {{ word.english }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/quiz">Take Quiz</a>
+</body>
+</html>

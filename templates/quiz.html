@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Japanese Quiz</h1>
+
+    <form action="/quiz" method="POST">
+        {% for word in words %}
+            <p>What is the meaning of "{{ word.japanese }}"?</p>
+            <input type="text" name="answer_{{ word.id }}">
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/">Return to Home</a>
+</body>
+</html>
