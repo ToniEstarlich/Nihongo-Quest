@@ -8,6 +8,9 @@ from models.word import Word  # Import Word model
 app = Flask(__name__)
 app.config.from_object(Config)
 
+# Set a secret key
+app.secret_key = "0000"
+
 # Initialize the extensions with the app
 db.init_app(app)
 migrate.init_app(app, db)
@@ -23,18 +26,25 @@ def index():
     words = Word.query.all()
     return render_template("index.html", words=words)
 
+@app.route("/quiz")
+@login_required
+def quiz():
+    words = Word.query.all()
+    return render_template("quiz.html", words=words)
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        email = request.form["email"] # get the email from the form
 
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash("Username already exists!", "danger")
             return redirect(url_for("register"))
         
-        new_user = User(username=username)
+        new_user = User(username=username, email=email) # Store Email
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
