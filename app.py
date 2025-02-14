@@ -26,11 +26,17 @@ def index():
     words = Word.query.all()
     return render_template("index.html", words=words)
 
-@app.route("/quiz")
+@app.route("/quiz", methods=["GET", "POST"])
 @login_required
 def quiz():
-    words = Word.query.all()
-    return render_template("quiz.html", words=words)
+    if request.method == "POST":
+        answers = {}
+        for word in Word.query.all():
+            answer_key = f"answer_{word.id}"
+            user_answer = request.form.get(answer_key, "").strip()
+            answers[word.id] = user_answer # Store the user's answer
+        flash("Quiz submitted successfully!", "success")
+        return redirect(url_for("index)")) # Redirect after submitting
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
