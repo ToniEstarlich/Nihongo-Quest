@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
+from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import generate_csrf
 from config import Config
 from extensions import db, login_manager, migrate  # Import db and other extensions
 from flask_login import  login_user, logout_user, login_required
@@ -7,6 +9,7 @@ from models.word import Word  # Import Word model
 
 app = Flask(__name__)
 app.config.from_object(Config)
+csrf = CSRFProtect(app)
 
 # Set a secret key
 app.secret_key = "0000"
@@ -35,8 +38,11 @@ def quiz():
             answer_key = f"answer_{word.id}"
             user_answer = request.form.get(answer_key, "").strip()
             answers[word.id] = user_answer # Store the user's answer
+
         flash("Quiz submitted successfully!", "success")
-        return redirect(url_for("index)")) # Redirect after submitting
+        return redirect(url_for("index")) # Redirect after submitting
+    words = Word.query.all()
+    return render_template("quiz.html", words=words, csrf_token=generate_csrf())
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
