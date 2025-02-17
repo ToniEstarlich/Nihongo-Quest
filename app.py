@@ -33,16 +33,26 @@ def index():
 @login_required
 def quiz():
     if request.method == "POST":
-        answers = {}
+        answer ={}
+        correct_answers = 0
+        total_questions = 0
+
         for word in Word.query.all():
             answer_key = f"answer_{word.id}"
             user_answer = request.form.get(answer_key, "").strip()
-            answers[word.id] = user_answer # Store the user's answer
+            correct_answer =word.english.strip() # Assuming the correct is stored in 'english' column
 
-        flash("Quiz submitted successfully!", "success")
-        return redirect(url_for("index")) # Redirect after submitting
-    words = Word.query.all()
-    return render_template("quiz.html", words=words, csrf_token=generate_csrf())
+            if user_answer.lower() == correct_answer.lower():
+                correct_answer +=1 # Count correct answers
+
+            total_questions +=1 #Count total questions
+            answers[word.id] = user_answer #Store the user's answer
+        if correct_answers == total_questions:
+            flash("Perfect score! All answers are correct. 🎉","success")
+        elif correct_answer > 0:
+            flash("No correct answer. Keep practicing! 💪", "danger")
+
+        return redirect(url_for("index"))  # Redirect after processing answers
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

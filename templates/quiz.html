@@ -13,7 +13,8 @@
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     {% for word in words %}
        <p>What is the meaning of "{{ word.japanese }}"?</p>
-       <input type="text" name="answer_{{ word.id }}">
+       <input type="text" name="answer_{{ word.id }}"
+       class="{% if feedback and feedback[word.id] == 'correct' %}correct{% elif feedback and feedback[word.id] == 'incorrect' %}incorrect{% endif %}">
     {% endfor %}
      <button type="submit">Submit</button>
    </form>
