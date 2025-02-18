@@ -9,6 +9,17 @@
 <body>
     <h1>Japanese Learning App</h1>
     
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="flash {{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     <h2>Word List:</h2>
     <ul>
         {% for word in words %}

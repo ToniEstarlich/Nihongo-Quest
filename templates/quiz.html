@@ -10,7 +10,7 @@
     <h1>Japanese Quiz</h1>
 
    <form action="{{ url_for('quiz')}}" method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     {% for word in words %}
        <p>What is the meaning of "{{ word.japanese }}"?</p>
        <input type="text" name="answer_{{ word.id }}"

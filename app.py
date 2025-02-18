@@ -6,6 +6,7 @@ from extensions import db, login_manager, migrate  # Import db and other extensi
 from flask_login import  login_user, logout_user, login_required
 from models.user import User  # Import User model
 from models.word import Word  # Import Word model
+from forms import LoginForm # Assuming the loginForm is in forms.py file
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -22,18 +23,22 @@ login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 @app.route("/")
 def index():
     words = Word.query.all()
     return render_template("index.html", words=words)
 
+# Quiz
 @app.route("/quiz", methods=["GET", "POST"])
 @login_required
 def quiz():
+    words = Word.query.all() #Assuming have a World model in the database
+    feedback = {}
+
     if request.method == "POST":
-        answer ={}
+        answers ={}
         correct_answers = 0
         total_questions = 0
 
@@ -43,17 +48,27 @@ def quiz():
             correct_answer =word.english.strip() # Assuming the correct is stored in 'english' column
 
             if user_answer.lower() == correct_answer.lower():
-                correct_answer +=1 # Count correct answers
+                correct_answers +=1 # Count correct answers
 
             total_questions +=1 #Count total questions
             answers[word.id] = user_answer #Store the user's answer
+        
+        # Provide feedback based on the number of correct answers
         if correct_answers == total_questions:
             flash("Perfect score! All answers are correct. 🎉","success")
-        elif correct_answer > 0:
-            flash("No correct answer. Keep practicing! 💪", "danger")
+        elif correct_answers > 0:
+            flash(f"{correct_answers} correct answers. keep practicing!💪" "warning")
+        else:
+            flash("No correct answers. keep practicing! 💪", "danger")
 
-        return redirect(url_for("index"))  # Redirect after processing answers
+        return redirect(url_for("index"))  # Redirect to home page after processing answers
+    
+    elif request.method == "GET":
+        # Display fro GET request
+        words = Word.query.all() # Fetch all words from the database
+    return render_template("quiz.html", words=words)
 
+# Register
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -75,8 +90,11 @@ def register():
     
     return render_template("register.html")
 
+# Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    form = LoginForm() # Initialize  the form
+
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -85,11 +103,12 @@ def login():
         if user and user.check_password(password):
             login_user(user)
             flash("Login successful!", "success")
-            return redirect(url_for("index"))
+            next_page = request.args.get('next') # Redirect after login, if provided
+            return redirect(next_page or url_for("index"))
         else:
             flash("Invalid username or password", "danger")
 
-    return render_template("login.html")
+    return render_template("login.html", form=form)
 
 @app.route("/logout")
 @login_required
