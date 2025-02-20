@@ -75,6 +75,26 @@ The `quiz()` function handles the quiz logic in a Flask web application. It:
 - Requires user authentication `(@login_required)`.
 - Redirects users after submission.
 
+## 📌 Code analysis of word.py:
+
+Flask and PostgreSQL.
+```python
+# 1. Importing Dependencies: "word.py"  
+from flask import current_app
+from extensions import db
+
+class Word(db.Model):  #  2. Defining the `Word` Model: "Defines a SQLAlchemy model for a database table"
+   
+    #  3. Defining Database Columns:
+    id = db.Column(db.Integer, primary_key=True)  # Unique ID for each word (Primary Key)
+    japanese = db.Column(db.String(100), nullable=False)  # Japanese word (max 100 chars)
+    english = db.Column(db.String(100), nullable=False)  # English translation (max 100 chars)
+
+    def __repr__(self):
+        return f"<Word {self.japanese} - {self.english}>"  # String representation for debugging
+
+```
+
 ## 🔍 Code with Detailed Comments
 
 ```python
@@ -122,7 +142,7 @@ def quiz():  # Function definition
 ```
 ## 📌 Explanation with W3Schools References
 
-| Concept                              | Explanation                                                                | W3Schools & flask Links       |
+| Concept                              | Explanation                                                                | W3Schools, flask, and SQLAlquemy Links       |
 |--------------------------------------|----------------------------------------------------------------------------|----------------------|
 | **Function (`def`)**                 | Defines a function (`quiz()`) to handle requests.                          | [Python Functions](https://www.w3schools.com/python/python_functions.asp) |
 | **Flask Route (`@app.route`)**       | Defines a route (`/quiz`) that handles GET and POST requests.              | [Flask Routes](https://flask.palletsprojects.com/en/2.3.x/quickstart/#routing) |
@@ -131,9 +151,16 @@ def quiz():  # Function definition
 | **Dictionary (`answers = {}`)**      | Stores user answers using key-value pairs.                                 | [Python Dictionaries](https://www.w3schools.com/python/python_dictionaries.asp) |
 | **Flask Flash Messages (`flash()`)** | Displays messages to users based on their score.                           | [Flask Flash Messages](https://flask.palletsprojects.com/en/2.3.x/patterns/flashing/) |
 | **Flask Redirect (`redirect(url_for("index"))`)** | Redirects users to another route.                                    | [Flask Redirect](https://flask.palletsprojects.com/en/2.3.x/api/#flask.redirect) |
+| **Class (`class Word`)**             | Defines a database model (`Word`) with attributes `id`, `japanese`, and `english`. | [Python Classes](https://www.w3schools.com/python/python_classes.asp) |
+| **SQLAlchemy Model (`db.Model`)**    | Connects the `Word` class to the PostgreSQL database using SQLAlchemy.     | [SQLAlchemy Models](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/) |
+| **Database Column (`db.Column`)**    | Defines table columns (`id`, `japanese`, `english`) in the database.       | [SQLAlchemy Column](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/#column) |
+| **String Data Type (`db.String`)**   | Stores text data with a max length (e.g., `100` characters).               | [SQLAlchemy String](https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.String) |
+| **Primary Key (`primary_key=True`)** | Uniquely identifies each word entry in the database.                       | [Primary Key](https://www.w3schools.com/sql/sql_primarykey.asp) |
+| **Special Method (`__repr__`)**      | Returns a string representation of the object (`"<Word Japanese - English>"`). | [Python __repr__](https://www.w3schools.com/python/ref_func_repr.asp) |
 
 
-## ✅ Summary
+
+## ✅ Summary algorithm
 - This function is responsible for handling quiz logic in the Flask app.
 - Uses database queries to fetch words from the database.
 - Uses a for loop to iterate through words and compare answers.
@@ -141,7 +168,32 @@ def quiz():  # Function definition
 - Uses redirect() to send users back to the homepage after submission.
 📌 For more information, check the W3Schools and Flask links above! 🚀
 
+quiz.html end explanation:
+```html
+<!-- 1. Page Header: "Displays the title of the quiz page" -->
+<h1>Japanese Quiz</h1>
 
+<!-- 2. Form Setup: "Defines a form that submits data to the '/quiz' route via POST" -->
+<form action="{{ url_for('quiz')}}" method="POST">
+
+    <!-- 3. CSRF Token: "Prevents CSRF attacks for security" -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <!-- 4. Looping Through Words: "Displays each Japanese word and an input box for the answer" -->
+    {% for word in words %}
+       <p>What is the meaning of "{{ word.japanese }}"?</p>
+       <input type="text" name="answer_{{ word.id }}" 
+       class="{% if feedback and feedback[word.id] == 'correct' %}correct{% elif feedback and feedback[word.id] == 'incorrect' %}incorrect{% endif %}">
+    {% endfor %}
+
+    <!-- 5. Submit Button: "Sends the user's answers for evaluation" -->
+    <button type="submit">Submit</button>
+</form>
+
+<!-- 6. Return Link: "Navigates back to the homepage" -->
+<a href="/">Return to Home</a>
+
+```
 
 ---
 ## Contributing  
