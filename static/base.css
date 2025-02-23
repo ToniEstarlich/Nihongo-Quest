@@ -1,0 +1,50 @@
+:root {
+    --japanese-red: #9D0A0E;
+    --dark-red: #6D0003;
+    --black: #000;
+}
+
+body {
+    background: linear-gradient(to bottom, var(--japanese-red), var(--dark-red));
+    color: var(--black);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;  /* Pushes the footer down */
+}
+
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.logo {
+    font-size: 180%;
+}
+.navbar {
+    background: var(--dark-red);
+}
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+.header {
+    text-align: center;
+    padding: 60px 0;
+    background: linear-gradient(to right, var(--japanese-red), var(--dark-red));
+}
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--dark-red);
+    color: white;
+}
