@@ -15,6 +15,9 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+header {
+    background-color: #822e31;
+}
 
 main {
     flex: 1;  /* Pushes the footer down */
@@ -30,6 +33,12 @@ footer {
 
 .logo {
     font-size: 180%;
+    text-shadow: 2px 2px red;
+}
+
+.logo-header {
+    font-size: 380%;
+    text-shadow: 2px 2px red;
 }
 .navbar {
     background: var(--dark-red);
