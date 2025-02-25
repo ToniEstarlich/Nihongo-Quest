@@ -3,14 +3,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 .hero {
     text-align: center;
-    color: white;
-    text-shadow: 2px 2px red;
-
+    color: rgb(71, 6, 42);
 }
 
 .hero h1 {
@@ -25,7 +22,6 @@ body {
     text-align: center;
     padding: 20px;
     color: white;
-
 }
 
 .search input {
@@ -39,7 +35,7 @@ body {
 .search button {
     padding: 10px;
     font-size: 1.2em;
-    background-color: #ff6347;
+    background-color: rgb(71, 6, 42); 
     border: none;
     color: white;
     border-radius: 5px;
@@ -56,9 +52,15 @@ body {
 .manga-card {
     border: 1px solid #ddd;
     padding: 10px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.manga-card:hover {
+    transform: scale(1.2) rotate(3deg); /* Slight zoom & rotate */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* More shadow */
 }
 
 .manga-cover {
@@ -76,7 +78,7 @@ body {
 .manga-synopsis {
     font-size: 14px;
     margin-top: 10px;
-    color: #555;
+    color: rgb(71, 6, 42);
     height: 60px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -86,7 +88,7 @@ body {
     display: inline-block;
     margin-top: 10px;
     text-decoration: none;
-    color: #ff6347;
+    color: rgb(255, 255, 255);
     font-weight: bold;
 }
 

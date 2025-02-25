@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manga Gallery</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='manga.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manga.css') }}">
 </head>
 <body>
     {% extends "base.html" %}
@@ -17,14 +17,14 @@
     <section class="search">
         <form action="/search" method="get">
             <input type="text" name="query" placeholder="Search for manga..." required>
-            <button type="submit">Search</button>
+            <button type="submit">検索</button>
         </form>
     </section>
 
     <!-- Hero Section -->
     <section class="hero">
         <h1>Discover Your Next Favorite Manga</h1>
-        <p>Explore thousands of manga titles</p>
+        <h3>何千ものマンガを発見しよう！</h3>
     </section>
 
     <!-- Manga Gallery -->
