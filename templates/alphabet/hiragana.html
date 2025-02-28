@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alphabet.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Register - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+
+    <div class="content">
+        <h2>Hiragana Alphabet</h2>
+        <div class="alphabet">
+            {% for character in characters %}
+            <div class="card">
+                <div class="character">{{ character.character }}</div>
+                <div class="meaning">{{ character.meaning }}</div>
+                <div class="romaji">{{ character.romaji }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="buttons">
+            <a href="{{ url_for('alphabet') }}" class="btn">Back to Alphabet Overview</a>
+            <a href="{{ url_for('katakana') }}" class="btn">Learn Katakana</a>
+            <a href="{{ url_for('kanji') }}" class="btn">Learn Kanji</a>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -146,4 +146,4 @@ def search():
     return render_template('manga.html', manga_data=manga_data)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+     app.run(debug=True)

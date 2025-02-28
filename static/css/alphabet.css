@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+header {
+    background-color: #ff4757;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.content {
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+
+p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Card Styles */
+.alphabet {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 120px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    z-index: +3;
+}
+
+.card:hover {
+    transform: scale(3.3);
+}
+
+.character {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ff4757;
+}
+
+.meaning {
+    font-size: 16px;
+    color: #333;
+    margin-top: 5px;
+}
+
+.romaji {
+    font-size: 14px;
+    color: #777;
+    margin-top: 3px;
+}
+
+/* Button Styles */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #ff6b81;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #e84118;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #ff4757;
+    color: white;
+}

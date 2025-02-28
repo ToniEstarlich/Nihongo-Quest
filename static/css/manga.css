@@ -7,21 +7,21 @@ body {
 
 .hero {
     text-align: center;
-    color: rgb(71, 6, 42);
+    color: rgb(255, 142, 142);
 }
 
 .hero h1 {
     font-size: 3em;
 }
 
-.hero p {
+.hero h3 {
     font-size: 1.5em;
 }
 
 .search {
     text-align: center;
     padding: 20px;
-    color: white;
+    color: rgb(255, 142, 142);
 }
 
 .search input {
@@ -73,12 +73,14 @@ body {
 .manga-title {
     font-size: 16px;
     margin-top: 10px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px red;
 }
 
 .manga-synopsis {
     font-size: 14px;
     margin-top: 10px;
-    color: rgb(71, 6, 42);
+    color: rgb(255, 243, 249);
     height: 60px;
     overflow: hidden;
     text-overflow: ellipsis;

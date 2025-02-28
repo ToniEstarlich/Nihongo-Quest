@@ -4,21 +4,22 @@
     --black: #000;
 }
 
-body {
-    background-color: #C40233;
-}
-
 html, body {
     min-height: 100vh;
     margin: 0;
     display: flex;
     flex-direction: column;
+    background-color: #ff793b;
+    background: linear-gradient(108deg, #ff3314 0%, #86070b 29%, #43031a 75%);
 }
+
+
 header {
     background-image: url(/static/images/duotone-lamp.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    color: rgb(255, 142, 142);
 }
 
 main {
@@ -39,8 +40,9 @@ footer {
 }
 
 .logo-header {
+    color: rgb(255, 142, 142);
     font-size: 380%;
-    text-shadow: 2px 2px rgb(49, 45, 45);
+    text-shadow: 2px 2px rgb(56, 0, 59);
 }
 .navbar {
     background: var(--dark-red);
