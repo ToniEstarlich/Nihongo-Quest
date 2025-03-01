@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
+from routes.alphabet_routes import alphabet_bp 
+from routes.manga_routes import manga_routes
 from flask_wtf.csrf import CSRFProtect
 from flask_wtf.csrf import generate_csrf
 from config import Config
@@ -6,10 +8,16 @@ from extensions import db, login_manager, migrate  # Import db and other extensi
 from flask_login import  login_user, logout_user, login_required
 from models.user import User  # Import User model
 from models.word import Word  # Import Word model
-from forms import LoginForm # Assuming the loginForm is in forms.py file
+from forms import LoginForm # Assuming the loginForm is in forms.py file 
+ # Import the blueprint
 import requests
 
 app = Flask(__name__)
+
+# Register the blueprint
+app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
+app.register_blueprint(manga_routes)
+
 app.config.from_object(Config)
 csrf = CSRFProtect(app)
 
@@ -119,31 +127,6 @@ def logout():
     return redirect(url_for("index"))
 
 
-
-# Manga search section
-
-@app.route('/manga')
-def manga():
-    # Fetch manga data from Jikan API
-    response = requests.get('https://api.jikan.moe/v4/manga')
-    manga_data = response.json()['data']  # Get the 'data' key which contains the manga list
-
-    # Pass manga data to the template
-    return render_template('manga.html', manga_data=manga_data)
-
-# Route for searching manga
-@app.route('/search', methods=['GET'])
-def search():
-    query = request.args.get('query')  # Get the search query from URL parameters
-    if query:
-        # Fetch search results from Jikan API based on the query
-        response = requests.get(f'https://api.jikan.moe/v4/manga?q={query}')
-        manga_data = response.json()['data']  # Get search results
-    else:
-        manga_data = []
-
-    # Pass search results to the template
-    return render_template('manga.html', manga_data=manga_data)
 
 if __name__ == "__main__":
      app.run(debug=True)
