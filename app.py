@@ -43,39 +43,42 @@ def index():
 @app.route("/quiz", methods=["GET", "POST"])
 @login_required
 def quiz():
-    words = Word.query.all() #Assuming have a World model in the database
+    card_id = request.args.get('card_id', 1, type=int)  # Default to 1 if no card_id is given
+    words = Word.query.all()
+    
+    # Select the words for the chosen card (groups of 5 words)
+    start_index = (card_id - 1) * 5
+    selected_words = words[start_index:start_index + 5]
     feedback = {}
 
     if request.method == "POST":
-        answers ={}
         correct_answers = 0
         total_questions = 0
+        answers = {}
 
-        for word in Word.query.all():
+        for word in selected_words:
             answer_key = f"answer_{word.id}"
             user_answer = request.form.get(answer_key, "").strip()
-            correct_answer =word.english.strip() # Assuming the correct is stored in 'english' column
+            correct_answer = word.english.strip()
 
             if user_answer.lower() == correct_answer.lower():
-                correct_answers +=1 # Count correct answers
+                correct_answers += 1
 
-            total_questions +=1 #Count total questions
-            answers[word.id] = user_answer #Store the user's answer
-        
-        # Provide feedback based on the number of correct answers
+            total_questions += 1
+            answers[word.id] = user_answer
+
         if correct_answers == total_questions:
-            flash("Perfect score! All answers are correct. 🎉","success")
+            flash("Perfect score! All answers are correct. 🎉", "success")
         elif correct_answers > 0:
-            flash(f"{correct_answers} correct answers. keep practicing!💪" "warning")
+            flash(f"{correct_answers} correct answers. Keep practicing! 💪", "warning")
         else:
-            flash("No correct answers. keep practicing! 💪", "danger")
+            flash("No correct answers. Keep practicing! 💪", "danger")
 
-        return redirect(url_for("index"))  # Redirect to home page after processing answers
+        return redirect(url_for("index"))
     
-    elif request.method == "GET":
-        # Display fro GET request
-        words = Word.query.all() # Fetch all words from the database
-    return render_template("quiz.html", words=words)
+    return render_template("quiz.html", selected_words=selected_words, card_id=card_id, feedback=feedback)
+
+
 
 # Register
 @app.route("/register", methods=["GET", "POST"])

@@ -24,7 +24,159 @@ The goal of Nihongo Quest is to provide an engaging platform for learning Japane
 - **Jinja2** – Template rendering 
 
 ---
+# 📚 Nihongo Quest - Flask & PostgreSQL Setup Guide example
 
+## 🔹 1. Database (PostgreSQL + pgAdmin 4)  
+
+### 📌 Step 1: Create a Database and Table  
+1. Open **pgAdmin 4** and connect to your PostgreSQL server.  
+2. Create a new database:  
+   - **Right-click** on "Databases" → Click **"Create"** → Select **"Database"**  
+   - Enter a **name** (e.g., `nihongo_db`) → Click **Save**  
+3. Open the **Query Tool** and create a table:  
+   ```sql
+   CREATE TABLE hiragana (
+       id SERIAL PRIMARY KEY,
+       character VARCHAR(10) NOT NULL,
+       pronunciation VARCHAR(20) NOT NULL
+   );
+   ```  
+4. Insert sample data:  
+   ```sql
+   INSERT INTO hiragana (character, pronunciation) VALUES
+   ('あ', 'a'), ('い', 'i'), ('う', 'u'), ('え', 'e'), ('お', 'o');
+   ```
+
+---
+
+## 🔹 2. Backend (Flask + SQLAlchemy)  
+
+### 📌 Step 2: Install Dependencies  
+Run the following command inside your virtual environment:  
+```bash
+pip install flask flask-sqlalchemy psycopg2
+```
+
+### 📌 Step 3: Database Configuration  
+#### 📂 `db.py` (Database Connection)  
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+```
+
+#### 📂 `config.py` (Database Settings)  
+```python
+import os
+
+DB_NAME = "nihongo_db"
+DB_USER = "postgres"
+DB_PASSWORD = "password"
+DB_HOST = "localhost"
+DB_PORT = "5432"
+
+DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+```
+
+---
+
+### 📌 Step 4: Define Models  
+#### 📂 `models/alphabet.py` (Hiragana Model)  
+```python
+from db import db
+
+class Hiragana(db.Model):
+    __tablename__ = "hiragana"
+    id = db.Column(db.Integer, primary_key=True)
+    character = db.Column(db.String(10), nullable=False)
+    pronunciation = db.Column(db.String(20), nullable=False)
+```
+
+---
+
+### 📌 Step 5: Create Flask Routes  
+#### 📂 `routes/alphabet_routes.py` (Blueprint & API Routes)  
+```python
+from flask import Blueprint, render_template
+from db import db
+from models.alphabet import Hiragana
+
+alphabet_bp = Blueprint("alphabet", __name__, url_prefix="/alphabet")
+
+@alphabet_bp.route('/hiragana')
+def get_hiragana():
+    characters = Hiragana.query.all()
+    return render_template('alphabet/hiragana.html', characters=characters)
+```
+
+---
+
+### 📌 Step 6: Initialize Flask App & Register Blueprints  
+#### 📂 `app.py` (Main Application File)  
+```python
+from flask import Flask
+from config import DATABASE_URI
+from db import db
+from routes.alphabet_routes import alphabet_bp
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+app.register_blueprint(alphabet_bp)
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Create tables if they don't exist
+    app.run(debug=True)
+```
+
+---
+
+## 🔹 3. Frontend (HTML + Jinja2 Templates)  
+
+### 📌 Step 7: Create the Template  
+#### 📂 `templates/alphabet/hiragana.html` (Frontend Display)  
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana Characters</title>
+</head>
+<body>
+    <h1>Hiragana Alphabet</h1>
+    <table border="1">
+        <tr>
+            <th>Character</th>
+            <th>Pronunciation</th>
+        </tr>
+        {% for char in characters %}
+        <tr>
+            <td>{{ char.character }}</td>
+            <td>{{ char.pronunciation }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+```
+
+---
+
+## 🔹 4. Run the Flask App  
+1. Open the terminal and activate your virtual environment.  
+2. Start the Flask app:  
+   ```bash
+   flask run
+   ```
+3. Open your browser and visit:  
+   **`http://127.0.0.1:5000/alphabet/hiragana`**  
+
+
+---
 # THE ALGORITHM & CODE:
 
 ## 📌 Quiz Function Explanation

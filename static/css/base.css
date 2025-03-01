@@ -5,14 +5,10 @@
 }
 
 html, body {
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+    
     background-color: #ff793b;
     background: linear-gradient(108deg, #ff3314 0%, #86070b 29%, #43031a 75%);
 }
-
 
 header {
     background-image: url(/static/images/duotone-lamp.png);

@@ -4,27 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     {% extends "base.html" %}
     
-    {% block title %}Register - Nihongo Quest{% endblock %}
+    {% block title %}Quiz - Nihongo Quest{% endblock %}
     
     {% block content %}
-
     <h1>Japanese Quiz</h1>
+    <h2>What is the meaning of?...</h2>
+    
+    <form action="{{ url_for('quiz', card_id=card_id) }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        {% for word in selected_words %}
+            <div class="flashcard">
+                <h3> "{{ word.japanese }}"</h3>
+                <input type="text" name="answer_{{ word.id }}"
+                class="flashcard-input {% if feedback and feedback[word.id] == 'correct' %}correct{% elif feedback and feedback[word.id] == 'incorrect' %}incorrect{% endif %}">
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="quiz-btn">Submit</button>
+    </form>
 
-   <form action="{{ url_for('quiz')}}" method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    {% for word in words %}
-       <p>What is the meaning of "{{ word.japanese }}"?</p>
-       <input type="text" name="answer_{{ word.id }}"
-       class="{% if feedback and feedback[word.id] == 'correct' %}correct{% elif feedback and feedback[word.id] == 'incorrect' %}incorrect{% endif %}">
-    {% endfor %}
-     <button type="submit">Submit</button>
-   </form>
-    <a href="/">Return to Home</a>
+    <a href="/" class="quiz-btn">Return to Home</a>
     {% endblock %}
 </body>
 </html>
