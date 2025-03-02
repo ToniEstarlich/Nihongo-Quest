@@ -12,42 +12,30 @@
     {% block title %}Home - Nihongo Quest{% endblock %}
     
     {% block content %}
+    <section id="about">
+        <h2>About the App</h2>
+        <p>This app is designed to help you learn Japanese efficiently with interactive flashcards and quizzes.</p>
+    </section>
     
-    <p>Start your journey in learning Japanese through fun quizzes.</p>
-    <h1>Japanese Learning App</h1>
+    <section id="tips">
+        <h2>Tips for Learning a Language</h2>
+        <ul>
+            <li>Practice daily to build consistency.</li>
+            <li>Use flashcards to memorize vocabulary.</li>
+            <li>Watch Japanese movies or anime with subtitles.</li>
+            <li>Engage in conversations with native speakers.</li>
+        </ul>
+    </section>
     
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul class="flashes">
-            {% for category, message in messages %}
-                <li class="flash {{ category }}">{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    <h2>Word List:</h2>
-    <div class="flashcards-container">
-        {% for i in range(0, words|length, 5) %}
-            <div class="flashcard">
-                <h3>Card {{ loop.index }}</h3>
-                <ul>
-                    {% for word in words[i:i+5] %}
-                        <li>
-                            <h6>{{ word.japanese }} - {{ word.english }} 
-                            {% if word.pronunciation %}
-                                <br> {{ word.pronunciation }}</h6>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href="{{ url_for('quiz', card_id=loop.index) }}" class="quiz-btn">Start Quiz</a>
-            </div>
-        {% endfor %}
-    </div>
-
-    <a href="/quiz" class="quiz-btn">Take Quiz</a>
+    <section id="travel">
+        <h2>Explore Japan: Top 4 Cities</h2>
+        <ul>
+            <li><strong>Tokyo</strong> - The bustling capital, full of culture and modern attractions.</li>
+            <li><strong>Kyoto</strong> - The heart of traditional Japan with stunning temples.</li>
+            <li><strong>Osaka</strong> - Famous for its food scene and vibrant nightlife.</li>
+            <li><strong>Hiroshima</strong> - A historical city with deep cultural significance.</li>
+        </ul>
+    </section>
     {% endblock %}
 </body>
 </html>

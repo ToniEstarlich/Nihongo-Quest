@@ -47,6 +47,27 @@ The goal of Nihongo Quest is to provide an engaging platform for learning Japane
    ('あ', 'a'), ('い', 'i'), ('う', 'u'), ('え', 'e'), ('お', 'o');
    ```
 
+### 🌍 API Endpoints
+
+| Endpoint      | Method | Description          |
+|--------------|--------|----------------------|
+| /            | GET    | Home Page            |
+| /quiz        | GET    | Quiz Section         |
+| /flashcards  | GET    | Flashcards Page      |
+| /alphabet    | GET    | Alphabet Learning    |
+| /manga       | GET    | Manga Section        |
+| /register    | POST   | User Registration    |
+| /login       | POST   | User Login           |
+
+
+### 🗄️ Database Structure
+
+- **Users Table**: Stores user details  
+- **Flashcards Table**: Stores flashcards content  
+- **Manga Table**: Stores manga references  
+- **Quiz Table**: Stores quiz questions & answers  
+
+
 ---
 
 ## 🔹 2. Backend (Flask + SQLAlchemy)  
@@ -163,6 +184,14 @@ if __name__ == '__main__':
 </body>
 </html>
 ```
+##  Next Steps
+# 🚀
+
+- Design & implement the frontend
+
+- Testing & bug fixing
+
+- Deploy to Heroku
 
 ---
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Quest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Home - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+    
+    <p>Start your journey in learning Japanese through fun quizzes.</p>
+    <h1>Japanese Learning App</h1>
+    
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="flash {{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <h2>Word List:</h2>
+    <div class="flashcards-container">
+        {% for i in range(0, words|length, 5) %}
+            <div class="flashcard">
+                <h3>Card {{ loop.index }}</h3>
+                <ul>
+                    {% for word in words[i:i+5] %}
+                        <li>
+                            <h6>{{ word.japanese }} - {{ word.english }} 
+                            {% if word.pronunciation %}
+                                <br> {{ word.pronunciation }}</h6>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('quiz', card_id=loop.index) }}" class="quiz-btn">Start Quiz</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="/quiz" class="quiz-btn">Take Quiz</a>
+    {% endblock %}
+</body>
+</html>
