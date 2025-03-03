@@ -4,10 +4,16 @@
     --black: #000;
 }
 
-html, body {
+body, html {
     
+    display: flex;
+    flex-direction: column;
     background-color: #ff793b;
     background: linear-gradient(108deg, #ff3314 0%, #86070b 29%, #43031a 75%);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 header {
@@ -16,6 +22,7 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     color: rgb(255, 142, 142);
+    margin-top: 5%;
 }
 
 main {
@@ -27,6 +34,12 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+}
+
+.navbar-brand img {
+    width: 40px; /* Adjust width */
+    height: auto;
+    border-radius: 10px; /* Optional: rounded corners */
 }
 
 
@@ -52,4 +65,10 @@ footer {
     padding: 20px;
     background: var(--dark-red);
     color: white;
+}
+
+/* Style register*/
+
+.resgiter {
+    margin-top: 50%;
 }
