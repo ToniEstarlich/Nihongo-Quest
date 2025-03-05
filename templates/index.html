@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nihongo Quest</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
     {% extends "base.html" %}
@@ -13,28 +13,68 @@
     
     {% block content %}
     <section id="about">
-        <h2>About the App</h2>
-        <p>This app is designed to help you learn Japanese efficiently with interactive flashcards and quizzes.</p>
+        <div class="about">
+            <div class="about-text">
+                <h2>About the App</h2>
+                <p>This app is designed to help you learn Japanese efficiently with interactive flashcards and quizzes.</p>
+            </div>
+        </div>
     </section>
     
     <section id="tips">
-        <h2>Tips for Learning a Language</h2>
-        <ul>
-            <li>Practice daily to build consistency.</li>
-            <li>Use flashcards to memorize vocabulary.</li>
-            <li>Watch Japanese movies or anime with subtitles.</li>
-            <li>Engage in conversations with native speakers.</li>
-        </ul>
+        <h2 class="tittle-tips">Tips for Learning a Language</h2>
+        <div class="coatch-tips">
+            <div class="right1">
+                <p>Practice daily to build consistency.</p>
+            </div>
+            <div class="right2">
+                <p>Use flashcards to memorize vocabulary.</p>
+            </div>
+            <div class="left1">
+                <p> Watch Japanese movies or anime with subtitles.</p>
+            </div>
+            <div class="left2" >
+                <p>Engage in conversations with native speakers.</p>
+            </div>
+        </div>
     </section>
     
     <section id="travel">
-        <h2>Explore Japan: Top 4 Cities</h2>
-        <ul>
-            <li><strong>Tokyo</strong> - The bustling capital, full of culture and modern attractions.</li>
-            <li><strong>Kyoto</strong> - The heart of traditional Japan with stunning temples.</li>
-            <li><strong>Osaka</strong> - Famous for its food scene and vibrant nightlife.</li>
-            <li><strong>Hiroshima</strong> - A historical city with deep cultural significance.</li>
-        </ul>
+        <h2 class="tittle-travel">Explore Japan: Top 4 Cities</h2>
+        <div>
+            <div class="travel">
+                <div class="travel-box1">
+                    <h1>Tokyo</h1>
+                </div>
+                <div class="travel-box2">
+                    <h5>The bustling capital, full of culture and modern attractions.</h5>
+                </div>
+            </div>
+            <div class="travel">
+                <div class="travel-box1">
+                    <h1>Kyoto</h1>
+                </div>
+                <div class="travel-box2">
+                    <h5>The heart of traditional Japan with stunning temples.</h5>
+                </div>
+            </div>
+            <div class="travel">
+                <div class="travel-box1">
+                    <h1>Osaka</h1>
+                </div>
+                <div class="travel-box2">
+                    <h5> Famous for its food scene and vibrant nightlife.</h5>
+                </div>
+            </div>
+            <div class="travel">
+                <div class="travel-box1">
+                    <h1>Hiroshima</h1>
+                </div>
+                <div class="travel-box2">
+                    <h5>A historical city with deep cultural significance.</h5>
+                </div>
+            </div>
+        </div>
     </section>
     {% endblock %}
 </body>

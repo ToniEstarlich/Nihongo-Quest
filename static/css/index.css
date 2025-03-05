@@ -1,0 +1,85 @@
+/* style home*/
+
+/* About style*/
+body {
+    text-align: center;
+}
+#about {
+    margin: 15%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.about {
+    grid-column: span 5 / span 5;
+    grid-row: span 5/ span 5;
+}
+
+.about-text {
+    grid-column-start: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    grid-column-end: 3;
+    grid-row-end: 3;
+}
+
+/* Guide Coach Learning*/
+.tittle-tips, .tittle-travel {
+    margin: 5%;
+}
+.coatch-tips {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 32px;
+}
+.right1 {
+    margin: 3px;
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    grid-row-start: 1;
+}
+.right2 {
+    margin: 3px;
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    grid-row-start: 4;
+}
+.left1 {
+    margin: 3px;
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+.left2 {
+    margin: 3px;
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 4;
+}
+
+/* Travel Section */
+
+.travel {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 8px;
+    margin: 100px;
+}
+.travel-box1 {
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2; 
+}
+.travel-box2 {
+    text-align: left;
+    grid-column: span 6 /span 6;
+    grid-row: span 3 / span 3;
+    grid-column-start: 6;
+    grid-row-start: 6;
+}
