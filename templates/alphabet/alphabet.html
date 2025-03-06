@@ -17,26 +17,36 @@
     </div>
 
     <div class="content">
+        
         <h2>What is the Japanese Alphabet?</h2>
         <p>The Japanese writing system consists of three alphabets: Hiragana, Katakana, and Kanji. Each alphabet serves a different purpose:</p>
+
         
-        <h3>Hiragana (ひらがな)</h3>
-        <p>Hiragana is used for native Japanese words, particles, and grammatical elements. It is the first alphabet learners typically study.</p>
-
-        <h3>Katakana (カタカナ)</h3>
-        <p>Katakana is used for foreign words, names, and onomatopoeia. It is similar to Hiragana but has a distinct angular style.</p>
-
-        <h3>Kanji (漢字)</h3>
-        <p>Kanji are Chinese characters used in Japanese writing to represent whole words or concepts. There are thousands of Kanji characters, but about 2,000 are commonly used.</p>
-
-        <p>Click below to learn more about each alphabet:</p>
-
-        <div class="buttons">
-            <a href="{{ url_for('alphabet.hiragana') }}" class="btn">Learn Hiragana</a>
-            <a href="{{ url_for('alphabet.katakana') }}" class="btn">Learn Katakana</a>
-            <a href="{{ url_for('alphabet.kanji') }}" class="btn">Learn Kanji</a>
+        <div class="alphabet-parent">
+            <div class="alphabet-div1">
+                <h3>Hiragana (ひらがな)</h3>
+                <p>Hiragana is used for native Japanese words, particles, and grammatical elements. It is the first alphabet learners typically study.</p>
+                <div class="alphabet-buttons">
+                    <a href="{{ url_for('alphabet.hiragana') }}" class="alphabet-btn">Learn Hiragana</a>
+                </div>
+            </div>
+            <div class="alphabet-div2">
+                <h3>Katakana (カタカナ)</h3>
+                <p>Katakana is used for foreign words, names, and onomatopoeia. It is similar to Hiragana but has a distinct angular style.</p>
+                <div class="alphabet-buttons">
+                    <a href="{{ url_for('alphabet.hiragana') }}" class="alphabet-btn">Learn Katakana</a>
+                </div>
+            </div>
+            <div class="alphabet-div3">
+                <h3>Kanji (漢字)</h3>
+                <p>Kanji are Chinese characters used in Japanese writing to represent whole words or concepts. There are thousands of Kanji characters, but about 2,000 are commonly used.</p>
+                <div class="alphabet-buttons">
+                    <a href="{{ url_for('alphabet.hiragana') }}" class="alphabet-btn">Learn kanji</a>
+                </div>
+            </div>
         </div>
-    </div>
+        
+        <p>Click below to learn more about each alphabet:</p>
     {% endblock %}
 </body>
 </html>

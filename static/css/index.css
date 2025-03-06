@@ -1,85 +1,290 @@
-/* style home*/
+/* General Reset */
 
-/* About style*/
-body {
-    text-align: center;
-}
-#about {
-    margin: 15%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 8px;
-}
-
-.about {
-    grid-column: span 5 / span 5;
-    grid-row: span 5/ span 5;
-}
-
-.about-text {
-    grid-column-start: span 3 / span 3;
-    grid-row: span 2 / span 2;
-    grid-column-end: 3;
-    grid-row-end: 3;
-}
-
-/* Guide Coach Learning*/
 .tittle-tips, .tittle-travel {
+    font-size: 3rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ff5151;
     margin: 5%;
 }
+
+body {
+   text-align: center;
+}
+
+/* About Section */
+#about {
+    position: relative;
+    width: 100vw;
+    height: 110vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-left: -10%;
+    margin-top: -20%;
+}
+
+@media (max-width: 412px) {
+    #about {
+        margin-left: -3%;
+    }
+}
+
+/* Video Container */
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Background Video */
+#background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* About Content */
+.about {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+/* Default layout (for desktops & tablets) */
 .coatch-tips {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
+    grid-template-rows: repeat(6, 1fr); /* 6 rows */
     gap: 32px;
 }
-.right1 {
+
+.kanji-icon {
+    font-size: 5rem;  /* Make Kanji larger */
+    font-weight: bold;
+    text-align: center;
+    color: #ff4646;
+}
+
+.text-tip {
+    margin: 15%;
+    font-size: 1.3em;
+    font-weight: bold;
+    max-width: 90%;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+/* Right column */
+.right1, .right2 {
     margin: 3px;
     grid-column: span 3 / span 3;
     grid-row: span 3 / span 3;
     grid-column-start: 4;
-    grid-row-start: 1;
 }
-.right2 {
-    margin: 3px;
-    grid-column: span 3 / span 3;
-    grid-row: span 3 / span 3;
-    grid-column-start: 4;
-    grid-row-start: 4;
-}
-.left1 {
-    margin: 3px;
-    grid-column: span 3 / span 3;
-    grid-row: span 3 / span 3;
-    grid-column-start: 1;
-    grid-row-start: 1;
-}
-.left2 {
+
+/* Positioning adjustments */
+.right1 { grid-row-start: 1; }
+.right2 { grid-row-start: 4; }
+
+/* Left column */
+.left1, .left2 {
     margin: 3px;
     grid-column: span 3 / span 3;
     grid-row: span 3 / span 3;
     grid-column-start: 1;
-    grid-row-start: 4;
 }
+
+/* Positioning adjustments */
+.left1 { grid-row-start: 1; }
+.left2 { grid-row-start: 4; }
+
+/* Responsive layout for screens smaller than 768px (tablets & phones) */
+@media (max-width: 768px) {
+    .coatch-tips {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+
+    .right1, .right2, .left1, .left2 {
+        grid-column: span 1 / span 1; /* Each div takes 1 column */
+        grid-row: auto;
+    }
+}
+
+/* Responsive layout for screens smaller than 480px (mobile phones) */
+@media (max-width: 480px) {
+    .coatch-tips {
+        grid-template-columns: 1fr; /* 1 column */
+        gap: 15px;
+    }
+
+    .right1, .right2, .left1, .left2 {
+        grid-column: span 1 / span 1; /* Full width */
+        text-align: center; /* Center content */
+    }
+
+    .kanji-icon {
+        font-size: 3rem; /* Reduce Kanji size for small screens */
+    }
+
+    .text-tip {
+        font-size: 1.1em; /* Slightly smaller text */
+        max-width: 100%;
+    }
+}
+
 
 /* Travel Section */
+#travel {
+    text-align: center;
+    margin: 0 auto;
+}
 
-.travel {
+.tittle-travel {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.text-city {
+    text-shadow: 12px 12px 12px black;
+}
+
+.text-travel {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    border: 1px solid black;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    text-align: justify;
+}
+
+/* General styles for travel boxes */
+.kyoto, .osaka, .hiroshima, .tokyo {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     gap: 8px;
-    margin: 100px;
+    margin: 20px 0;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 50px;
+    color: white;
+    height: 400px; /* Set height for uniformity */
+    border-radius: 10px;
+    box-shadow:  30px 30px 30px black;
 }
-.travel-box1 {
-    grid-column: span 3 / span 3;
-    grid-row: span 2 / span 2; 
-}
-.travel-box2 {
+
+/* Tokyo Section */
+.tokyo {
+    background-image: url(/static/images/tokio2.jpg);
     text-align: left;
-    grid-column: span 6 /span 6;
-    grid-row: span 3 / span 3;
-    grid-column-start: 6;
-    grid-row-start: 6;
 }
+
+/* Kyoto Section */
+.kyoto {
+    background-image: url(/static/images/kyoto.jpg);
+}
+
+/* Osaka Section */
+.osaka {
+    background-image: url(/static/images/Osaka2.jpg);
+}
+
+.hiroshima {
+    background-image: url(/static/images/hiroshima.jpg);
+}
+
+.tokyo:hover {
+    transform: scale(1.2); /* Zooms in by 20% */
+}
+
+/* Kyoto Section */
+.kyoto:hover {
+    transform: scale(1.2);
+}
+
+/* Osaka Section */
+.osaka:hover {
+    transform: scale(1.2);
+}
+
+/* Hiroshima Section */
+.hiroshima:hover {
+    transform: scale(1.2);
+}
+
+/* Travel box content */
+.travel-box1 {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: right;
+}
+
+.travel-box2 {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .kyoto, .osaka, .hiroshima, .tokyo {
+        height: 300px; /* Adjust height on smaller screens */
+        padding: 20px;
+    }
+
+    .travel-box1 {
+        font-size: 1.5rem;
+    }
+
+    .travel-box2 {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 412px) {
+    .kyoto, .osaka, .hiroshima, .tokyo {
+        height: 300px; /* Adjust height on smaller screens */
+        padding: 20px;
+    }
+
+    .kyoto:hover, .osaka:hover, .hiroshima:hover, .tokyo:hover {
+        transform: scale(1.0);
+    }
+
+    .travel-box1 {
+        font-size: 1.5rem;
+    }
+
+    .travel-box2 {
+        font-size: 1rem;
+    }
+}
+

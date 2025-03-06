@@ -24,6 +24,12 @@ header {
     margin-top: 5%;
 }
 
+@media (max-width: 412px) {
+    .header {
+        margin-top: 10%;
+    }
+}
+
 main {
     flex: 1;  /* Pushes the footer down */
 }

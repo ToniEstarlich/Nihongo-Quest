@@ -25,20 +25,27 @@ p {
     margin-top: 20px;
 }
 
-.card {
+.alphabet-card {
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.2); /* Adjust transparency */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     width: 120px;
     text-align: center;
     transition: transform 0.2s ease-in-out;
+
+   /* border: 1px solid #ddd;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;*/
 }
 
 
-.card:hover {
+.alphabet-card:hover {
     transform: scale(3.3);
     z-index: 3;
 }
@@ -63,11 +70,11 @@ p {
 }
 
 /* Button Styles */
-.buttons {
+.alphabet-buttons {
     margin-top: 20px;
 }
 
-.btn {
+.alphabet-btn {
     display: inline-block;
     text-decoration: none;
     background: #ff6b81;
@@ -78,6 +85,85 @@ p {
     transition: background 0.3s;
 }
 
-.btn:hover {
+.alphabet-btn:hover {
     background: #e84118;
 }
+
+/* Columns alphabet */
+
+/*
+.alphabet-parent {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 30px;
+}
+    
+.alphabet-div1 {
+    margin: 5%;
+    grid-column: span 2 / span 2;
+    grid-row: span 5 / span 5;
+}
+
+.alphabet-div2 {
+    margin: 5%;
+    grid-column: span 2 / span 2;
+    grid-row: span 5 / span 5;
+    grid-column-start: 3;
+}
+
+.alphabet-div3 {
+    margin: 5%;
+    grid-column: span 2 / span 2;
+    grid-row: span 5 / span 5;
+    grid-column-start: 5;
+}
+  */
+  
+  /* Default layout (for desktops & tablets) */
+.alphabet-parent {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
+    grid-template-rows: repeat(5, 1fr); /* 5 rows */
+    gap: 30px;
+}
+
+.alphabet-div1, 
+.alphabet-div2, 
+.alphabet-div3 {
+    margin: 8%;
+    grid-column: span 2 / span 2;
+    grid-row: span 5 / span 5;
+}
+
+/* Responsive layout for screens smaller than 768px (tablets & phones) */
+@media (max-width: 768px) {
+    .alphabet-parent {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        grid-template-rows: auto;
+        gap: 15px;
+    }
+
+    .alphabet-div1, 
+    .alphabet-div2, 
+    .alphabet-div3 {
+        grid-column: span 1 / span 1; /* Each div takes 1 column */
+        grid-row: auto;
+    }
+}
+
+/* Responsive layout for screens smaller than 480px (mobile phones) */
+@media (max-width: 480px) {
+    .alphabet-parent {
+        grid-template-columns: 1fr; /* 1 column */
+        gap: 10px;
+    }
+
+    .alphabet-div1, 
+    .alphabet-div2, 
+    .alphabet-div3 {
+        grid-column: span 1 / span 1; /* Full width */
+        text-align: center; /* Center content */
+    }
+}
+

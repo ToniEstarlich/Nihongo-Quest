@@ -12,70 +12,88 @@
     {% block title %}Home - Nihongo Quest{% endblock %}
     
     {% block content %}
+    
     <section id="about">
+        <!-- Video Background -->
+        <div class="video-container">
+            <video autoplay muted loop id="background-video">
+                <source src="{{ url_for('static', filename='videos/japan_video.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    
+        <!-- About Content -->
         <div class="about">
-            <div class="about-text">
-                <h2>About the App</h2>
-                <p>This app is designed to help you learn Japanese efficiently with interactive flashcards and quizzes.</p>
-            </div>
+            <h2>About the App</h2>
+            <p>This app helps you learn Japanese efficiently with interactive flashcards and quizzes.</p>
         </div>
     </section>
     
     <section id="tips">
         <h2 class="tittle-tips">Tips for Learning a Language</h2>
         <div class="coatch-tips">
-            <div class="right1">
-                <p>Practice daily to build consistency.</p>
+            <div class="tip-container right1">
+                <h1 class="kanji-icon">練習</h1>
+                <p class="text-tip"><strong>Practice daily to build consistency.</strong>  
+                Learning a language requires dedication. Set aside at least 30 minutes each day to study grammar, vocabulary, and sentence structure. Developing a routine will help reinforce your skills and make learning a habit.</p>
             </div>
-            <div class="right2">
-                <p>Use flashcards to memorize vocabulary.</p>
+            <div class="tip-container right2">
+                <p class="kanji-icon">記憶</p>
+                <p class="text-tip"><strong>Use flashcards to memorize vocabulary.</strong>  
+                Flashcards are a powerful tool for memorization. Apps like Anki or physical flashcards can help you retain words more effectively. Try the spaced repetition method to review words at optimal intervals for long-term retention.</p>
             </div>
-            <div class="left1">
-                <p> Watch Japanese movies or anime with subtitles.</p>
+            <div class="tip-container left1">
+                <p class="kanji-icon">視聴</p>
+                <p class="text-tip"><strong>Watch Japanese movies or anime with subtitles.</strong>  
+                Immersing yourself in native media improves listening skills. Start with subtitles in your native language, then switch to Japanese subtitles to train your brain. Pay attention to pronunciation and common phrases used in daily conversation.</p>
             </div>
-            <div class="left2" >
-                <p>Engage in conversations with native speakers.</p>
+            <div class="tip-container left2">
+                <p class="kanji-icon">会話</p>
+                <p class="text-tip"><strong>Engage in conversations with native speakers.</strong>  
+                Speaking is crucial for fluency. Use language exchange apps like Tandem or HelloTalk to practice with native speakers. Don't be afraid to make mistakes—learning happens through communication!</p>
             </div>
         </div>
     </section>
     
+
     <section id="travel">
         <h2 class="tittle-travel">Explore Japan: Top 4 Cities</h2>
         <div>
-            <div class="travel">
+            <div class="tokyo">
                 <div class="travel-box1">
-                    <h1>Tokyo</h1>
+                    <h1 class="text-city">Tokyo</h1>
                 </div>
                 <div class="travel-box2">
-                    <h5>The bustling capital, full of culture and modern attractions.</h5>
+                    <h6 class="text-travel">The bustling capital, full of culture and modern attractions.</h6>
                 </div>
             </div>
-            <div class="travel">
+            <div class="kyoto">
                 <div class="travel-box1">
-                    <h1>Kyoto</h1>
+                    <h1 class="text-city">Kyoto</h1>
                 </div>
                 <div class="travel-box2">
-                    <h5>The heart of traditional Japan with stunning temples.</h5>
+                    <h6 class="text-travel">The heart of traditional Japan with stunning temples.</h6>
                 </div>
             </div>
-            <div class="travel">
+            <div class="osaka">
                 <div class="travel-box1">
-                    <h1>Osaka</h1>
+                    <h1 class="text-city">Osaka</h1>
                 </div>
                 <div class="travel-box2">
-                    <h5> Famous for its food scene and vibrant nightlife.</h5>
+                    <h6 class="text-travel">Famous for its food scene and vibrant nightlife.</h6>
                 </div>
             </div>
-            <div class="travel">
+            <div class="hiroshima">
                 <div class="travel-box1">
-                    <h1>Hiroshima</h1>
+                    <h1 class="text-city">Hiroshima</h1>
                 </div>
                 <div class="travel-box2">
-                    <h5>A historical city with deep cultural significance.</h5>
+                    <h6 class="text-travel">A historical city with deep cultural significance.</h6>
                 </div>
             </div>
         </div>
     </section>
+    
     {% endblock %}
 </body>
 </html>

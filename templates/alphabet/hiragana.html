@@ -17,7 +17,7 @@
         <h2>Hiragana Alphabet</h2>
         <div class="alphabet">
             {% for character in characters %}
-            <div class="card">
+            <div class="alphabet-card">
                 <div class="character">{{ character.character }}</div>
                 <div class="meaning">{{ character.meaning }}</div>
                 <div class="romaji">{{ character.romaji }}</div>
@@ -25,10 +25,10 @@
             {% endfor %}
         </div>
 
-        <div class="buttons">
-            <a href="{{ url_for('alphabet.alphabet') }}" class="btn">Back to Alphabet Overview</a>
-            <a href="{{ url_for('alphabet.katakana') }}" class="btn">Learn Katakana</a>
-            <a href="{{ url_for('alphabet.kanji') }}" class="btn">Learn Kanji</a>
+        <div class="alphabet-buttons">
+            <a href="{{ url_for('alphabet.alphabet') }}" class="alphabet-btn">Back to Alphabet Overview</a>
+            <a href="{{ url_for('alphabet.katakana') }}" class="alphabet-btn">Learn Katakana</a>
+            <a href="{{ url_for('alphabet.kanji') }}" class="alphabet-btn">Learn Kanji</a>
         </div>
     </div>
     {% endblock %}
