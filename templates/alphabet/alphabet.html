@@ -13,37 +13,75 @@
     
     {% block content %}
     <div>
-        <h1>Introduction to the Japanese Alphabet</h1>
+        <h1 class="alphabet-tittle-up">Introduction to the Japanese Alphabet</h1>
     </div>
 
     <div class="content">
         
-        <h2>What is the Japanese Alphabet?</h2>
-        <p>The Japanese writing system consists of three alphabets: Hiragana, Katakana, and Kanji. Each alphabet serves a different purpose:</p>
-
+        <h2 class="alphabet-tittle-down">What is the Japanese Alphabet?</h2>
+        <p>
+            The Japanese writing system is unique, consisting of three alphabets: Hiragana, Katakana, and Kanji. 
+            Each has its own purpose and historical background. Kanji, originally borrowed from Chinese characters, 
+            form the foundation of Japanese writing and represent entire words or concepts. However, since Kanji can be complex, 
+            two phonetic alphabets were developed: <strong>Hiragana</strong> and <strong>Katakana</strong>.  
+            <br><br>
+            <strong>Hiragana</strong> was historically created by women in the Heian period as a more fluid and cursive way to write 
+            Japanese sounds, making it the primary script for native words, grammatical elements, and informal writing.  
+            <br><br>
+            <strong>Katakana</strong>, on the other hand, has a more angular and rigid appearance and was developed by Buddhist monks 
+            and scholars, historically used by men. Today, it is mainly used for foreign words, foreign names, loanwords, 
+            and emphasis (similar to italics in English).  
+            <br><br>
+            Mastering these three alphabets is essential for reading and writing Japanese fluently!
+        </p>
         
         <div class="alphabet-parent">
             <div class="alphabet-div1">
-                <h3>Hiragana (ひらがな)</h3>
-                <p>Hiragana is used for native Japanese words, particles, and grammatical elements. It is the first alphabet learners typically study.</p>
+                <h3 class="alphabet-icon"><strong>ひらがな</strong></h3>
+                <h6 class="alphabet">(Hiragana)</h6>
+                <p>
+                    Hiragana is a fundamental part of the Japanese writing system and is primarily used for native Japanese words, 
+                    grammatical elements, and verb conjugations. Developed during the Heian period, it was historically used by women 
+                    who were not allowed to study Chinese characters (Kanji). Its flowing, curved strokes give it a softer appearance, 
+                    making it easier to write quickly. Hiragana is often the first script that Japanese learners encounter, as it is 
+                    essential for forming complete sentences and reading Japanese text fluently.
+                </p>
                 <div class="alphabet-buttons">
                     <a href="{{ url_for('alphabet.hiragana') }}" class="alphabet-btn">Learn Hiragana</a>
                 </div>
             </div>
+        
             <div class="alphabet-div2">
-                <h3>Katakana (カタカナ)</h3>
-                <p>Katakana is used for foreign words, names, and onomatopoeia. It is similar to Hiragana but has a distinct angular style.</p>
+                <h3 class="alphabet-icon"><strong>カタカナ</strong></h3>
+                <h6 class="alphabet">(Katakana)</h6>
+                <p>
+                    Katakana is a more angular and block-like script primarily used for foreign loanwords, names, and onomatopoeia. 
+                    It was originally developed by Buddhist monks as a shorthand for reading classical Chinese texts. Due to its 
+                    distinct, sharp appearance, it is commonly used for emphasis, much like italics in English. In modern Japan, 
+                    Katakana is widely seen in advertisements, scientific terms, and the names of foreign brands. While less commonly 
+                    used than Hiragana, mastering Katakana is crucial for reading menus, product names, and foreign words in Japanese.
+                </p>
                 <div class="alphabet-buttons">
-                    <a href="{{ url_for('alphabet.hiragana') }}" class="alphabet-btn">Learn Katakana</a>
+                    <a href="{{ url_for('alphabet.katakana') }}" class="alphabet-btn">Learn Katakana</a>
                 </div>
             </div>
+        
             <div class="alphabet-div3">
-                <h3>Kanji (漢字)</h3>
-                <p>Kanji are Chinese characters used in Japanese writing to represent whole words or concepts. There are thousands of Kanji characters, but about 2,000 are commonly used.</p>
+                <h3 class="alphabet-icon"><strong>漢字</strong></h3>
+                <h6 class="alphabet">(Kanji)</h6>
+                <p>
+                    Kanji are logographic characters borrowed from Chinese and serve as the foundation of written Japanese. Unlike 
+                    Hiragana and Katakana, which represent sounds, each Kanji character conveys meaning. There are thousands of Kanji, 
+                    but around 2,000 are commonly used in daily life. Learning Kanji can be challenging, as most characters have multiple 
+                    pronunciations depending on context. However, Kanji help shorten text and make Japanese writing more efficient. 
+                    Mastering Kanji is essential for reading newspapers, books, and official documents in Japan.
+                </p>
                 <div class="alphabet-buttons">
-                    <a href="{{ url_for('alphabet.hiragana') }}" class="alphabet-btn">Learn kanji</a>
+                    <a href="{{ url_for('alphabet.kanji') }}" class="alphabet-btn">Learn Kanji</a>
                 </div>
             </div>
+        </div>
+        
         </div>
         
         <p>Click below to learn more about each alphabet:</p>

@@ -12,15 +12,15 @@
     {% block title %}Quiz - Nihongo Quest{% endblock %}
     
     {% block content %}
-    <h1>Japanese Quiz</h1>
-    <h2>What is the meaning of?...</h2>
+    <h1 class="title-flash">Japanese Quiz</h1>
+    <h3 class="text-flash">What is the meaning of?...</h3>
     
     <form action="{{ url_for('quiz', card_id=card_id) }}" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         
         {% for word in selected_words %}
             <div class="flashcard">
-                <h3> "{{ word.japanese }}"</h3>
+                <h3> <strong>"{{ word.japanese }}"</strong></h3>
                 <input type="text" name="answer_{{ word.id }}"
                 class="flashcard-input {% if feedback and feedback[word.id] == 'correct' %}correct{% elif feedback and feedback[word.id] == 'incorrect' %}incorrect{% endif %}">
             </div>

@@ -21,7 +21,7 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     color: rgb(255, 142, 142);
-    margin-top: 5%;
+    margin-top: 4%;
 }
 
 @media (max-width: 412px) {
@@ -34,46 +34,101 @@ main {
     flex: 1;  /* Pushes the footer down */
 }
 
-footer {
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
-.navbar-brand img {
-    width: 40px; /* Adjust width */
-    height: auto;
-    border-radius: 10px; /* Optional: rounded corners */
-}
-
-
 .logo {
-    font-size: 180%;
+    font-size: 150%;
     text-shadow: 2px 2px red;
 }
 
-.logo-header {
-    color: rgb(255, 142, 142);
-    font-size: 380%;
-    text-shadow: 2px 2px rgb(56, 0, 59);
+.logo-color {
+    width: 50px;  
+    height: auto;
 }
 .navbar {
     background: var(--dark-red);
 }
 .navbar-brand, .nav-link {
-    color: white !important;
+    color: rgb(243, 243, 243) !important;
 }
 
+/* Footer Styles */
 .footer {
-    text-align: center;
-    padding: 20px;
-    background: var(--dark-red);
+    background: #2f2f2f;
     color: white;
+    padding: 40px 20px;
+    text-align: center;
 }
 
-/* Style register*/
+.logo_grey {
+    width: 30px;  
+    height: auto;  
+}
 
-.resgiter {
-    margin-top: 50%;
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-tittle {
+    color: #929292;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 280px;
+    margin: 15px;
+    text-align: justify;
+}
+
+.footer-column h6 {
+    color: #606060;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-column p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Social Media Buttons */
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.social-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* Social Media Colors */
+.facebook { background: #606060; }
+.twitter { background: #606060; }
+.instagram { background: #606060; }
+.youtube { background: #606060; }
+
+.social-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.footer-copy {
+    margin-top: 25px;
+    font-size: 14px;
+    opacity: 0.8;
 }

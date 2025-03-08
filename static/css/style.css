@@ -1,4 +1,25 @@
 /* General Styles flashCard */
+h1, p {
+    text-align: center;
+}
+
+p {
+    color: #d4edda;
+}
+
+.text-flash {
+    color: aliceblue;
+}
+.title-flash {
+    align-items: center;
+    font-size: 3rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ff5151;
+    margin: 2%;
+    text-shadow: 12px 12px 12px #2e0319;
+}
+/* flashCard tittle */
 
 /* Flashcards Container */
 .flashcards-container {
@@ -10,6 +31,15 @@
 }
 
 /* Flashcard Style */
+strong {
+    font-size: 190%;
+    color: rgb(21, 20, 23);
+    text-shadow: 1px 1px #d4edda;
+}
+
+.word-english {
+    color: rgb(245, 121, 108);
+}
 .flashcard {
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.2); /* Adjust transparency */
@@ -18,7 +48,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 20px;
-    text-align: left;
+    text-align: center;
     transition: transform 0.2s ease-in-out;
     color: #d4edda;
 }
@@ -80,6 +110,10 @@
 .flash.danger {
     background-color: #f8d7da;
     color: #721c24;
+}
+
+form {
+    text-align: center;
 }
 
 

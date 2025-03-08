@@ -1,0 +1,65 @@
+/* General form styles */
+form {
+    background: rgba(30, 30, 30, 0.8); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+}
+
+.title-login {
+    font-size: 3rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ff4646;
+    text-shadow: 12px 12px 12px #2e0319;
+    margin: 5%;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #f0f0f0; 
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+
+.button {
+    margin-top: 5px;
+}
+
+button {
+    background: linear-gradient(45deg,#ff3314 0%, #86070b 29% );
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.8);
+}

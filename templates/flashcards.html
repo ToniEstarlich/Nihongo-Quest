@@ -14,7 +14,7 @@
     {% block content %}
     
     <p>Start your journey in learning Japanese through fun quizzes.</p>
-    <h1>Japanese Learning App</h1>
+    <h1 class="title-flash">Japanese flash Cards</h1>
     
     <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -27,7 +27,7 @@
         {% endif %}
     {% endwith %}
 
-    <h2>Word List:</h2>
+    <h2 class="title-flash">Word List:</h2>
     <div class="flashcards-container">
         {% for i in range(0, words|length, 5) %}
             <div class="flashcard">
@@ -35,7 +35,7 @@
                 <ul>
                     {% for word in words[i:i+5] %}
                         <li>
-                            <h6>{{ word.japanese }} - {{ word.english }} 
+                            <h6><strong>{{ word.japanese }}</strong> - <b class="word-english">{{ word.english }}</b>
                             {% if word.pronunciation %}
                                 <br> {{ word.pronunciation }}</h6>
                             {% endif %}
@@ -46,8 +46,6 @@
             </div>
         {% endfor %}
     </div>
-
-    <a href="/quiz" class="quiz-btn">Take Quiz</a>
     {% endblock %}
 </body>
 </html>
