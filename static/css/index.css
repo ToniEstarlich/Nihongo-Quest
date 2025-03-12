@@ -102,6 +102,7 @@ margin-right: 16%;
 @media (min-width: 1280px) {
     #about {
        margin-right: -30%;
+       margin-top: -5%;
     }
 
 }
