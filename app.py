@@ -40,6 +40,7 @@ def index():
 
 # New flashcards route
 @app.route("/flashcards")
+@login_required
 def flashcards():
     words = Word.query.all()
     return render_template("flashcards.html", words=words)

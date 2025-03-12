@@ -122,6 +122,11 @@ main {
 .instagram { background: #606060; }
 .youtube { background: #606060; }
 
+.facebook:hover { background: #367cfd; }
+.twitter:hover { background: #6ee1fe; }
+.instagram:hover { background: #ff24e2; }
+.youtube:hover { background: #ff0505; }
+
 .social-btn:hover {
     transform: scale(1.1);
     opacity: 0.8;
