@@ -1,18 +1,13 @@
 # Nihongo Quest  
 
-Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
+<img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="150">
 
+Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
+![Website Preview](./static/screenshots/responsive.jpg)
 ## Objective and Next Steps  
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
-
-### Next Steps  
-- Implement user-specific progress tracking and scores.  
-- Improve the UI/UX for a better learning experience.  
-- Add more quiz categories and difficulty levels.  
-- Deploy the application online for wider accessibility.  
-
 
 
 ## Technologies Used  
@@ -24,178 +19,134 @@ The goal of Nihongo Quest is to provide an engaging platform for learning Japane
 - **Jinja2** – Template rendering 
 
 ---
-# 📚 Nihongo Quest - Flask & PostgreSQL Setup Guide example
 
-## 🔹 1. Database (PostgreSQL + pgAdmin 4)  
+# 📐 WIREFRAMES  
 
-### 📌 Step 1: Create a Database and Table  
-1. Open **pgAdmin 4** and connect to your PostgreSQL server.  
-2. Create a new database:  
-   - **Right-click** on "Databases" → Click **"Create"** → Select **"Database"**  
-   - Enter a **name** (e.g., `nihongo_db`) → Click **Save**  
-3. Open the **Query Tool** and create a table:  
-   ```sql
-   CREATE TABLE hiragana (
-       id SERIAL PRIMARY KEY,
-       character VARCHAR(10) NOT NULL,
-       pronunciation VARCHAR(20) NOT NULL
-   );
-   ```  
-4. Insert sample data:  
-   ```sql
-   INSERT INTO hiragana (character, pronunciation) VALUES
-   ('あ', 'a'), ('い', 'i'), ('う', 'u'), ('え', 'e'), ('お', 'o');
-   ```
+Nihongo Quest features several interactive sections, each designed to enhance the learning experience: **Home**, **Alphabet**, **Flashcards**, **Manga**, and **Quiz**. Below are the wireframes for the four main sections:  
 
-### 🌍 API Endpoints
+## 🏠 Home  
 
-| Endpoint      | Method | Description          |
-|--------------|--------|----------------------|
-| /            | GET    | Home Page            |
-| /quiz        | GET    | Quiz Section         |
-| /flashcards  | GET    | Flashcards Page      |
-| /alphabet    | GET    | Alphabet Learning    |
-| /manga       | GET    | Manga Section        |
-| /register    | POST   | User Registration    |
-| /login       | POST   | User Login           |
+The **Home** section introduces the web app, explaining its purpose and long-term vision. It includes helpful **tips** and insights into Japanese culture and travel, aiming to create an engaging and immersive experience.  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/wireframes/home_pc.jpg" alt="Desktop Screenshot" width="330"> | <img src="./static/wireframes/home_tablet.jpg" alt="Tablet Screenshot" width="150"> | <img src="./static/wireframes/home_phone.jpg" alt="Mobile Screenshot" width="50"> |  
+
+---  
+
+## 🃏 Flashcards  
+
+The **Flashcards** section is designed to improve memory retention through strategic exercises. As mentioned in the **Tips** section, mastering Japanese requires practicing writing, listening, and speaking — future updates will focus on incorporating these objectives.  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/wireframes/flashcard_pc.jpg" alt="Desktop Screenshot" width="330"> | <img src="./static/wireframes/flashCard_tablet.jpg" alt="Tablet Screenshot" width="150"> | <img src="./static/wireframes/flashCard_phone.jpg" alt="Mobile Screenshot" width="50"> |  
+
+---  
+
+## 🔠 Alphabet  
+
+The **Alphabet** section explains the structure and differences between **Hiragana**, **Katakana**, and **Kanji**, providing a clear understanding of how the Japanese writing system works.  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/wireframes/alphabet_pc.jpg" alt="Desktop Screenshot" width="330"> | <img src="./static/wireframes/alphabet_tablet.jpg" alt="Tablet Screenshot" width="150"> | <img src="./static/wireframes/alphabet_phone.jpg" alt="Mobile Screenshot" width="50"> |  
+
+---  
+
+## 📖 Manga Section  
+
+Anime and manga are major gateways to Japanese culture for many learners. The **Manga** section highlights the influence of manga in Western culture and encourages learning Japanese through reading. Users can discover new manga, helping to expand their vocabulary and reading skills in an enjoyable way.  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/wireframes/manga_pc.jpg" alt="Desktop Screenshot" width="330"> | <img src="./static/wireframes/manga_tablet.jpg" alt="Tablet Screenshot" width="150"> | <img src="./static/wireframes/manga_phone.jpg" alt="Mobile Screenshot" width="50"> |  
 
 
-### 🗄️ Database Structure
+---
+# THE LOGO 
+<img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="350">
 
-- **Users Table**: Stores user details  
-- **Flashcards Table**: Stores flashcards content  
-- **Manga Table**: Stores manga references  
-- **Quiz Table**: Stores quiz questions & answers  
+The logo for Nihongo Quest features a **minimalist cartoon-style cat head**, symbolizing curiosity and exploration — traits that reflect the learning journey in Nihongo Quest. The cat's simple and clean design represents the Japanese aesthetic of minimalism and balance.  
 
+To the right of the cat's head, the logo includes the Japanese word **"日本語"** (*Nihongo*), which means **"Japanese language."** This reinforces the focus of the app on helping users navigate and learning Japanese through an engaging and intuitive experience.  
+
+The combination of the cat and the Japanese text creates a visually balanced and culturally meaningful symbol that reflects the app’s purpose — learning Japanese through exploration and curiosity.
 
 ---
 
-## 🔹 2. Backend (Flask + SQLAlchemy)  
+# Colors:
+## Color Palette Explanation  
 
-### 📌 Step 2: Install Dependencies  
-Run the following command inside your virtual environment:  
-```bash
-pip install flask flask-sqlalchemy psycopg2
-```
+The color palette for Nihongo Quest was carefully selected to reflect Japanese culture and history, particularly inspired by **Hiroshima** and the symbolism associated with **Japanese Culture**. Each color has a specific meaning and purpose in the design:  
+<img src="./static/screenshots/background&colors.png" alt="Mobile Screenshot" width="350">
+### **Body Colors**  
+| Color | Code | Meaning |  
+|-------|------|---------|  
+| `#ff4646` | #ff4646 | Represents the red of the Japanese flag, symbolizing the sun and strength. |  
+| `#ffffff` | #ffffff | Represents purity and simplicity, inspired by traditional Japanese minimalism. |  
+| `#FFBEBE` | #FFBEBE | A light salmon pink, representing warmth and the softness of Japanese cherry blossoms. |  
+| `rgb(255, 142, 142)` |rgb(255, 142, 142)| A softer red tone, providing a balanced contrast and warmth. |  
+| `linear-gradient(108deg, #ff3314 0%, #86070b 29%, #43031a 75%)` | Gradient | A dynamic red gradient reflecting the intensity and historical depth of Hiroshima. |  
 
-### 📌 Step 3: Database Configuration  
-#### 📂 `db.py` (Database Connection)  
-```python
-from flask_sqlalchemy import SQLAlchemy
+### **Footer and Navbar Colors** 
+ <img src="./static/screenshots/footer_colors.png" alt="Mobile Screenshot" width="350">
 
-db = SQLAlchemy()
-```
+| Color | Code | Meaning |  
+|-------|------|---------|  
+| `#606060` | #606060 | Neutral gray, symbolizing stability and balance. |  
+| `#929292` | #929292 | A lighter gray, providing subtle contrast while maintaining harmony. |  
+| `#ffffff` | #ffffff | Ensures readability and clarity. |  
+| `#231E1E` | #231E1E | Dark tone for a clean, modern look inspired by traditional Japanese aesthetics. |  
 
-#### 📂 `config.py` (Database Settings)  
-```python
-import os
+---
+# 🎨 UI/UX Screenshots  
 
-DB_NAME = "nihongo_db"
-DB_USER = "postgres"
-DB_PASSWORD = "password"
-DB_HOST = "localhost"
-DB_PORT = "5432"
+## 🏠 Home  
 
-DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-```
+The **Home** section introduces the Nihongo Quest web app and sets the tone for the learning experience.  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/screenshots/home-pc.jpeg" alt="Desktop Screenshot" width="330"> | <img src="./static/screenshots/home-tablet.jpeg" alt="Tablet Screenshot" width="150"> | <img src="./static/screenshots/home-phone.jpeg" alt="Mobile Screenshot" width="50"> |  
+
+### 🌟 About  
+The cover of **Nihongo Quest** introduces the app’s core purpose: to help learners immerse themselves in the Japanese language while experiencing the depth and beauty of Japanese culture.  
+
+### 💡 Tips  
+This section explains the key to mastering a new language: **consistent practice**. Listening, speaking, and writing daily is essential — but Nihongo Quest aims to make learning fun and engaging through interactive challenges.  
+
+### 🌍 Travel  
+Explore four of the most important cities in Japan — but Nihongo Quest doesn't stop there. The app aims to uncover the hidden secrets and rich history behind Japanese culture.  
+**"Learning is more than just knowledge; it’s an adventure."**  
+
+---  
+
+## 🃏 Flashcards  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/screenshots/flashcards-pc.jpeg" alt="Desktop Screenshot" width="330"> | <img src="./static/screenshots/flashcards-tablet.jpeg" alt="Tablet Screenshot" width="150"> | <img src="./static/screenshots/flashcards-phone.jpeg" alt="Mobile Screenshot" width="50"> |  
+
+The **Flashcards** section helps sharpen memory and improve retention through regular exercise.  
+> _"Your brain is like a muscle — it needs exercise!"_  
+Challenge yourself daily with flashcards to reinforce your learning and track your progress.  
+
+---  
+
+## 📖 Manga Section  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/screenshots/manga-pc.jpeg" alt="Desktop Screenshot" width="330"> | <img src="./static/screenshots/manga-tablet.jpeg" alt="Tablet Screenshot" width="150"> | <img src="./static/screenshots/manga-phone.jpeg" alt="Mobile Screenshot" width="50"> |  
+
+The **Manga** section is a manga search tool where you can explore your favorite titles and suggest new ones.  
+Curiosity is key to language learning — discovering new manga can expand your vocabulary and strengthen your reading skills.  
+> _"Progress comes from curiosity."_
 
 ---
 
-### 📌 Step 4: Define Models  
-#### 📂 `models/alphabet.py` (Hiragana Model)  
-```python
-from db import db
-
-class Hiragana(db.Model):
-    __tablename__ = "hiragana"
-    id = db.Column(db.Integer, primary_key=True)
-    character = db.Column(db.String(10), nullable=False)
-    pronunciation = db.Column(db.String(20), nullable=False)
-```
-
----
-
-### 📌 Step 5: Create Flask Routes  
-#### 📂 `routes/alphabet_routes.py` (Blueprint & API Routes)  
-```python
-from flask import Blueprint, render_template
-from db import db
-from models.alphabet import Hiragana
-
-alphabet_bp = Blueprint("alphabet", __name__, url_prefix="/alphabet")
-
-@alphabet_bp.route('/hiragana')
-def get_hiragana():
-    characters = Hiragana.query.all()
-    return render_template('alphabet/hiragana.html', characters=characters)
-```
-
----
-
-### 📌 Step 6: Initialize Flask App & Register Blueprints  
-#### 📂 `app.py` (Main Application File)  
-```python
-from flask import Flask
-from config import DATABASE_URI
-from db import db
-from routes.alphabet_routes import alphabet_bp
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db.init_app(app)
-app.register_blueprint(alphabet_bp)
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()  # Create tables if they don't exist
-    app.run(debug=True)
-```
-
----
-
-## 🔹 3. Frontend (HTML + Jinja2 Templates)  
-
-### 📌 Step 7: Create the Template  
-#### 📂 `templates/alphabet/hiragana.html` (Frontend Display)  
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiragana Characters</title>
-</head>
-<body>
-    <h1>Hiragana Alphabet</h1>
-    <table border="1">
-        <tr>
-            <th>Character</th>
-            <th>Pronunciation</th>
-        </tr>
-        {% for char in characters %}
-        <tr>
-            <td>{{ char.character }}</td>
-            <td>{{ char.pronunciation }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
-```
-##  Next Steps
-# 🚀
-
-- Design & implement the frontend
-
-- Testing & bug fixing
-
-- Deploy to Heroku
-
----
-
-## 🔹 4. Run the Flask App  
+##  4. Run the Flask App  
 1. Open the terminal and activate your virtual environment.  
 2. Start the Flask app:  
    ```bash
@@ -206,7 +157,7 @@ if __name__ == '__main__':
 
 
 ---
-# THE ALGORITHM & CODE:
+# EXAMPLE OF ALGORITHM & CODE:
 
 ## 📌 Quiz Function Explanation
 The `quiz()` function handles the quiz logic in a Flask web application. It:
@@ -381,5 +332,175 @@ quiz.html end explanation:
 ## Contributing  
 
 Feel free to open issues or submit pull requests to improve Nihongo Quest!  
+
+# 📚 Nihongo Quest - Flask & PostgreSQL Setup Guide example
+
+##  1. Database (PostgreSQL + pgAdmin 4)  
+
+### 📌 Step 1: Create a Database and Table  
+1. Open **pgAdmin 4** and connect to your PostgreSQL server.  
+2. Create a new database:  
+   - **Right-click** on "Databases" → Click **"Create"** → Select **"Database"**  
+   - Enter a **name** (e.g., `nihongo_db`) → Click **Save**  
+3. Open the **Query Tool** and create a table:  
+   ```sql
+   CREATE TABLE hiragana (
+       id SERIAL PRIMARY KEY,
+       character VARCHAR(10) NOT NULL,
+       pronunciation VARCHAR(20) NOT NULL
+   );
+   ```  
+4. Insert sample data:  
+   ```sql
+   INSERT INTO hiragana (character, pronunciation) VALUES
+   ('あ', 'a'), ('い', 'i'), ('う', 'u'), ('え', 'e'), ('お', 'o');
+   ```
+
+### 🌍 API Endpoints
+
+| Endpoint      | Method | Description          |
+|--------------|--------|----------------------|
+| /            | GET    | Home Page            |
+| /quiz        | GET    | Quiz Section         |
+| /flashcards  | GET    | Flashcards Page      |
+| /alphabet    | GET    | Alphabet Learning    |
+| /manga       | GET    | Manga Section        |
+| /register    | POST   | User Registration    |
+| /login       | POST   | User Login           |
+
+
+### 🗄️ Database Structure
+
+- **Users Table**: Stores user details  
+- **Flashcards Table**: Stores flashcards content  
+- **Manga Table**: Stores manga references  
+- **Quiz Table**: Stores quiz questions & answers  
+
+
+---
+
+##  2. Backend (Flask + SQLAlchemy)  
+
+### 📌 Step 2: Install Dependencies  
+Run the following command inside your virtual environment:  
+```bash
+pip install flask flask-sqlalchemy psycopg2
+```
+
+### 📌 Step 3: Database Configuration  
+#### 📂 `db.py` (Database Connection)  
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+```
+
+#### 📂 `config.py` (Database Settings)  
+```python
+import os
+
+DB_NAME = "nihongo_db"
+DB_USER = "postgres"
+DB_PASSWORD = "password"
+DB_HOST = "localhost"
+DB_PORT = "5432"
+
+DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+```
+
+---
+
+### 📌 Step 4: Define Models  
+#### 📂 `models/alphabet.py` (Hiragana Model)  
+```python
+from db import db
+
+class Hiragana(db.Model):
+    __tablename__ = "hiragana"
+    id = db.Column(db.Integer, primary_key=True)
+    character = db.Column(db.String(10), nullable=False)
+    pronunciation = db.Column(db.String(20), nullable=False)
+```
+
+---
+
+### 📌 Step 5: Create Flask Routes  
+#### 📂 `routes/alphabet_routes.py` (Blueprint & API Routes)  
+```python
+from flask import Blueprint, render_template
+from db import db
+from models.alphabet import Hiragana
+
+alphabet_bp = Blueprint("alphabet", __name__, url_prefix="/alphabet")
+
+@alphabet_bp.route('/hiragana')
+def get_hiragana():
+    characters = Hiragana.query.all()
+    return render_template('alphabet/hiragana.html', characters=characters)
+```
+
+---
+
+### 📌 Step 6: Initialize Flask App & Register Blueprints  
+#### 📂 `app.py` (Main Application File)  
+```python
+from flask import Flask
+from config import DATABASE_URI
+from db import db
+from routes.alphabet_routes import alphabet_bp
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+app.register_blueprint(alphabet_bp)
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Create tables if they don't exist
+    app.run(debug=True)
+```
+
+---
+
+##  3. Frontend (HTML + Jinja2 Templates)  
+
+### 📌 Step 7: Create the Template  
+#### 📂 `templates/alphabet/hiragana.html` (Frontend Display)  
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana Characters</title>
+</head>
+<body>
+    <h1>Hiragana Alphabet</h1>
+    <table border="1">
+        <tr>
+            <th>Character</th>
+            <th>Pronunciation</th>
+        </tr>
+        {% for char in characters %}
+        <tr>
+            <td>{{ char.character }}</td>
+            <td>{{ char.pronunciation }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+```
+---
+##  Next Steps
+# 🚀
+
+- Readme documentation
+
+- Testing & bug fixing
+
+- Deploy to Heroku
 
 
