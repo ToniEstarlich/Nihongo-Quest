@@ -146,17 +146,6 @@ Curiosity is key to language learning — discovering new manga can expand your 
 
 ---
 
-##  4. Run the Flask App  
-1. Open the terminal and activate your virtual environment.  
-2. Start the Flask app:  
-   ```bash
-   flask run
-   ```
-3. Open your browser and visit:  
-   **`http://127.0.0.1:5000/alphabet/hiragana`**  
-
-
----
 # EXAMPLE OF ALGORITHM & CODE:
 
 ## 📌 Quiz Function Explanation
@@ -493,6 +482,18 @@ if __name__ == '__main__':
 </body>
 </html>
 ```
+
+---
+##  4. Run the Flask App  
+1. Open the terminal and activate your virtual environment.  
+2. Start the Flask app:  
+   ```bash
+   flask run
+   ```
+3. Open your browser and visit:  
+   **`http://127.0.0.1:5000/alphabet/hiragana`**  
+
+
 ---
 ##  Next Steps
 # 🚀
