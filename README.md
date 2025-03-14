@@ -32,7 +32,7 @@ Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth
 ## 🎨 Illustration & Design  
 - **[Procreate](https://procreate.com/)** –  Sketch the minimalist cat logo,defining the color palette and refining the design elements and other illustrations.    
 - **[Adobe Illustrator](https://www.adobe.com/products/illustrator.html)** –  designing and creating the logo. 
-- **[Clipchamp](https://www.clipchamp.com/)** – editing promotional and tutorial videos.  
+- **[Clipchamp](https://www.clipchamp.com/)** – editing promotional video About.  
 
 ## 🔄 Version Control  
 - **[Git](https://git-scm.com/)** – tracking code changes and maintaining version control.  
