@@ -1,6 +1,4 @@
-# Nihongo Quest  
-
-<img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="150">
+# Nihongo Quest   <img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="100">
 
 Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
 ![Website Preview](./static/screenshots/responsive.jpg)
@@ -10,13 +8,36 @@ Nihongo Quest is a Flask-based web application designed to help users learn Japa
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
 
 
-## Technologies Used  
+# 🛠️ Tech Stack  
 
-- **Flask** – Backend framework  
-- **SQLAlchemy** – Database ORM  
-- **Flask-Login** – User authentication  
-- **Flask-WTF** – Forms and CSRF protection  
-- **Jinja2** – Template rendering 
+Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth user experience and scalable performance.  
+
+## 🎨 Style  
+- **CSS** – Handles the layout and styling, ensuring a visually appealing and responsive design.  
+- **Flexbox** & **Grid** – structuring content and creating a consistent layout across different screen sizes.  
+
+## 🌐 Frontend  
+- **HTML** – Provides the foundation for the content and structure of the web app.  
+- **JavaScript** – Enables interactivity and dynamic content updates.  
+- **Event Listeners** – handling user interactions like clicks and keyboard inputs.  
+
+## 🚀 Backend  
+- **[Flask](https://flask.palletsprojects.com/)** – A lightweight Python framework used for handling requests and serving data to the frontend.  
+- **REST API** – Used for fetching and managing data between the frontend and backend.  
+
+## 🗄️ Database  
+- **[PostgreSQL](https://www.postgresql.org/)** – A powerful and reliable relational database used for storing user data, flashcards, and quiz results.  
+- **[SQLAlchemy](https://www.sqlalchemy.org/)** – An ORM (Object-Relational Mapping) tool used to simplify database interactions.  
+
+## 🎨 Illustration & Design  
+- **[Procreate](https://procreate.com/)** –  Sketch the minimalist cat logo,defining the color palette and refining the design elements and other illustrations.    
+- **[Adobe Illustrator](https://www.adobe.com/products/illustrator.html)** –  designing and creating the logo. 
+- **[Clipchamp](https://www.clipchamp.com/)** – editing promotional and tutorial videos.  
+
+## 🔄 Version Control  
+- **[Git](https://git-scm.com/)** – tracking code changes and maintaining version control.  
+- **[GitHub](https://github.com/)** – hosting and managing the project repository.  
+
 
 ---
 
