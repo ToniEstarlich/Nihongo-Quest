@@ -345,6 +345,8 @@ Feel free to open issues or submit pull requests to improve Nihongo Quest!
 
 # 📚 Nihongo Quest - Flask & PostgreSQL Setup Guide example
 
+<img src="./static/screenshots/fullStack.png" alt="Mobile Screenshot" width="450">
+
 ##  1. Database (PostgreSQL + pgAdmin 4)  
 
 ### 📌 Step 1: Create a Database and Table  
