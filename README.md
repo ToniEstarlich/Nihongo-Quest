@@ -2,13 +2,22 @@
 
 Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
 ![Website Preview](./static/screenshots/responsive.jpg)
-## Objective and Next Steps  
+
+## Table of Contents
+1. [Tech Stack](#tech-stack)
+2. [Wireframes](#wireframes)
+3. [The Loggo](#the-logo)
+4. [Colors](#colors)
+5. [Screenshots](#uiux-screenshots)
+6. [Algorithm](#example-of-algorithm--code)
+7. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
 
 
-# 🛠️ Tech Stack  
+# Tech Stack  
+# 🛠️
 
 Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth user experience and scalable performance.  
 
@@ -29,7 +38,8 @@ Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth
 - **[PostgreSQL](https://www.postgresql.org/)** – A powerful and reliable relational database used for storing user data, flashcards, and quiz results.  
 - **[SQLAlchemy](https://www.sqlalchemy.org/)** – An ORM (Object-Relational Mapping) tool used to simplify database interactions.  
 
-## 🎨 Illustration & Design  
+## Illustration & Design 
+#   🎨 
 - **[Procreate](https://procreate.com/)** –  Sketch the minimalist cat logo,defining the color palette and refining the design elements and other illustrations.    
 - **[Adobe Illustrator](https://www.adobe.com/products/illustrator.html)** –  designing and creating the logo. 
 - **[Clipchamp](https://www.clipchamp.com/)** – editing promotional video About.  
@@ -41,7 +51,8 @@ Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth
 
 ---
 
-# 📐 WIREFRAMES  
+# WIREFRAMES  
+# 📐 
 
 Nihongo Quest features several interactive sections, each designed to enhance the learning experience: **Home**, **Alphabet**, **Flashcards**, **Manga**, and **Quiz**. Below are the wireframes for the four main sections:  
 
@@ -121,7 +132,8 @@ The color palette for Nihongo Quest was carefully selected to reflect Japanese c
 | `#231E1E` | #231E1E | Dark tone for a clean, modern look inspired by traditional Japanese aesthetics. |  
 
 ---
-# 🎨 UI/UX Screenshots  
+#  UI/UX Screenshots 
+#  🎨
 
 ## 🏠 Home  
 
@@ -343,11 +355,18 @@ quiz.html end explanation:
 
 Feel free to open issues or submit pull requests to improve Nihongo Quest!  
 
-# 📚 Nihongo Quest - Flask & PostgreSQL Setup Guide example
+#  Nihongo Quest - Flask & PostgreSQL Setup Guide example
+# 📚
 
 <img src="./static/screenshots/fullStack.png" alt="Mobile Screenshot" width="450">
 
-##  1. Database (PostgreSQL + pgAdmin 4)  
+## Table of Contents
+1. [Data Base](#1-database)
+2. [Back-end](#2-backend-flask--sqlalchemy)
+3. [Front-end](#3-frontend-html--jinja2-templates)
+4. [Comeback-to-Readme](#nihongo-quest)
+     
+##  1. Database
 
 ### 📌 Step 1: Create a Database and Table  
 1. Open **pgAdmin 4** and connect to your PostgreSQL server.  
