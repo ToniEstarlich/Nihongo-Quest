@@ -1,4 +1,5 @@
-# Nihongo Quest   <img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="100">
+# Nihongo Quest   
+<img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="100">
 
 Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
 ![Website Preview](./static/screenshots/responsive.jpg)
