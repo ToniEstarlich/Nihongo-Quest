@@ -417,11 +417,13 @@ if __name__ == '__main__':
 ##  Next Steps
 # 🚀
 
-- Readme documentation
+- 1. **Update Route**: Add routes to update user data or entries (e.g., update user profile, update word details).
 
-- Testing & bug fixing
+- 2. **Delete Route:** Implement delete functionality for users, words, or other records.
 
-- Deploy to Heroku
+- 3. **Testing** & bug fixing
+
+- 4.  Deploy to **Heroku**
 
 ---
 # EXAMPLE OF ALGORITHM & CODE:
