@@ -8,6 +8,8 @@ from extensions import db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required
 from models.user import User
 from models.word import Word
+from models.task import db
+from routes.task_routes import task_bp
 from forms import LoginForm
 import requests
 
@@ -15,6 +17,7 @@ app = Flask(__name__)
 
 # Register the blueprint
 app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
+app.register_blueprint(task_bp, url_prefix='/task')
 app.register_blueprint(manga_routes)
 
 app.config.from_object(Config)

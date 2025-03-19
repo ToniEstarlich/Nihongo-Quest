@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Register - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+    <h2>Dictionary</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Japanese Word</th>
+                <th>Pronunciation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td><img src="{{ url_for('static', filename=entry.image_path) }}" alt="Image" width="50"></td>
+                <td>{{ entry.category }}</td>
+                <td>{{ entry.japanese_word }}</td>
+                <td>{{ entry.pronunciation }}</td>
+                <td>
+                    <a href="{{ url_for('task_routes.edit_image', id=entry.id) }}">Edit</a>
+                    <a href="{{ url_for('task_routes.delete_image', id=entry.id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+</html>

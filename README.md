@@ -52,7 +52,7 @@ Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth
 - **[GitHub](https://github.com/)** – hosting and managing the project repository.  
 
 
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 ---
 
 # WIREFRAMES  
@@ -98,7 +98,7 @@ Anime and manga are major gateways to Japanese culture for many learners. The **
 |--------------|-------------|-------------|  
 | <img src="./static/wireframes/manga_pc.jpg" alt="Desktop Screenshot" width="330"> | <img src="./static/wireframes/manga_tablet.jpg" alt="Tablet Screenshot" width="150"> | <img src="./static/wireframes/manga_phone.jpg" alt="Mobile Screenshot" width="50"> |  
 
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 ---
 # THE LOGO 
 <img src="./static/screenshots/nihongo_logo.png" alt="Mobile Screenshot" width="350">
@@ -108,7 +108,7 @@ The logo for Nihongo Quest features a **minimalist cartoon-style cat head**, sym
 To the right of the cat's head, the logo includes the Japanese word **"日本語"** (*Nihongo*), which means **"Japanese language."** This reinforces the focus of the app on helping users navigate and learning Japanese through an engaging and intuitive experience.  
 
 The combination of the cat and the Japanese text creates a visually balanced and culturally meaningful symbol that reflects the app’s purpose — learning Japanese through exploration and curiosity.
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 ---
 
 # Colors:
@@ -135,7 +135,7 @@ The color palette for Nihongo Quest was carefully selected to reflect Japanese c
 | `#ffffff` | #ffffff | Ensures readability and clarity. |  
 | `#231E1E` | #231E1E | Dark tone for a clean, modern look inspired by traditional Japanese aesthetics. |  
 
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 ---
 #  UI/UX Screenshots 
 #  🎨
@@ -182,7 +182,7 @@ The **Manga** section is a manga search tool where you can explore your favorite
 Curiosity is key to language learning — discovering new manga can expand your vocabulary and strengthen your reading skills.  
 > _"Progress comes from curiosity."_
 
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 
 ---
 ## Problems and Solutions  
@@ -229,7 +229,7 @@ Curiosity is key to language learning — discovering new manga can expand your 
 
 Feel free to open issues or submit pull requests to improve Nihongo Quest! 
 
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 
 #  Nihongo Quest - Flask & PostgreSQL Setup Guide example
 # 📚
@@ -411,7 +411,7 @@ if __name__ == '__main__':
 3. Open your browser and visit:  
    **`http://127.0.0.1:5000/alphabet/hiragana`**  
 
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 
 ---
 ##  Next Steps
@@ -556,7 +556,7 @@ quiz.html end explanation:
 <a href="/">Return to Home</a>
 
 ```
-# [Comeback-to-Readme](#nihongo-quest)
+# [Comeback to Readme](#nihongo-quest)
 ---
 
 

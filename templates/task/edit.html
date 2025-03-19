@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Register - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+    <h2>Edit Entry</h2>
+    
+    <form method="POST" action="{{ url_for('task_routes.edit_image', id=entry.id) }}" enctype="multipart/form-data">
+        <label>Image:</label>
+        <input type="file" name="image">
+    
+        <label>Category:</label>
+        <select name="category" required>
+            <option value="Object" {% if entry.category=='Object' %} selected {% endif %}>Object</option>
+            <option value="Verb" {% if entry.category=='Verb' %} selected {% endif %}>Verb</option>
+            <option value="Fruit" {% if entry.category=='Fruit' %} selected {% endif %}>Fruit</option>
+            <option value="Street" {% if entry.category=='Street' %} selected {% endif %}>Street</option>
+            <option value="Shop" {% if entry.category=='Shop' %} selected {% endif %}>Shop</option>
+            <option value="Animals" {% if entry.category=='Animals' %} selected {% endif %}>Animals</option>
+            <option value="Plants" {% if entry.category=='Plants' %} selected {% endif %}>Plants</option>
+            <option value="People" {% if entry.category=='People' %} selected {% endif %}>People</option>
+        </select>
+    
+        <label>Japanese Word:</label>
+        <input type="text" name="japanese_word" value="{{ entry.japanese_word }}" required>
+    
+        <label>Pronunciation:</label>
+        <input type="text" name="pronunciation" value="{{ entry.pronunciation }}" required>
+    
+        <button type="submit">Update Entry</button>
+    </form>
+    
+    {% endblock %}
+</body>
+</html>
