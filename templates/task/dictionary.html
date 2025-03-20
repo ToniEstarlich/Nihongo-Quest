@@ -31,8 +31,10 @@
                 <td>{{ entry.japanese_word }}</td>
                 <td>{{ entry.pronunciation }}</td>
                 <td>
-                    <a href="{{ url_for('task_routes.edit_image', id=entry.id) }}">Edit</a>
-                    <a href="{{ url_for('task_routes.delete_image', id=entry.id) }}">Delete</a>
+                    <a href="{{ url_for('task.edit_entry', entry_id=entry.id) }}">Edit</a>
+                    <form action="{{ url_for('task.delete_entry', entry_id=entry.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

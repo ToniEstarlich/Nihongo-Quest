@@ -8,7 +8,7 @@ from extensions import db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required
 from models.user import User
 from models.word import Word
-from models.task import db
+from models.task import db, TaskImagen
 from routes.task_routes import task_bp
 from forms import LoginForm
 import requests
