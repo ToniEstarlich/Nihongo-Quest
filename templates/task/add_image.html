@@ -7,35 +7,39 @@
 </head>
 <body>
     {% extends "base.html" %}
-    
-    {% block title %}Register - Nihongo Quest{% endblock %}
-    <h2>Add New Entry to Dictionary</h2>
-    
-    <form method="POST" action="{{ url_for('task_routes.add_image') }}" enctype="multipart/form-data">
-        <label>Image:</label>
-        <input type="file" name="image" required>
-    
-        <label>Category:</label>
-        <select name="category" required>
-            <option value="Object">Object</option>
-            <option value="Verb">Verb</option>
-            <option value="Fruit">Fruit</option>
-            <option value="Street">Street</option>
-            <option value="Shop">Shop</option>
-            <option value="Animals">Animals</option>
-            <option value="Plants">Plants</option>
-            <option value="People">People</option>
-        </select>
-    
-        <label>Japanese Word:</label>
-        <input type="text" name="japanese_word" required>
-    
-        <label>Pronunciation:</label>
-        <input type="text" name="pronunciation" required>
-    
-        <button type="submit">Add Entry</button>
-    </form>
-    {% block content %}
-    {% endblock %}
+
+{% block title %}Add New Entry - Nihongo Quest{% endblock %}
+
+{% block content %}
+<h2>Add New Entry to Dictionary</h2>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+<!-- Form -->
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <label>Image:</label>
+    {{ form.image(class="form-control") }}
+
+    <label>Category:</label>
+    {{ form.category(class="form-control") }}
+
+    <label>Japanese Word:</label>
+    {{ form.japanese_word(class="form-control") }}
+
+    <label>Pronunciation:</label>
+    {{ form.pronunciation(class="form-control") }}
+
+    <button type="submit" class="btn btn-primary">Add Entry</button>
+</form>
+{% endblock %}
 </body>
 </html>

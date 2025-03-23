@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Home - Nihongo Quest{% endblock %}
+    {% block content %}
+    <div class="container">
+        <h2>Add a New Japanese Word</h2>
+    
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    
+        <!-- Form to add words -->
+        <form method="POST" action="/add_word">
+            {{ form.hidden_tag() }}        
+            <label for="japanese">Japanese:</label>
+            <input type="text" id="japanese" name="japanese" required>
+        
+            <label for="english">English:</label>
+            <input type="text" id="english" name="english" required>
+        
+            <label for="pronunciation">Pronunciation:</label>
+            <input type="text" id="pronunciation" name="pronunciation">
+        
+            <button type="submit">Add Word</button>
+        </form>
+        
+    {% endblock %}
+
+</body>
+</html>

@@ -1,8 +1,9 @@
-import os 
+import os
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 from extensions import db
 from models.task import TaskImagen
+from forms import TaskImagenForm  # Import the form
 
 task_bp = Blueprint('task', __name__)
 
@@ -12,42 +13,37 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@task_bp.route('/dictionary')
-def dictionary():
-    return render_template('task/dictionary.html')
-
 @task_bp.route('/add', methods=['GET', 'POST'])
 def add_image():
-    if request.method == 'POST':
-        category = request.form['category']
-        japanese_word = request.form['japanese_word']
-        pronunciation = request.form['pronunciation']
-        file = request.files['image']
+    form = TaskImagenForm()
 
+    if form.validate_on_submit():
+        file = form.image.data
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            filepath = os.path.join('static/uploads', filename)  # Save to static/uploads
+            filepath = os.path.join(UPLOAD_FOLDER, filename)  # Save to static/uploads
             file.save(filepath)
 
-            # Save the relative path to the database
             new_entry = TaskImagen(
-                image_path=f'uploads/{filename}',   # Relative path to be used in templates
-                category=category,
-                japanese_word=japanese_word,
-                pronunciation=pronunciation
+                image_path=f'uploads/{filename}',  # Save relative path
+                category=form.category.data,
+                japanese_word=form.japanese_word.data,
+                pronunciation=form.pronunciation.data
             )
+
             db.session.add(new_entry)
             db.session.commit()
-            flash('New entry added!')
-            return redirect(url_for('task.get_all_images'))
-    
-    return render_template('task/add_image.html')  # Updated path
+            flash("New entry added successfully!", "success")
+            return redirect(url_for('task.add_image'))
 
+    return render_template('task/add_image.html', form=form)  # Pass form to template
 
-@task_bp.route('/list')
-def get_all_images():
+@task_bp.route('/dictionary')
+def dictionary():
     entries = TaskImagen.query.all()
-    return render_template('dictionary.html', entries=entries)
+    return render_template('task/dictionary.html', entries=entries)
+
+
 
 @task_bp.route('/edit/<int:entry_id>', methods=['GET', 'POST'])
 def edit_entry(entry_id):

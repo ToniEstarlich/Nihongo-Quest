@@ -1,17 +1,19 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
 from routes.alphabet_routes import alphabet_bp
 from routes.manga_routes import manga_routes
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_wtf.csrf import generate_csrf
 from config import Config
 from extensions import db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required
 from models.user import User
 from models.word import Word
-from models.task import db, TaskImagen
+from models.task import TaskImagen
 from routes.task_routes import task_bp
+from flask import request
 from forms import LoginForm
-import requests
+from forms import WordForm
+import os
 
 app = Flask(__name__)
 
@@ -35,6 +37,20 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
+
+# **CSRF Token Logging** - log CSRF token for POST requests
+@app.before_request
+def log_csrf_token():
+    if request.method == "POST":
+        csrf_token = request.form.get('_csrf_token')
+        print(f"CSRF Token: {csrf_token}")
+
+# **CSRF Error Handling** - handle and log CSRF errors
+@app.errorhandler(CSRFError)
+def handle_csrf_error(error):
+    print(f"CSRF Error: {error.description}")
+    flash("CSRF token missing or incorrect", "danger")
+    return redirect(request.referrer)  # Redirect to the previous page (e.g., the form)
 
 # Updated index route
 @app.route("/")
@@ -121,6 +137,31 @@ def logout():
     logout_user()
     flash("Logged out!", "info")
     return redirect(url_for("index"))
+
+# ----------------- add word ---------------------------------------
+@app.route("/add_word", methods=["GET", "POST"])
+@login_required
+def add_word():
+    form = WordForm()  # Create an instance of the form
+
+    if request.method == "POST" and form.validate_on_submit():
+        japanese = form.japanese.data
+        english = form.english.data
+        pronunciation = form.pronunciation.data
+
+        new_word = Word(japanese=japanese, english=english, pronunciation=pronunciation)
+        db.session.add(new_word)
+        db.session.commit()
+
+        flash("New word added successfully!", "success")
+        return redirect(url_for("add_word"))
+
+    return render_template("add_words.html", form=form)
+# ----------------- End add word ---------------------------------------
+
+@app.errorhandler(CSRFError)
+def handle_csrf_error(error):
+    return 'CSRF token is missing or invalid. Please try again.', 400
 
 if __name__ == "__main__":
     app.run(debug=True)
