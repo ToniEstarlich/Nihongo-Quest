@@ -38,46 +38,49 @@ def add_image():
 
     return render_template('task/add_image.html', form=form)  # Pass form to template
 
+# Dictionary route
 @task_bp.route('/dictionary')
 def dictionary():
     entries = TaskImagen.query.all()
     return render_template('task/dictionary.html', entries=entries)
 
-
-
-@task_bp.route('/edit/<int:entry_id>', methods=['GET', 'POST'])
-def edit_entry(entry_id):
-    entry = TaskImagen.query.get(entry_id)
-
+# Delete Imagen
+@task_bp.route('/delete/<int:image_id>', methods=['GET', 'POST']) 
+def delete_image(image_id):
+    image = TaskImagen.query.get_or_404(image_id)
     if request.method == 'POST':
-        entry.category = request.form['category']
-        entry.japanese_word = request.form['japanese_word']
-        entry.pronunciation = request.form['pronunciation']
+        image_path = os.path.join('static', image.image_path)
+        if os.path.exists(image_path):
+            os.remove(image_path)
 
-        if 'image' in request.files:
-            file = request.files['image']
+        db.session.delete(image)
+        db .session.commit()
+        flash("image deleted successfully!","success")
+        return redirect(url_for('task.dictionary'))
+    return render_template('task/delete_image.html, image=image')
+
+# Edit imagen 
+@task_bp.route('/edit/<int:image_id>', methods=['GET', 'POST'])
+def edit_image(image_id):
+    image = TaskImagen.query.get_or_404(image_id)
+    form = TaskImagenForm(obj=image)
+
+    if form.validate_on_submit():
+        if form.image.data:
+            file = form.image.data
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                filepath = os.path.join('static/uploads', filename)  # Save to static/uploads
+                filepath = os.path.join(UPLOAD_FOLDER, filename)
                 file.save(filepath)
-                entry.image_path = f'uploads/{filename}'  # Relative path
+                image.image_path = f'uploads/{filename}'
 
-        db.session.commit()
-        flash('Entry updated successfully!')
-        return redirect(url_for('task.get_all_images'))
+                image.category = form.category.data
+                image.japanese_word = form.japanese_word.data
+                image.pronunciation = form.pronunciation.data
 
-    return render_template('task/edit.html', entry=entry)  # Updated path
+                db.session.commit()
+                flash("Image updated succefully!", "success")
+                return redirect(url_for('task.dictionary'))
+            
+    return render_template('task/edit_image.html', form=form, image=image)
 
-
-@task_bp.route('/delete/<int:entry_id>', methods=['POST'])
-def delete_entry(entry_id):
-    entry = TaskImagen.query.get(entry_id)
-    if entry:
-        if os.path.exists(entry.image_path):
-            os.remove(entry.image_path)
-
-        db.session.delete(entry)
-        db.session.commit()
-        flash('Entry deleted successfully!')
-
-    return redirect(url_for('task.get_all_images'))                  

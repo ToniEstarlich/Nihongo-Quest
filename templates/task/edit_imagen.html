@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Register - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+     <!-- edit_image.html -->
+     {% extends 'base.html' %}
+    
+     {% block content %}
+     <h2>Edit Image</h2>
+     <form method="POST" enctype="multipart/form-data">
+         {{ form.hidden_tag() }}
+         <p>
+             {{ form.image.label }}<br>
+             {{ form.image }}
+         </p>
+         <p>
+             {{ form.category.label }}<br>
+             {{ form.category }}
+         </p>
+         <p>
+             {{ form.japanese_word.label }}<br>
+             {{ form.japanese_word }}
+         </p>
+         <p>
+             {{ form.pronunciation.label }}<br>
+             {{ form.pronunciation }}
+         </p>
+         <button type="submit">Update</button>
+         <a href="{{ url_for('task.dictionary') }}">Cancel</a>
+     </form>
+    {% endblock %}
+</body>
+</html>

@@ -159,6 +159,38 @@ def add_word():
     return render_template("add_words.html", form=form)
 # ----------------- End add word ---------------------------------------
 
+#-------------------- Edit Word -------------------------------------------------
+@app.route("/deit_word/<int:word_id>", methods=["GET", "POST"])
+@login_required
+def edit_word(word_id):
+    word = Word.query.get_or_404(word_id)
+    form = WordForm(obj=word)
+
+    if request.method == "POST" and form.validate_on_submit():
+        word.japanese = form.japanese.data
+        word.english = form.english.data
+        word.pronunciation = form.pronunciation.data
+
+        db.session.commit()
+        flash("Word updated successfully!", "success")
+        return redirect(url_for("add_word"))
+    return render_template("edit_word.html", form=form, word=word)
+#---------------------End of edit word-------------------------------------------------
+
+#----------------------Delete Word-----------------------------------------------
+@app.route("/delete_word/<int:word_id>", methods=["GET", "POST"])
+@login_required
+def delete_word(word_id):
+    word = Word.query.get_or_404(word_id)
+
+    if request.method == "POST":
+        db.session.delete(word)
+        db.session.commit()
+        flash("Word deleted successfully!", "success")
+        return redirect(url_for("add_word"))
+    return render_template("delete_word.html", word=word)
+#-----------------------End delete word-----------------------------------------------
+
 @app.errorhandler(CSRFError)
 def handle_csrf_error(error):
     return 'CSRF token is missing or invalid. Please try again.', 400

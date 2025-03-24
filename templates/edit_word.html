@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Home - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+    <h2>Edit Word</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <label for="japanese">Japanese:</label>
+        {{ form.japanese(class="form-control") }}
+    
+        <label for="english">English:</label>
+        {{ form.english(class="form-control") }}
+    
+        <label for="pronunciation">Pronunciation:</label>
+        {{ form.pronunciation(class="form-control") }}
+    
+        <button type="submit" class="btn btn-primary">Update Word</button>
+    </form>
+    {% endblock %}
+</body>
+</html>
