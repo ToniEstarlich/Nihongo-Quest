@@ -64,6 +64,13 @@ def flashcards():
     words = Word.query.all()
     return render_template("flashcards.html", words=words)
 
+# words
+@app.route("/words")
+@login_required
+def words():
+    words = Word.query.all()
+    return render_template("words.html", words=words)
+
 # Quiz flashcards
 @app.route("/quiz", methods=["GET", "POST"])
 @login_required

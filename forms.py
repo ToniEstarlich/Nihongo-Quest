@@ -23,3 +23,6 @@ class TaskImagenForm(FlaskForm):
     japanese_word = StringField("Japanese Word", validators=[DataRequired()])
     pronunciation = StringField("Pronunciation", validators=[DataRequired()])
     submit = SubmitField("Add Entry")
+
+class DeleteImageForm(FlaskForm):
+    submit = SubmitField("Delete")

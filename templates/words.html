@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Quest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Home - Nihongo Quest{% endblock %}
+    
+    {% block content %}
+    
+    <p>Edit your Japanese words and start learning.</p>
+    <h1 class="title-flash">Japanese Words</h1>
+
+    <h2 class="title-flash">Word List:</h2>
+    <div class="flashcards-container">
+        {% for word in words %}
+            <div class="flashcard">
+                <h3>Word {{ loop.index }}</h3>
+                <ul>
+                    <li>
+                        <h6>
+                            <strong>{{ word.japanese }}</strong> - <b class="word-english">{{ word.english }}</b>
+                            {% if word.pronunciation %}
+                                <br> {{ word.pronunciation }}
+                            {% endif %}
+                        </h6>
+                    </li>
+                </ul>
+                <a>
+                    <button class="btn btn-warning"
+                        onclick="window.location.href='{{ url_for('edit_word', word_id=word.id) }}'">
+                        Edit Word
+                    </button>
+                </a>
+                <a>
+                    <button class="btn btn-warning"
+                        onclick="window.location.href='{{ url_for('delete_word', word_id=word.id) }}'">
+                        Delete Word
+                    </button> 
+                </a>
+            </div> 
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>

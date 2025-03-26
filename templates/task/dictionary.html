@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     {% extends "base.html" %}
-    
+
     {% block title %}Register - Nihongo Quest{% endblock %}
-    
+
     {% block content %}
     <h2>Dictionary</h2>
-    
+
     <table>
         <thead>
             <tr>
@@ -20,26 +22,42 @@
                 <th>Category</th>
                 <th>Japanese Word</th>
                 <th>Pronunciation</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {% if entries %}
-                {% for entry in entries %}
-                <tr>
-                    <td>
-                        <img src="{{ url_for('static', filename=entry.image_path) }}" width="100" alt="Image">
-                    </td>
-                    <td>{{ entry.category }}</td>
-                    <td>{{ entry.japanese_word }}</td>
-                    <td>{{ entry.pronunciation }}</td>
-                </tr>
-                {% endfor %}
+            {% for entry in entries %}
+            <tr>
+                <td>
+                    <img src="{{ url_for('static', filename=entry.image_path) }}" width="100" alt="Image">
+                </td>
+                <td>{{ entry.category }}</td>
+                <td>{{ entry.japanese_word }}</td>
+                <td>{{ entry.pronunciation }}</td>
+                <td>
+                    <button class="btn btn-warning"
+                        onclick="window.location.href='{{ url_for('task.edit_image', image_id=entry.id) }}'">
+                        Edit Imagen
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-warning"
+                        onclick="window.location.href='{{ url_for('task.delete_image', image_id=entry.id) }}'">
+                        Delete Imagen
+                    </button> 
+                </td>
+            </tr>
+            {% endfor %}
             {% else %}
-                <tr><td colspan="4">No data found</td></tr>
+            <tr>
+                <td colspan="6">No data found</td>
+            </tr>
             {% endif %}
         </tbody>
-        
     </table>
     {% endblock %}
+
 </body>
 </html>
