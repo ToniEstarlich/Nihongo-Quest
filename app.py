@@ -5,9 +5,10 @@ from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_wtf.csrf import generate_csrf
 from config import Config
 from extensions import db, login_manager, migrate
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from models.user import User
 from models.word import Word
+from forms import DeleteWordForm 
 from models.task import TaskImagen
 from routes.task_routes import task_bp
 from flask import request
@@ -138,6 +139,7 @@ def login():
 
     return render_template("login.html", form=form)
 
+# logout
 @app.route("/logout")
 @login_required
 def logout():
@@ -189,15 +191,17 @@ def edit_word(word_id):
 @login_required
 def delete_word(word_id):
     word = Word.query.get_or_404(word_id)
+    form = DeleteWordForm()
 
     if request.method == "POST":
         db.session.delete(word)
         db.session.commit()
         flash("Word deleted successfully!", "success")
         return redirect(url_for("add_word"))
-    return render_template("delete_word.html", word=word)
+    return render_template("delete_word.html", word=word, form=form)
 #-----------------------End delete word-----------------------------------------------
 
+# CSRError results
 @app.errorhandler(CSRFError)
 def handle_csrf_error(error):
     return 'CSRF token is missing or invalid. Please try again.', 400

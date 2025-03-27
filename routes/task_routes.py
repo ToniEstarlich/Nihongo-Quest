@@ -5,7 +5,7 @@ from extensions import db
 from models.task import TaskImagen
 from forms import TaskImagenForm  # Import the form
 from forms import DeleteImageForm 
-
+from flask_login import login_required
 
 task_bp = Blueprint('task', __name__)
 
@@ -16,6 +16,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @task_bp.route('/add', methods=['GET', 'POST'])
+@login_required
 def add_image():
     form = TaskImagenForm()
 
@@ -42,6 +43,7 @@ def add_image():
 
 # Dictionary route
 @task_bp.route('/dictionary')
+@login_required
 def dictionary():
     entries = TaskImagen.query.all()
     return render_template('task/dictionary.html', entries=entries)

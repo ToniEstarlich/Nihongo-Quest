@@ -2,6 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, SelectField, FileField 
 from wtforms.validators import DataRequired 
+from wtforms import SubmitField
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -12,6 +13,9 @@ class WordForm(FlaskForm):
     english = StringField("English", validators=[DataRequired()])
     pronunciation = StringField("Pronunciation")
     submit = SubmitField("Add Word")
+
+class DeleteWordForm(FlaskForm):
+    submit = SubmitField("Delete") # Class for delete words
 
 class TaskImagenForm(FlaskForm):
     image = FileField("Upload Image", validators=[DataRequired()])
@@ -25,4 +29,4 @@ class TaskImagenForm(FlaskForm):
     submit = SubmitField("Add Entry")
 
 class DeleteImageForm(FlaskForm):
-    submit = SubmitField("Delete")
+    submit = SubmitField("Delete") # Class for delete imagens

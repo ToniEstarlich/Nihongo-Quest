@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -12,18 +13,18 @@
     {% block title %}Delete Image - Nihongo Quest{% endblock %}
     
     {% block content %}
-        <h2>Delete Image</h2>
-        <p>Are you sure you want to delete this image?</p>
+        <h2 class="tittle_add" >Delete Image</h2>
+        <p class="sure">Are you sure you want to delete this image?</p>
     
         {% if image %}  <!-- Ensure image is not None -->
-            <img src="{{ url_for('static', filename=image.image_path) }}" alt="Image" width="300">
+            <img class="delete-img" src="{{ url_for('static', filename=image.image_path) }}" alt="Image" width="100">
         {% else %}
             <p><strong>Error:</strong> No image found.</p>
         {% endif %}
     
         <form method="POST">
             {{ form.hidden_tag() }}  <!-- Add this for CSRF protection -->
-            <button type="submit">Delete</button>
+            <button class="button" type="submit">Delete</button>
             <a href="{{ url_for('task.dictionary') }}">Cancel</a>
         </form>
     {% endblock %}

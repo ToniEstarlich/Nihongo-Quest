@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -11,13 +12,15 @@
     {% block title %}Home - Nihongo Quest{% endblock %}
     
     {% block content %}
-    <h2>Delete Word</h2>
-    <p>Are you sure you want to delete the word "{{ word.japanese }} - {{ word.english }}"?</p>
+    <h2 class="tittle_add">Delete Word</h2>
+    <p class="sure">Are you sure you want to delete the word "{{ word.japanese }} - {{ word.english }}"?</p>
     
-    <form method="POST">
+    <form method="POST" action="{{ url_for('delete_word', word_id=word.id) }}">
+        {{ form.hidden_tag() }}
         <button type="submit" class="btn btn-danger">Delete</button>
         <a href="{{ url_for('add_word') }}" class="btn btn-secondary">Cancel</a>
     </form>
+    
     {% endblock %}
 </body>
 </html>

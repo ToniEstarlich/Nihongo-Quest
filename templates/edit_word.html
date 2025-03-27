@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
     {% block title %}Home - Nihongo Quest{% endblock %}
     
     {% block content %}
-    <h2>Edit Word</h2>
+    <h2 class="tittle_add" >Edit Word</h2>
     <form method="POST">
         {{ form.hidden_tag() }}
         <label for="japanese">Japanese:</label>
@@ -23,7 +24,7 @@
         <label for="pronunciation">Pronunciation:</label>
         {{ form.pronunciation(class="form-control") }}
     
-        <button type="submit" class="btn btn-primary">Update Word</button>
+        <button type="submit" class="button">Update Word</button>
     </form>
     {% endblock %}
 </body>

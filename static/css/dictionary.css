@@ -1,0 +1,139 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+/* title */
+
+.tittle-dictionary {
+    font-size: 3rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ff4646;
+    text-shadow: 12px 12px 12px #2e0319;
+    margin: 5%;
+}
+
+/* Container */
+.dictionary-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Title */
+h2 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Card Design */
+.card {
+    background: rgba(97, 97, 97, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); 
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 900px;
+}
+
+/* Table (Desktop) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Japanese word */
+
+.japa-word {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2f2f2f;
+    text-shadow: 1px 1px #ffffff;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+/* Image Styling */
+img {
+    border-radius: 8px;
+    width: 80px;
+    height: auto;
+}
+
+/* === 📱 MOBILE (STACKED CARDS) === */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+
+    thead {
+        display: none; /* Hide table headers */
+    }
+
+    tr {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    td {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    td img {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    td:nth-of-type(1) { font-weight: bold; } /* Image */
+    td:nth-of-type(2)::before { content: "Category: "; font-weight: bold; }
+    td:nth-of-type(3)::before { content: "Japanese Word: "; font-weight: bold; }
+    td:nth-of-type(4)::before { content: "Pronunciation: "; font-weight: bold; }
+}

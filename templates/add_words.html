@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -10,7 +11,12 @@
     {% block title %}Home - Nihongo Quest{% endblock %}
     {% block content %}
     <div class="container">
-        <h2>Add a New Japanese Word</h2>
+        <h2 class="tittle_add">Add a New Japanese Word</h2>
+        <h4 class="how">How use Add Words?</h4>
+        <p class="text-how">
+            Add words and create your own personalized learning experience! As you progress and expand your memorized vocabulary, you'll be able to write and edit your flashcards with ease. Explore, read, and practice writing Japanese words while learning their pronunciation. Enhance your Nihongo Quest and take your language skills to the next level!
+        </p>
+        
     
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -33,7 +39,7 @@
             <label for="pronunciation">Pronunciation:</label>
             <input type="text" id="pronunciation" name="pronunciation">
         
-            <button type="submit">Add Word</button>
+            <button type="submit" class="button">Add Word</button>
         </form>
         
     {% endblock %}

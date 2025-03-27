@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nihongo Quest</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </head>
 <body>
     {% extends "base.html" %}
     
@@ -32,15 +38,15 @@
                     </li>
                 </ul>
                 <a>
-                    <button class="btn btn-warning"
+                    <button class="btn btn-edit"
                         onclick="window.location.href='{{ url_for('edit_word', word_id=word.id) }}'">
-                        Edit Word
+                        <i class="fas fa-edit"></i>Edit 
                     </button>
                 </a>
                 <a>
-                    <button class="btn btn-warning"
+                    <button class="btn btn-delete-"
                         onclick="window.location.href='{{ url_for('delete_word', word_id=word.id) }}'">
-                        Delete Word
+                        <i class="fas fa-trash"></i> Delete 
                     </button> 
                 </a>
             </div> 

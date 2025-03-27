@@ -1,6 +1,46 @@
-/* General form styles */
+/* title */
+
+.tittle_add {
+    font-size: 3rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ff4646;
+    text-shadow: 12px 12px 12px #2e0319;
+    margin: 5%;
+}
+
+/* Text */
+
+.how {
+    font-size: 2rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ff4646;
+    text-shadow: 12px 12px 12px #2e0319;
+    margin: 5%; 
+}
+
+.sure {
+    font-size: 1rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 12px 12px 12px #2e0319;
+    margin: 5%; 
+}
+
+.text-how {
+    font-size: 1rem;  
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255, 142, 142);
+    text-shadow: 12px 12px 12px #2e0319;
+    margin: 5%; 
+}
+
+/* form */
+
 form {
-   
     padding: 20px;
     border-radius: 10px;
     max-width: 400px;
@@ -12,15 +52,7 @@ form {
     border-radius: 12px;
 }
 
-/* Title */
-.title-login {
-    font-size: 3rem;  
-    font-weight: bold;
-    text-align: center;
-    color: #ff4646;
-    text-shadow: 12px 12px 12px #2e0319;
-    margin: 5%;
-}
+/* Label */
 
 label {
     display: block;
@@ -29,6 +61,8 @@ label {
     color: #f0f0f0; 
     font-weight: bold;
 }
+
+/* input */
 
 input {
     width: 100%;
@@ -46,8 +80,10 @@ input[type="password"] {
     color: black;
 }
 
+/* botton */
 .button {
     margin-top: 5px;
+    border-radius: 10px;
 }
 
 button {
@@ -55,11 +91,10 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 15px;
+    border-radius: 10px;
 }
 
 button:hover {
@@ -67,8 +102,9 @@ button:hover {
     box-shadow: 0 4px 10px rgba(255, 140, 0, 0.8);
 }
 
-/* Ask for register */
-.reg-here {
+/* Cancel button */
+
+.cancel {
     background: grey;
     color: white;
     border: none;
@@ -80,6 +116,8 @@ button:hover {
     border-radius: 10px;
 }
 
-.reg-here-text {
-    margin-top: 4%;
+/* Delete Image*/
+
+.delete-img {
+    margin-left: 45%;
 }

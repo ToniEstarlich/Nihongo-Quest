@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
+    <title>Nihongo Quest</title>
 </head>
 <body>
-    {% extends "base.html" %}
+ {% extends "base.html" %}
 
 {% block title %}Add New Entry - Nihongo Quest{% endblock %}
 
 {% block content %}
-<h2>Add New Entry to Dictionary</h2>
+<h2 class="tittle_add">Add New Entry to Dictionary</h2>
+<h4 class="how">How use Add Visual Dictionary?</h4>
+<p class="text-how">
+    The Visual Dictionary is an interactive learning tool that helps you associate images with Japanese words. Observe, explore, and capture visuals while writing the corresponding Japanese words and their pronunciation. Contribute to the Nihongo Quest community and enhance your language-learning journey!
+</p>
 
 <!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -38,7 +43,7 @@
     <label>Pronunciation:</label>
     {{ form.pronunciation(class="form-control") }}
 
-    <button type="submit" class="btn btn-primary">Add Entry</button>
+    <button type="submit" class="button">Add Entry</button>
 </form>
 
 {% endblock %}
