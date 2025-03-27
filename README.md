@@ -236,180 +236,168 @@ Feel free to open issues or submit pull requests to improve Nihongo Quest!
 
 <img src="./static/screenshots/fullStack.png" alt="Mobile Screenshot" width="450">
 
+# Nihongo Quest
+
+A Flask-based web application for learning Japanese vocabulary by adding, managing, and practicing words with their pronunciation and meanings.
+
 ## Table of Contents
-1. [Data Base](#1-database)
-2. [Back-end](#2-backend-flask--sqlalchemy)
-3. [Front-end](#3-frontend-html--jinja2-templates)
-4. [Comeback-to-Readme](#nihongo-quest)
-     
-##  1. Database
-
-### 📌 Step 1: Create a Database and Table  
-1. Open **pgAdmin 4** and connect to your PostgreSQL server.  
-2. Create a new database:  
-   - **Right-click** on "Databases" → Click **"Create"** → Select **"Database"**  
-   - Enter a **name** (e.g., `nihongo_db`) → Click **Save**  
-3. Open the **Query Tool** and create a table:  
-   ```sql
-   CREATE TABLE hiragana (
-       id SERIAL PRIMARY KEY,
-       character VARCHAR(10) NOT NULL,
-       pronunciation VARCHAR(20) NOT NULL
-   );
-   ```  
-4. Insert sample data:  
-   ```sql
-   INSERT INTO hiragana (character, pronunciation) VALUES
-   ('あ', 'a'), ('い', 'i'), ('う', 'u'), ('え', 'e'), ('お', 'o');
-   ```
-
-### 🌍 API Endpoints
-
-| Endpoint      | Method | Description          |
-|--------------|--------|----------------------|
-| /            | GET    | Home Page            |
-| /quiz        | GET    | Quiz Section         |
-| /flashcards  | GET    | Flashcards Page      |
-| /alphabet    | GET    | Alphabet Learning    |
-| /manga       | GET    | Manga Section        |
-| /register    | POST   | User Registration    |
-| /login       | POST   | User Login           |
-
-
-### 🗄️ Database Structure
-
-- **Users Table**: Stores user details  
-- **Flashcards Table**: Stores flashcards content  
-- **Manga Table**: Stores manga references  
-- **Quiz Table**: Stores quiz questions & answers  
-
+1. [Database](#1-database)
+2. [Back-end](#2-back-end-flask--sqlalchemy)
+3. [Front-end](#3-front-end-html--jinja2-templates)
 
 ---
 
-##  2. Backend (Flask + SQLAlchemy)  
+## 1. Database
+The project uses **PostgreSQL** as its database, managed via **pgAdmin4**.
 
-### 📌 Step 2: Install Dependencies  
-Run the following command inside your virtual environment:  
-```bash
-pip install flask flask-sqlalchemy psycopg2
+### Creating the Database in pgAdmin4
+1. Open **pgAdmin4**.
+2. Create a new database:
+   - Name: `nihongo_db`
+   - Owner: `postgres`
+3. Execute the following SQL command to create the **Word** table:
+   ```sql
+   CREATE TABLE word (
+       id SERIAL PRIMARY KEY,
+       japanese VARCHAR(100) NOT NULL,
+       english VARCHAR(100) NOT NULL,
+       pronunciation VARCHAR(100)
+   );
+   ```
+4. Insert sample words:
+   ```sql
+   INSERT INTO word (japanese, english, pronunciation) VALUES
+   ('ねこ', 'cat', 'ne-ko'),
+   ('いぬ', 'dog', 'i-nu'),
+   ('さくら', 'cherry blossom', 'sa-ku-ra');
+   ```
+
+---
+
+## 2. Back-end (Flask + SQLAlchemy)
+The back-end is built using Flask and SQLAlchemy.
+
+### **Database Configuration (`config.py`)**
+```python
+import os
+
+DATABASE_URI = "postgresql://postgres:Example@localhost/nihongo_db"
+
+class Config:
+    SECRET_KEY = os.environ.get("SECRET_KEY") or "0000"
+    SQLALCHEMY_DATABASE_URI = DATABASE_URI
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 ```
 
-### 📌 Step 3: Database Configuration  
-#### 📂 `db.py` (Database Connection)  
+### **Database Setup (`db.py`)**
 ```python
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 ```
 
-#### 📂 `config.py` (Database Settings)  
+### **Word Model (`models/word.py`)**
 ```python
-import os
+from flask import current_app
+from extensions import db
 
-DB_NAME = "nihongo_db"
-DB_USER = "postgres"
-DB_PASSWORD = "password"
-DB_HOST = "localhost"
-DB_PORT = "5432"
-
-DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-```
-
----
-
-### 📌 Step 4: Define Models  
-#### 📂 `models/alphabet.py` (Hiragana Model)  
-```python
-from db import db
-
-class Hiragana(db.Model):
-    __tablename__ = "hiragana"
+class Word(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    character = db.Column(db.String(10), nullable=False)
-    pronunciation = db.Column(db.String(20), nullable=False)
+    japanese = db.Column(db.String(100), nullable=False)
+    english = db.Column(db.String(100), nullable=False)
+    pronunciation = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<Word {self.japanese} - {self.english} - Pronunciation: {self.pronunciation}>"
 ```
 
----
-
-### 📌 Step 5: Create Flask Routes  
-#### 📂 `routes/alphabet_routes.py` (Blueprint & API Routes)  
+### **Form for Adding Words (`forms.py`)**
 ```python
-from flask import Blueprint, render_template
-from db import db
-from models.alphabet import Hiragana
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
-alphabet_bp = Blueprint("alphabet", __name__, url_prefix="/alphabet")
-
-@alphabet_bp.route('/hiragana')
-def get_hiragana():
-    characters = Hiragana.query.all()
-    return render_template('alphabet/hiragana.html', characters=characters)
+class WordForm(FlaskForm):
+    japanese = StringField("Japanese", validators=[DataRequired()])
+    english = StringField("English", validators=[DataRequired()])
+    pronunciation = StringField("Pronunciation")
+    submit = SubmitField("Add Word")
 ```
 
----
-
-### 📌 Step 6: Initialize Flask App & Register Blueprints  
-#### 📂 `app.py` (Main Application File)  
+### **Adding Words (`app.py`)**
 ```python
-from flask import Flask
-from config import DATABASE_URI
-from db import db
-from routes.alphabet_routes import alphabet_bp
+from flask import Flask, render_template, redirect, url_for, flash, request
+from flask_login import login_required
+from extensions import db
+from models.word import Word
+from forms import WordForm
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config.from_object("config.Config")
 db.init_app(app)
-app.register_blueprint(alphabet_bp)
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()  # Create tables if they don't exist
-    app.run(debug=True)
+@app.route("/add_word", methods=["GET", "POST"])
+@login_required
+def add_word():
+    form = WordForm()
+
+    if request.method == "POST" and form.validate_on_submit():
+        new_word = Word(
+            japanese=form.japanese.data,
+            english=form.english.data,
+            pronunciation=form.pronunciation.data
+        )
+        db.session.add(new_word)
+        db.session.commit()
+
+        flash("New word added successfully!", "success")
+        return redirect(url_for("add_word"))
+
+    return render_template("add_words.html", form=form)
 ```
 
 ---
 
-##  3. Frontend (HTML + Jinja2 Templates)  
+## 3. Front-end (HTML + Jinja2 Templates)
+The application uses **Jinja2** for rendering dynamic HTML pages.
 
-### 📌 Step 7: Create the Template  
-#### 📂 `templates/alphabet/hiragana.html` (Frontend Display)  
+### **Adding Words (`templates/add_words.html`)**
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiragana Characters</title>
-</head>
-<body>
-    <h1>Hiragana Alphabet</h1>
-    <table border="1">
-        <tr>
-            <th>Character</th>
-            <th>Pronunciation</th>
-        </tr>
-        {% for char in characters %}
-        <tr>
-            <td>{{ char.character }}</td>
-            <td>{{ char.pronunciation }}</td>
-        </tr>
+{% extends "base.html" %}
+{% block title %}Add Word - Nihongo Quest{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="title_add">Add a New Japanese Word</h2>
+    <p class="text-how">Add words and create your own personalized learning experience!</p>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
         {% endfor %}
-    </table>
-</body>
-</html>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Form to add words -->
+    <form method="POST" action="/add_word">
+        {{ form.hidden_tag() }}
+        <label for="japanese">Japanese:</label>
+        <input type="text" id="japanese" name="japanese" required>
+    
+        <label for="english">English:</label>
+        <input type="text" id="english" name="english" required>
+    
+        <label for="pronunciation">Pronunciation:</label>
+        <input type="text" id="pronunciation" name="pronunciation">
+    
+        <button type="submit" class="button">Add Word</button>
+    </form>
+</div>
+{% endblock %}
 ```
 
 ---
-##  4. Run the Flask App  
-1. Open the terminal and activate your virtual environment.  
-2. Start the Flask app:  
-   ```bash
-   flask run
-   ```
-3. Open your browser and visit:  
-   **`http://127.0.0.1:5000/alphabet/hiragana`**  
 
 # [Comeback to Readme](#nihongo-quest)
 
