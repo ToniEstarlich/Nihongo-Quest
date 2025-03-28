@@ -187,6 +187,9 @@ Curiosity is key to language learning — discovering new manga can expand your 
 ---
 ## Problems and Solutions  
 
+### Pages to references: 
+ - **[Flask-WTF](https://flask-wtf.readthedocs.io/en/1.2.x/)** 
+
 ### ❌ **Problem: CSRF Token Errors in Quiz Form**  
 - **Issue:** The CSRF token was missing or not being validated correctly in the form submission.  
 - **Solution:**  
@@ -252,6 +255,7 @@ The project uses **PostgreSQL** as its database, managed via **pgAdmin4**.
 
 ### Pages to references: 
  - **[NEON](https://neon.tech/postgresql/tutorial)** 
+ - **[W3School (PostgreSQL)](https://www.w3schools.com/postgresql/postgresql_pgadmin4.php?utm_source=chatgpt.com)**
  - **[W3School (SQL)]()** 
 
 ### Creating the Database in pgAdmin4
@@ -283,7 +287,7 @@ The back-end is built using Flask and SQLAlchemy.
 
 ### Pages to references: 
 - **[REAL PYTHON](https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/#update-configuration)** 
-- **[W3School (PostgreSQL)](https://www.w3schools.com/postgresql/postgresql_pgadmin4.php?utm_source=chatgpt.com)** 
+ 
 
 ### **Database Configuration (`config.py`)**
 ```python
@@ -339,6 +343,7 @@ class WordForm(FlaskForm):
 - **[Flask Pallets (Methods)](https://flask.palletsprojects.com/en/stable/quickstart/#http-methods)**
 - **[Flask Pallets (Rendering Templates)](https://flask.palletsprojects.com/en/stable/quickstart/#rendering-templates)**
 - **[Flask Pallets (SQLAlquemy)](https://flask.palletsprojects.com/en/stable/patterns/sqlalchemy/)**
+
 ```python
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import login_required
