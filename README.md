@@ -250,6 +250,10 @@ A Flask-based web application for learning Japanese vocabulary by adding, managi
 ## 1. Database
 The project uses **PostgreSQL** as its database, managed via **pgAdmin4**.
 
+### Pages to references: 
+ - **[NEON](https://neon.tech/postgresql/tutorial)** 
+ - **[W3School (SQL)]()** 
+
 ### Creating the Database in pgAdmin4
 1. Open **pgAdmin4**.
 2. Create a new database:
@@ -277,6 +281,10 @@ The project uses **PostgreSQL** as its database, managed via **pgAdmin4**.
 ## 2. Back-end (Flask + SQLAlchemy)
 The back-end is built using Flask and SQLAlchemy.
 
+### Pages to references: 
+- **[REAL PYTHON](https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/#update-configuration)** 
+- **[W3School (PostgreSQL)](https://www.w3schools.com/postgresql/postgresql_pgadmin4.php?utm_source=chatgpt.com)** 
+
 ### **Database Configuration (`config.py`)**
 ```python
 import os
@@ -297,6 +305,7 @@ db = SQLAlchemy()
 ```
 
 ### **Word Model (`models/word.py`)**
+
 ```python
 from flask import current_app
 from extensions import db
@@ -325,6 +334,11 @@ class WordForm(FlaskForm):
 ```
 
 ### **Adding Words (`app.py`)**
+### Pages to references: 
+- **[Flask Pallets (Minimal app)](https://flask.palletsprojects.com/en/stable/quickstart/#http-methods)** 
+- **[Flask Pallets (Methods)](https://flask.palletsprojects.com/en/stable/quickstart/#http-methods)**
+- **[Flask Pallets (Rendering Templates)](https://flask.palletsprojects.com/en/stable/quickstart/#rendering-templates)**
+- **[Flask Pallets (SQLAlquemy)](https://flask.palletsprojects.com/en/stable/patterns/sqlalchemy/)**
 ```python
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import login_required
@@ -360,6 +374,9 @@ def add_word():
 
 ## 3. Front-end (HTML + Jinja2 Templates)
 The application uses **Jinja2** for rendering dynamic HTML pages.
+### Pages to references: 
+ **[JINJA](https://jinja.palletsprojects.com/en/stable/)** 
+ 
 
 ### **Adding Words (`templates/add_words.html`)**
 ```html
