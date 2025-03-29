@@ -6,6 +6,7 @@ from models.task import TaskImagen
 from forms import TaskImagenForm  # Import the form
 from forms import DeleteImageForm 
 from flask_login import login_required
+import uuid
 
 task_bp = Blueprint('task', __name__)
 
@@ -24,11 +25,13 @@ def add_image():
         file = form.image.data
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            unique_filename = f"{uuid.uuid4().hex}_{filename}" #append unique ID
+
             filepath = os.path.join(UPLOAD_FOLDER, filename)  # Save to static/uploads
             file.save(filepath)
 
             new_entry = TaskImagen(
-                image_path=f'uploads/{filename}',  # Save relative path
+                image_path=f'uploads/{unique_filename}',  # Store correct path
                 category=form.category.data,
                 japanese_word=form.japanese_word.data,
                 pronunciation=form.pronunciation.data
