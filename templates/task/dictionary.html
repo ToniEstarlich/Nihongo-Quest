@@ -42,6 +42,7 @@
                     {% for entry in entries %}
                     <tr>
                         <td>
+                            
                             <img src="{{ url_for('static', filename=entry.image_path) }}" width="100" alt="Image">
                         </td>
                         <td>{{ entry.category }}</td>

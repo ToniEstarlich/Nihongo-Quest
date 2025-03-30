@@ -7,6 +7,8 @@ from forms import TaskImagenForm  # Import the form
 from forms import DeleteImageForm 
 from flask_login import login_required
 import uuid
+from flask import current_app
+
 
 task_bp = Blueprint('task', __name__)
 
@@ -16,7 +18,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@task_bp.route('/add', methods=['GET', 'POST'])
+@task_bp.route('/task/add', methods=['GET', 'POST'])
 @login_required
 def add_image():
     form = TaskImagenForm()
@@ -24,14 +26,19 @@ def add_image():
     if form.validate_on_submit():
         file = form.image.data
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            unique_filename = f"{uuid.uuid4().hex}_{filename}" #append unique ID
+            file_extension = file.filename.rsplit('.', 1)[-1]  # Get only the extension
+            unique_filename = f"{uuid.uuid4().hex}.{file_extension}"  # Unique name
 
-            filepath = os.path.join(UPLOAD_FOLDER, filename)  # Save to static/uploads
+            upload_folder = os.path.join(current_app.root_path, 'static/uploads')  # Ensure correct path
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)  # Create if missing
+
+            filepath = os.path.join(upload_folder, unique_filename)  # Save correctly
             file.save(filepath)
 
+            # Save only the relative path to DB
             new_entry = TaskImagen(
-                image_path=f'uploads/{unique_filename}',  # Store correct path
+                image_path=f'uploads/{unique_filename}',
                 category=form.category.data,
                 japanese_word=form.japanese_word.data,
                 pronunciation=form.pronunciation.data
@@ -40,9 +47,11 @@ def add_image():
             db.session.add(new_entry)
             db.session.commit()
             flash("New entry added successfully!", "success")
-            return redirect(url_for('task.add_image'))
+            return redirect(url_for('task.add_image'))  # Redirect after success
 
     return render_template('task/add_image.html', form=form)  # Pass form to template
+
+
 
 # Dictionary route
 @task_bp.route('/dictionary')
