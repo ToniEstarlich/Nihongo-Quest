@@ -427,13 +427,9 @@ The application uses **Jinja2** for rendering dynamic HTML pages.
 ##  Next Steps
 # 🚀
 
-- 1. **Update Route**: Add routes to update user data or entries (e.g., update user profile, update word details).
+- 1. **Testing** & bug fixing
 
-- 2. **Delete Route:** Implement delete functionality for users, words, or other records.
-
-- 3. **Testing** & bug fixing
-
-- 4.  Deploy to **Heroku**
+- 2.  Deploy to **Heroku**
 
 ---
 # EXAMPLE OF ALGORITHM & CODE:
