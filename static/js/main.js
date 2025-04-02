@@ -13,3 +13,7 @@ const observer = new IntersectionObserver((entries) => {
 for (const element of the_animation) {
     observer.observe(element);
 }
+
+//the observer for testing
+module.exports = { observer };
+

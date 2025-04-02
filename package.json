@@ -1,0 +1,29 @@
+{
+  "name": "nihongo-quest",
+  "version": "1.0.0",
+  "description": "<img src=\"./static/screenshots/nihongo_logo.png\" alt=\"Mobile Screenshot\" width=\"100\">",
+  "main": "static/js/main.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToniEstarlich/Nihongo-Quest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ToniEstarlich/Nihongo-Quest/issues"
+  },
+  "homepage": "https://github.com/ToniEstarlich/Nihongo-Quest#readme",
+  "dependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "devDependencies": {
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
