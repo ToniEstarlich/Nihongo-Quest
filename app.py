@@ -201,6 +201,11 @@ def delete_word(word_id):
     return render_template("delete_word.html", word=word, form=form)
 #-----------------------End delete word-----------------------------------------------
 
+# Context processor
+@app.context_processor
+def inject_csrf_token():
+    return dict(csrf_token=generate_csrf())
+
 # CSRError results
 @app.errorhandler(CSRFError)
 def handle_csrf_error(error):
