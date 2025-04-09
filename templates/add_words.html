@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
-    <title>Document</title>
-</head>
-<body>
+
     {% extends "base.html" %}
+
     {% block title %}Home - Nihongo Quest{% endblock %}
+
+    {% block extra_styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
+    {% endblock %}
+
     {% block content %}
+
     <div class="container">
         <h2 class="tittle_add">Add a New Japanese Word</h2>
         <h4 class="how">How use Add Words?</h4>
@@ -43,6 +42,3 @@
         </form>
         
     {% endblock %}
-
-</body>
-</html>

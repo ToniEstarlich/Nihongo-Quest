@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japanese Alphabet</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/alphabet.css') }}">
-</head>
-<body>
+
     {% extends "base.html" %}
     
     {% block title %}Register - Nihongo Quest{% endblock %}
+
+    {% block extra_styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/alphabet.css') }}">
+    {% endblock %}
     
     {% block content %}
     <div>
@@ -86,5 +82,3 @@
         
         <p>Click below to learn more about each alphabet:</p>
     {% endblock %}
-</body>
-</html>

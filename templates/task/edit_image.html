@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
-    <title>Document</title>
-</head>
-<body>
+
     {% extends "base.html" %}
     
     {% block title %}Register - Nihongo Quest{% endblock %}
+
+    {% block extra_styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
+    {% endblock %}
     
     {% block content %}
      
@@ -37,5 +33,3 @@
          <a class="cancel" href="{{ url_for('task.dictionary') }}">Cancel</a>
      </form>
     {% endblock %}
-</body>
-</html>

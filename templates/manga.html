@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manga Gallery</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/manga.css') }}">
-</head>
-<body>
+
     {% extends "base.html" %}
     
     {% block title %}Home - Nihongo Quest{% endblock %}
+
+    {% block extra_styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/manga.css') }}">
+    {% endblock %}
     
     {% block content %}
 
@@ -43,5 +39,4 @@
         {% endif %}
     </section>
     {% endblock %}
-</body>
-</html>
+

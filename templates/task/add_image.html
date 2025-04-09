@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
-    <title>Nihongo Quest</title>
-</head>
-<body>
- {% extends "base.html" %}
+
+{% extends "base.html" %}
 
 {% block title %}Add New Entry - Nihongo Quest{% endblock %}
+
+{% block extra_styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
+{% endblock %}
 
 {% block content %}
 <h2 class="tittle_add">Add New Entry to Dictionary</h2>
@@ -47,5 +43,3 @@
 </form>
 
 {% endblock %}
-</body>
-</html>

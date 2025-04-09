@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
+from forms import LoginForm, WordForm, DeleteWordForm
 from routes.alphabet_routes import alphabet_bp
 from routes.manga_routes import manga_routes
 from flask_wtf.csrf import CSRFProtect, CSRFError
@@ -8,12 +9,8 @@ from extensions import db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required, current_user
 from models.user import User
 from models.word import Word
-from forms import DeleteWordForm 
 from models.task import TaskImagen
 from routes.task_routes import task_bp
-from flask import request
-from forms import LoginForm
-from forms import WordForm
 import os
 
 app = Flask(__name__)
@@ -25,9 +22,6 @@ app.register_blueprint(manga_routes)
 
 app.config.from_object(Config)
 csrf = CSRFProtect(app)
-
-# Set a secret key
-app.secret_key = "0000"
 
 # Initialize the extensions with the app
 db.init_app(app)
@@ -51,7 +45,7 @@ def log_csrf_token():
 def handle_csrf_error(error):
     print(f"CSRF Error: {error.description}")
     flash("CSRF token missing or incorrect", "danger")
-    return redirect(request.referrer)  # Redirect to the previous page (e.g., the form)
+    return redirect(request.referrer or url_for("index"))  # Redirect to the previous page (e.g., the form)
 
 # Updated index route
 @app.route("/")
@@ -169,7 +163,7 @@ def add_word():
 # ----------------- End add word ---------------------------------------
 
 #-------------------- Edit Word -------------------------------------------------
-@app.route("/deit_word/<int:word_id>", methods=["GET", "POST"])
+@app.route("/edit_word/<int:word_id>", methods=["GET", "POST"])
 @login_required
 def edit_word(word_id):
     word = Word.query.get_or_404(word_id)
@@ -204,12 +198,7 @@ def delete_word(word_id):
 # Context processor
 @app.context_processor
 def inject_csrf_token():
-    return dict(csrf_token=generate_csrf())
-
-# CSRError results
-@app.errorhandler(CSRFError)
-def handle_csrf_error(error):
-    return 'CSRF token is missing or invalid. Please try again.', 400
+    return dict(csrf_token=generate_csrf)
 
 if __name__ == "__main__":
     app.run(debug=True)
