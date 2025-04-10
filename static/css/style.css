@@ -40,6 +40,7 @@ strong {
 .word-english {
     color: rgb(245, 121, 108);
 }
+
 .flashcard {
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.2); /* Adjust transparency */
