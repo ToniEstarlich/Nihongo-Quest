@@ -11,9 +11,14 @@ from models.user import User
 from models.word import Word
 from models.task import TaskImagen
 from routes.task_routes import task_bp
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 app = Flask(__name__)
+
+app.config.from_object(Config)
 
 # Register the blueprint
 app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
