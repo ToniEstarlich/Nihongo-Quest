@@ -1,6 +1,6 @@
 import os
 
-# DATABASE_URL = "postgresql://postgres:Toni2207@localhost/nihongo_db"
+DATABASE_URL = "postgresql://postgres:Toni2207@localhost/nihongo_db"
 
 # DATABASE_URI = os.environ.get("DATABASE_URL")
 
