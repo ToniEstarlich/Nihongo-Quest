@@ -6,6 +6,8 @@ load_dotenv()
 DATABASE_URL = "postgresql://postgres:Toni2207@localhost/nihongo_db"
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY") or "0000"
-    SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    # SECRET_KEY = os.environ.get("SECRET_KEY") or "0000"
+    # SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    SECRET_KEY = os.environ.get("SECRET_KEY", "0000")
+    SQLALQUEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
