@@ -1,2 +1,6 @@
 static/uploads
 .env
+__pycache__/
+*.pyc 
+instance/
+.env.*
