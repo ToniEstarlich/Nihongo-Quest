@@ -13,10 +13,15 @@ from models.task import TaskImagen
 from routes.task_routes import task_bp
 from dotenv import load_dotenv
 import os
+from sqlalchemy import create_engine
 
 load_dotenv()
 
 app = Flask(__name__)
+
+# Configure database connection
+DATABASE_URL = os.getenv("DATABASE_URL")
+engine = create_engine(DATABASE_URL)
 
 app.config.from_object(Config)
 
