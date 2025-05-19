@@ -19,16 +19,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Configure database connection
-DATABASE_URL = os.getenv("DATABASE_URL")
-engine = create_engine(DATABASE_URL)
-
 app.config.from_object(Config)
-
-# Register the blueprint
-app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
-app.register_blueprint(task_bp, url_prefix='/task')
-app.register_blueprint(manga_routes)
 
 app.config.from_object(Config)
 csrf = CSRFProtect(app)
@@ -38,6 +29,12 @@ db.init_app(app)
 migrate.init_app(app, db)
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+# Register the blueprint
+app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
+app.register_blueprint(task_bp, url_prefix='/task')
+app.register_blueprint(manga_routes)
+
 
 @login_manager.user_loader
 def load_user(user_id):
