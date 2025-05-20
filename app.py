@@ -25,7 +25,7 @@ csrf = CSRFProtect(app)
 db = SQLAlchemy(app)
 
 # Initialize the extensions with the app
-db.init_app(app)
+# db.init_app(app)
 migrate.init_app(app, db)
 login_manager.init_app(app)
 login_manager.login_view = "login"
