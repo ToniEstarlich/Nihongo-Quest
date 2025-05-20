@@ -14,15 +14,15 @@ from routes.task_routes import task_bp
 from dotenv import load_dotenv
 import os
 from sqlalchemy import create_engine
+from flask_sqlalchemy  import SQLAlchemy
 
 load_dotenv()
 
 app = Flask(__name__)
-
-app.config.from_object(Config)
-
 app.config.from_object(Config)
 csrf = CSRFProtect(app)
+
+db = SQLAlchemy(app)
 
 # Initialize the extensions with the app
 db.init_app(app)
