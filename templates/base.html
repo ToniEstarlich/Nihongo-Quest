@@ -26,30 +26,68 @@
 <body class="bg-gradient">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="logo navbar-brand text-danger fw-bold" href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='images/logo_color.png') }}" class="logo-color" alt="Nihongo Quest Logo">
-                日本語</a><a class="logo text-white"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('index') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('manga_routes.manga') }}">Mangas</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('alphabet.alphabet') }}" >Alphabet</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('words') }}">Words</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('flashcards') }}">FlashCard</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('quiz') }}">Quiz</a></li>
-                    <li><a class="nav-link text-white" href="{{ url_for('task.dictionary') }}">Dictionary</a></li>
-                    <li><a class="nav-link text-white" href="{{ url_for('task.add_image') }}">add Image</a></li>
-                    <li><a class="nav-link text-white" href="{{ url_for('add_word') }}">add Words</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('register') }}">Register</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('logout') }}">Logout</a></li>
-                </ul>
-            </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 fixed-top ">
+        <a class="logo navbar-brand text-danger fw-bold" href="{{ url_for('index') }}">
+          <img src="{{ url_for('static', filename='images/logo_color.png') }}" class="logo-color" alt="Nihongo Quest Logo">日本語</a><a class="logo text-white"></a>
+        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+    
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('manga_routes.manga') }}">Mangas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('alphabet.alphabet') }}">Alphabet</a>
+                </li>
+    
+                <!-- Dropdown Words -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownWords" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-book"></i> Words
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 bg-dark" aria-labelledby="dropdownWords">
+                        <li><a class="dropdown-item" href="{{ url_for('add_word') }}">Add Words</a></li>
+                        <li><a class="dropdown-item " href="{{ url_for('words') }}">Words</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('flashcards') }}">FlashCard</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('quiz') }}">Quiz</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Dropdown Images -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownImages" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-image"></i> Images
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 bg-dark" aria-labelledby="dropdownImages">
+                        <li><a class="dropdown-item" href="{{ url_for('task.add_image') }}">Add Image</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('task.dictionary') }}">Images List</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Dropdown Users -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownUsers" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 bg-dark" aria-labelledby="dropdownUsers">
+                        <li><a class="dropdown-item" href="{{ url_for('register') }}">Register</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('login') }}">Login</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
+                </li>
+    
+            </ul>
         </div>
     </nav>
 

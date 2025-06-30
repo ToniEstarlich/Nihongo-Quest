@@ -22,7 +22,6 @@ app = Flask(__name__)
 app.config.from_object(Config)
 csrf = CSRFProtect(app)
 
-# db = SQLAlchemy(app)
 # Initialize the extensions with the app
 db.init_app(app)
 migrate.init_app(app, db)
