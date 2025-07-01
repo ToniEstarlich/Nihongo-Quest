@@ -2,7 +2,7 @@ import os
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 from extensions import db
-from models.task import TaskImagen
+from models.image import Image
 from forms import TaskImagenForm  # Import the form
 from forms import DeleteImageForm 
 from flask_login import login_required
@@ -10,7 +10,7 @@ import uuid
 from flask import current_app
 
 
-task_bp = Blueprint('task', __name__)
+image_bp = Blueprint('image', __name__)
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -18,7 +18,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@task_bp.route('/task/add', methods=['GET', 'POST'])
+@image_bp.route('/task/add', methods=['GET', 'POST'])
 @login_required
 def add_image():
     form = TaskImagenForm()
@@ -37,7 +37,7 @@ def add_image():
             file.save(filepath)
 
             # Save only the relative path to DB
-            new_entry = TaskImagen(
+            new_entry = Image(
                 image_path=f'uploads/{unique_filename}',
                 category=form.category.data,
                 japanese_word=form.japanese_word.data,
@@ -47,23 +47,23 @@ def add_image():
             db.session.add(new_entry)
             db.session.commit()
             flash("New entry added successfully!", "success")
-            return redirect(url_for('task.add_image'))  # Redirect after success
+            return redirect(url_for('image.add_image'))  # Redirect after success
 
-    return render_template('task/add_image.html', form=form)  # Pass form to template
+    return render_template('add_images/add_image.html', form=form)  # Pass form to template
 
 
 
 # Dictionary route
-@task_bp.route('/dictionary')
+@image_bp.route('/dictionary')
 @login_required
-def dictionary():
-    entries = TaskImagen.query.all()
-    return render_template('task/dictionary.html', entries=entries)
+def image_list():
+    entries = Image.query.all()
+    return render_template('add_images/image_list.html', entries=entries)
 
 # Delete image
-@task_bp.route('/delete/<int:image_id>', methods=['GET', 'POST'])
+@image_bp.route('/delete/<int:image_id>', methods=['GET', 'POST'])
 def delete_image(image_id):
-    image = TaskImagen.query.get_or_404(image_id)
+    image =Image.query.get_or_404(image_id)
     form = DeleteImageForm()
 
     if form.validate_on_submit():  # Ensure Flask-WTF CSRF validation
@@ -74,15 +74,15 @@ def delete_image(image_id):
         db.session.delete(image)
         db.session.commit()
         flash("Image deleted successfully!", "success")
-        return redirect(url_for('task.dictionary'))
+        return redirect(url_for('image.image_list'))
 
-    return render_template('task/delete_image.html', image=image, form=form)  # Pass 'form' here
+    return render_template('add_images/delete_image.html', image=image, form=form)  # Pass 'form' here
 
 
 # Edit image
-@task_bp.route('/edit/<int:image_id>', methods=['GET', 'POST'])
+@image_bp.route('/edit/<int:image_id>', methods=['GET', 'POST'])
 def edit_image(image_id):
-    image = TaskImagen.query.get_or_404(image_id)
+    image = Image.query.get_or_404(image_id)
     form = TaskImagenForm(obj=image)
 
     if form.validate_on_submit():
@@ -101,6 +101,6 @@ def edit_image(image_id):
 
         db.session.commit()
         flash("Image updated successfully!", "success")
-        return redirect(url_for('task.dictionary'))
+        return redirect(url_for('image.image_list'))
 
-    return render_template('task/edit_image.html', form=form, image=image)
+    return render_template('add_images/edit_image.html', form=form, image=image)

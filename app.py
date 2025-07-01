@@ -9,12 +9,13 @@ from extensions import db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required, current_user
 from models.user import User
 from models.word import Word
-from models.task import TaskImagen
-from routes.task_routes import task_bp
-from dotenv import load_dotenv
+from models.image import Image
+from routes.image_routes import image_bp
 import os
 from sqlalchemy import create_engine
 from flask_sqlalchemy  import SQLAlchemy
+from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -30,7 +31,7 @@ login_manager.login_view = "login"
 
 # Register the blueprint
 app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
-app.register_blueprint(task_bp, url_prefix='/task')
+app.register_blueprint(image_bp, url_prefix='/images')
 app.register_blueprint(manga_routes)
 
 
