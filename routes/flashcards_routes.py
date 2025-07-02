@@ -2,20 +2,32 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required
 from models.word import Word
+from flask_login import current_user
+from sqlalchemy import or_
 
 flashcards_bp = Blueprint("flashcards", __name__, url_prefix="/flashcard")
 
 @flashcards_bp.route("/flashcards.html")
 @login_required
 def flashcards():
-    words = Word.query.all()
+    words = Word.query.filter( or_(
+            Word.user_id == current_user.id,
+            Word.user_id == None  # global words
+        )
+        ).all()
     return render_template("flashcards/flashcards.html", words=words)
 
 @flashcards_bp.route("/quiz", methods=["GET", "POST"])
 @login_required
 def quiz():
     card_id = request.args.get('card_id', 1, type=int)
-    words = Word.query.all()
+    words = Word.query.filter(
+    or_(
+        Word.user_id == current_user.id,
+        Word.user_id == None  # public words what don't need use user_id
+    )
+    ).all()
+
     start_index = (card_id - 1) * 5
     selected_words = words[start_index:start_index + 5]
     feedback = {}
