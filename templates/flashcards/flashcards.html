@@ -38,7 +38,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <a href="{{ url_for('quiz', card_id=loop.index) }}" class="quiz-btn">Start Quiz</a>
+                <a href="{{ url_for('flashcards.quiz', card_id=loop.index) }}" class="quiz-btn">Start Quiz</a>
             </div>
         {% endfor %}
     </div>

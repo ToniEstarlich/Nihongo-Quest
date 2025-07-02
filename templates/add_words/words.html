@@ -31,13 +31,13 @@
                 {% if current_user.id == word.user_id %}
                 <a>
                     <button class="btn btn-edit"
-                        onclick="window.location.href='{{ url_for('edit_word', word_id=word.id) }}'">
+                        onclick="window.location.href='{{ url_for('words.edit_word', word_id=word.id) }}'">
                         <i class="fas fa-edit"></i>Edit 
                     </button>
                 </a>
                 <a>
                     <button class="btn btn-delete-"
-                        onclick="window.location.href='{{ url_for('delete_word', word_id=word.id) }}'">
+                        onclick="window.location.href='{{ url_for('words.delete_word', word_id=word.id) }}'">
                         <i class="fas fa-trash"></i> Delete 
                     </button> 
                 </a>

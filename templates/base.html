@@ -47,6 +47,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url_for('alphabet.alphabet') }}">Alphabet</a>
                 </li>
+                <li  class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('flashcards.flashcards') }}">FlashCard</a>
+                </li>
     
                 <!-- Dropdown Words -->
                 <li class="nav-item dropdown">
@@ -55,10 +58,8 @@
                         <i class="fas fa-book"></i> Words
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end border-0 bg-dark" aria-labelledby="dropdownWords">
-                        <li><a class="dropdown-item" href="{{ url_for('add_word') }}">Add Words</a></li>
-                        <li><a class="dropdown-item " href="{{ url_for('words') }}">Words</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('flashcards') }}">FlashCard</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('quiz') }}">Quiz</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('words.add_word') }}">Add Words</a></li>
+                        <li><a class="dropdown-item " href="{{ url_for('words.words') }}">Words</a></li>
                     </ul>
                 </li>
     
@@ -81,9 +82,9 @@
                         <i class="fas fa-user"></i> Account
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end border-0 bg-dark" aria-labelledby="dropdownUsers">
-                        <li><a class="dropdown-item" href="{{ url_for('register') }}">Register</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('login') }}">Login</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('users.register') }}">Register</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('users.login') }}">Login</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('users.logout') }}">Logout</a></li>
                     </ul>
                 </li>
     

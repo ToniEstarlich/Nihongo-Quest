@@ -10,7 +10,7 @@
 <h1 class="title-flash">Japanese Quiz</h1>
 <h3 class="text-flash">What is the meaning of?...</h3>
 
-<form action="{{ url_for('quiz', card_id=card_id) }}" method="POST">
+<form action="{{ url_for('flashcards.quiz', card_id=card_id) }}" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     
     {% for word in selected_words %}

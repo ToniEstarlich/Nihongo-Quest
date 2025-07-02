@@ -43,10 +43,11 @@ table {
     margin-top: 10px;
 }
 
-th, td {
+tr, th, td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+    color: #ddd;
 }
 
 /* Japanese word */

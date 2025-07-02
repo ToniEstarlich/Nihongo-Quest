@@ -11,10 +11,10 @@
     <h2 class="tittle_add">Delete Word</h2>
     <p class="sure">Are you sure you want to delete the word "{{ word.japanese }} - {{ word.english }}"?</p>
     
-    <form method="POST" action="{{ url_for('delete_word', word_id=word.id) }}">
+    <form method="POST" action="{{ url_for('words.delete_word', word_id=word.id) }}">
         {{ form.hidden_tag() }}
         <button type="submit" class="btn btn-danger">Delete</button>
-        <a href="{{ url_for('add_word') }}" class="btn btn-secondary">Cancel</a>
+        <a href="{{ url_for('words.add_word') }}" class="btn btn-secondary">Cancel</a>
     </form>
     
     {% endblock %}
