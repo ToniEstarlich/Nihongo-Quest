@@ -58,7 +58,7 @@ def add_image():
 @image_bp.route('/images')
 @login_required
 def image_list():
-    entries = Image.query.filter_by(user_id=current_user.id).all()
+    entries = Image.query.filter_by(user_id=current_user.id).all()  
     return render_template('add_images/image_list.html', entries=entries)
 
 # Delete image
