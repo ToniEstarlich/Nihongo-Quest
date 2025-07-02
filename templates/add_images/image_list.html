@@ -35,16 +35,20 @@
                         <td class="japa-word">{{ entry.japanese_word }}</td>
                         <td>{{ entry.pronunciation }}</td>
                         <td>
+                             {% if current_user.id == entry.user_id %}
                             <button class="btn btn-edit"
                                 onclick="window.location.href='{{ url_for('image.edit_image', image_id=entry.id) }}'">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
+                            {% endif %}
                         </td>
                         <td>
+                             {% if current_user.id == entry.user_id %}
                             <button class="btn btn-delete"
                                 onclick="window.location.href='{{ url_for('image.delete_image', image_id=entry.id) }}'">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

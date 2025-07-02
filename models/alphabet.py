@@ -28,7 +28,7 @@ class Kanji(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     character = db.Column(db.String(10), nullable=False)
     onyomi = db.Column(db.String(100), nullable=False)  # Chinese reading
-    kunyomi = db.Column(db.String(100), nullable=False)  # Japanese reading
+    kunyomi = db.Column(db.String(100), nullable=True)  # Japanese reading
     meaning = db.Column(db.String(100))
 
     def __repr__(self):

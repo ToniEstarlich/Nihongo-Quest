@@ -27,6 +27,8 @@
                         </h6>
                     </li>
                 </ul>
+                
+                {% if current_user.id == word.user_id %}
                 <a>
                     <button class="btn btn-edit"
                         onclick="window.location.href='{{ url_for('edit_word', word_id=word.id) }}'">
@@ -39,8 +41,9 @@
                         <i class="fas fa-trash"></i> Delete 
                     </button> 
                 </a>
+              {% endif %}
             </div> 
-        {% endfor %}
+             {% endfor %}
     </div>
     {% endblock %}
 

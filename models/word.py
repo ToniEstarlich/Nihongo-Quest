@@ -8,5 +8,9 @@ class Word(db.Model):
     english = db.Column(db.String(100), nullable=False)
     pronunciation = db.Column(db.String(100))
 
+    # USER RELATION
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    user = db.relationship('User', backref='words')
+
     def __repr__(self):
         return f"<Word {self.japanese} - {self.english} - Pronunciation: {self.pronunciation}>"

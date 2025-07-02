@@ -5,7 +5,7 @@ from routes.manga_routes import manga_routes
 from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_wtf.csrf import generate_csrf
 from config import Config
-from extensions import db, login_manager, migrate
+from extensions import bcrypt, db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required, current_user
 from models.user import User
 from models.word import Word
@@ -21,13 +21,16 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 # Initialize the extensions with the app
 db.init_app(app)
 migrate.init_app(app, db)
 login_manager.init_app(app)
 login_manager.login_view = "login"
+bcrypt.init_app(app)
 
 # Register the blueprint
 app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
@@ -65,12 +68,6 @@ def flashcards():
     words = Word.query.all()
     return render_template("flashcards.html", words=words)
 
-# words
-@app.route("/words")
-@login_required
-def words():
-    words = Word.query.all()
-    return render_template("words.html", words=words)
 
 # Quiz flashcards
 @app.route("/quiz", methods=["GET", "POST"])
@@ -147,6 +144,15 @@ def logout():
     flash("Logged out!", "info")
     return redirect(url_for("index"))
 
+#-------------------route words ---------------------------------
+
+# words
+@app.route("/words")
+@login_required
+def words():
+    words = Word.query.filter_by(user_id=current_user.id).all()
+    return render_template("words.html", words=words)
+
 # ----------------- add word ---------------------------------------
 @app.route("/add_word", methods=["GET", "POST"])
 @login_required
@@ -157,8 +163,9 @@ def add_word():
         japanese = form.japanese.data
         english = form.english.data
         pronunciation = form.pronunciation.data
+        user_id=current_user.id
 
-        new_word = Word(japanese=japanese, english=english, pronunciation=pronunciation)
+        new_word = Word(japanese=japanese, english=english, pronunciation=pronunciation, user_id=user_id)
         db.session.add(new_word)
         db.session.commit()
 
@@ -173,6 +180,12 @@ def add_word():
 @login_required
 def edit_word(word_id):
     word = Word.query.get_or_404(word_id)
+
+    # only you can edit if is your
+    if word.user_id != current_user.id:
+        flash("You are not authorized to edit this word.", "danger")
+        return redirect(url_for("add_word"))
+
     form = WordForm(obj=word)
 
     if request.method == "POST" and form.validate_on_submit():
@@ -191,6 +204,12 @@ def edit_word(word_id):
 @login_required
 def delete_word(word_id):
     word = Word.query.get_or_404(word_id)
+
+    # control of propierty: only you can eliminate if  your
+    if word.user_id != current_user.id:
+        flash("You are not authorized to delete this word.", "danger")
+        return redirect(url_for("add_word"))
+    
     form = DeleteWordForm()
 
     if request.method == "POST":

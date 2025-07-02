@@ -9,9 +9,12 @@ class Image(db.Model):
     japanese_word = db.Column(db.String(100), nullable=False)
     pronunciation = db.Column(db.String(100), nullable=False) 
 
-    
-    def __init__(self, image_path, category, japanese_word, pronunciation):
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref='images') 
+ 
+    def __init__(self, image_path, category, japanese_word, pronunciation, user_id):
         self.image_path = image_path
         self.category = category
         self.japanese_word = japanese_word
         self.pronunciation = pronunciation
+        self.user_id = user_id

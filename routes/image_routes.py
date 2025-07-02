@@ -8,7 +8,7 @@ from forms import DeleteImageForm
 from flask_login import login_required
 import uuid
 from flask import current_app
-
+from flask_login import current_user, login_required
 
 image_bp = Blueprint('image', __name__)
 
@@ -41,7 +41,8 @@ def add_image():
                 image_path=f'uploads/{unique_filename}',
                 category=form.category.data,
                 japanese_word=form.japanese_word.data,
-                pronunciation=form.pronunciation.data
+                pronunciation=form.pronunciation.data,
+                user_id=current_user.id
             )
 
             db.session.add(new_entry)
@@ -53,17 +54,23 @@ def add_image():
 
 
 
-# Dictionary route
-@image_bp.route('/dictionary')
+# image_list route
+@image_bp.route('/images')
 @login_required
 def image_list():
-    entries = Image.query.all()
+    entries = Image.query.filter_by(user_id=current_user.id).all()
     return render_template('add_images/image_list.html', entries=entries)
 
 # Delete image
 @image_bp.route('/delete/<int:image_id>', methods=['GET', 'POST'])
+@login_required
 def delete_image(image_id):
     image =Image.query.get_or_404(image_id)
+
+    if image.user_id != current_user.id:
+        flash("You are not authorized to delete this image.", "danger")
+        return redirect(url_for('image.image_list'))
+
     form = DeleteImageForm()
 
     if form.validate_on_submit():  # Ensure Flask-WTF CSRF validation
@@ -81,8 +88,14 @@ def delete_image(image_id):
 
 # Edit image
 @image_bp.route('/edit/<int:image_id>', methods=['GET', 'POST'])
+@login_required
 def edit_image(image_id):
     image = Image.query.get_or_404(image_id)
+
+    if image.user_id != current_user.id:
+        flash("You are not authorized to edit this image.", "danger")
+        return redirect(url_for('image.image_list'))
+    
     form = TaskImagenForm(obj=image)
 
     if form.validate_on_submit():

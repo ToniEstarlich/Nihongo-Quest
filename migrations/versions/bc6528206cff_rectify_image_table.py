@@ -42,7 +42,7 @@ def upgrade():
                nullable=False)
         batch_op.alter_column('kunyomi',
                existing_type=sa.VARCHAR(length=100),
-               nullable=False)
+               nullable=True)
         batch_op.alter_column('meaning',
                existing_type=sa.TEXT(),
                type_=sa.String(length=100),
