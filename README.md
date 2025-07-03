@@ -49,7 +49,18 @@ Nihongo Quest is built using a modern and reliable tech stack to ensure a smooth
 
 ## 🔄 Version Control  
 - **[Git](https://git-scm.com/)** – tracking code changes and maintaining version control.  
-- **[GitHub](https://github.com/)** – hosting and managing the project repository.  
+- **[GitHub](https://github.com/)** – hosting and managing the project repository. 
+
+## 🧪 Testing
+
+This project uses `pytest` for testing the Flask application. Fixtures are defined in `conftest.py` and test cases are organized per blueprint (e.g. `test_users.py`, `test_words.py`, etc.).
+
+### References
+
+- Flask Official Documentation - Testing: https://flask.palletsprojects.com/en/2.3.x/testing/
+- TestDriven.io - Testing Flask Applications with Pytest: https://testdriven.io/blog/flask-pytest/
+- Miguel Grinberg Blog - Unit Testing Your Flask Application: https://blog.miguelgrinberg.com/post/unit-testing-your-flask-application
+
 
 
 # [Comeback to Readme](#nihongo-quest)

@@ -4,6 +4,7 @@ from models.user import User
 from forms import LoginForm
 from extensions import db, bcrypt
 
+
 users_bp = Blueprint("users", __name__, template_folder="../../templates/users")
 
 @users_bp.route("/register", methods=["GET", "POST"])

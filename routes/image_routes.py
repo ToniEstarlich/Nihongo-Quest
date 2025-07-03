@@ -55,7 +55,7 @@ def add_image():
 
 
 # image_list route
-@image_bp.route('/images')
+@image_bp.route('/')
 @login_required
 def image_list():
     entries = Image.query.filter_by(user_id=current_user.id).all()  
