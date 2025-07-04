@@ -8,7 +8,7 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.classList.remove('scroll-tip-container');
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.1 });
 
 for (const element of the_animation) {
     observer.observe(element);

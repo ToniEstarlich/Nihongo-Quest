@@ -12,18 +12,7 @@
     <p>Start your journey in learning Japanese through fun quizzes.</p>
     <h1 class="title-flash">Japanese flash Cards</h1>
     
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul class="flashes">
-            {% for category, message in messages %}
-                <li class="flash {{ category }}">{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    <h2 class="title-flash">Word List:</h2>
+        <h2 class="title-flash">Word List:</h2>
     <div class="flashcards-container">
         {% for i in range(0, words|length, 5) %}
             <div class="flashcard">

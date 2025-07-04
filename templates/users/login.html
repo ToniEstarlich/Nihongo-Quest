@@ -6,16 +6,8 @@
     {% block extra_styles %}
        <link rel="stylesheet" href="{{ url_for('static', filename='css/loging_register.css') }}">
     {% endblock %}
-
+    
     {% block content %}
-    <!-- message text register-->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="alert alert-{{ category }}">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
     
     <h1 class="title-login">Login</h1>
     <form method="POST">
@@ -27,5 +19,6 @@
         <input type="password" name="password" placeholder="Password" required>
         <button class="button" type="submit">Login</button>
     </form>
-    <p class="reg-here-text" >Don't have an account? <a class="reg-here" href="{{url_for('users.register') }}">Register here</a></p>
+    <p class="reg-here-text text-white" >Don't have an account?<a class="reg-here" href="{{url_for('users.register') }}">Register here</a></p>
+    
     {% endblock %}

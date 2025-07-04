@@ -192,18 +192,115 @@
     grid-column: span 3 / span 3;
     grid-row: span 3 / span 3;
     grid-column-start: 1;
-}
+} 
+
 
 /* Positioning adjustments */
 .left1 { grid-row-start: 1; }
 .left2 { grid-row-start: 4; }
 
-/* Responsive layout for screens smaller than 768px (tablets & phones) */
+
+/* Animation scrolling tips*/
+
+.tip-container {
+    opacity: 0;
+    transform: translateX(-300px); /* Back to fixed pixel value for consistency */
+    transition: transform 0.7s ease-out 0.4s, opacity 0.7s ease-out 0.4s;
+}
+
+/* Show the container when scrolled */
+.scroll-tip-container {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Flexbox for alignment */
+.coach-tips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Desktop View */
+@media (min-width: 1024px) {
+    .coach-tips {
+        justify-content: space-between;
+    }
+
+    .tip-container {
+        flex: 0 0 45%; /* 2 items per row on desktop */
+    }
+}
+
+/* iPad Air Size (between tablet and desktop) */
+@media (max-width: 1024px) and (min-width: 810px) {
+    .coach-tips {
+        justify-content: space-evenly;
+        gap: 30px; /* More breathing room */
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .tip-container {
+        flex: 0 0 45%; /* Keep 2 items per row */
+        transform: translateX(0px); 
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .kanji-icon {
+        font-size: 4rem;
+    }
+
+    .text-tip {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet View */
+@media (max-width: 810px) and (min-width: 768px) {
+    .coach-tips {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .tip-container {
+        flex: 0 0 100%; /* Full width on smaller tablets */
+        transform: translateX(-50px); /* Soft slide effect */
+        font-size: 1rem;
+    }
+
+    .kanji-icon {
+        font-size: 2.5rem;
+    }
+
+    .text-tip {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile View */
 @media (max-width: 768px) {
     .coach-tips {
+        display: block; /* Stack vertically on mobile */
         grid-template-columns: repeat(2, 1fr); /* 2 columns */
         grid-template-rows: auto;
         gap: 20px;
+    }
+
+    .tip-container {
+        width: 100%; /* Full width for mobile */
+        transform: translateX(0); /* No slide effect to prevent overflow */
+        font-size: 0.9rem;
+    }
+
+    .kanji-icon {
+        font-size: 3.2rem;
+    }
+
+    .text-tip {
+        font-size: 0.9rem;
     }
 
     .right1, .right2, .left1, .left2 {
@@ -233,8 +330,6 @@
         max-width: 100%;
     }
 }
-
-
 
 /* Travel Section */
 #travel {
@@ -354,108 +449,5 @@
 
     .travel-box2 {
         font-size: 1rem;
-    }
-}
-
-
-
-/* Animation scrolling tips*/
-
-.tip-container {
-    opacity: 0;
-    transform: translateX(-300px); /* Back to fixed pixel value for consistency */
-    transition: transform 0.7s ease-out 0.4s, opacity 0.7s ease-out 0.4s;
-}
-
-/* Show the container when scrolled */
-.scroll-tip-container {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Flexbox for alignment */
-.coach-tips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-/* Desktop View */
-@media (min-width: 1024px) {
-    .coach-tips {
-        justify-content: space-between;
-    }
-
-    .tip-container {
-        flex: 0 0 45%; /* 2 items per row on desktop */
-    }
-}
-
-/* iPad Air Size (between tablet and desktop) */
-@media (max-width: 1024px) and (min-width: 810px) {
-    .coach-tips {
-        justify-content: space-evenly;
-        gap: 30px; /* More breathing room */
-        max-width: 90%;
-        margin: 0 auto;
-    }
-
-    .tip-container {
-        flex: 0 0 45%; /* Keep 2 items per row */
-        transform: translateX(0px); 
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    .kanji-icon {
-        font-size: 2rem;
-    }
-
-    .text-tip {
-        font-size: 1rem;
-    }
-}
-
-/* Tablet View */
-@media (max-width: 810px) and (min-width: 768px) {
-    .coach-tips {
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .tip-container {
-        flex: 0 0 100%; /* Full width on smaller tablets */
-        transform: translateX(-50px); /* Soft slide effect */
-        font-size: 1rem;
-    }
-
-    .kanji-icon {
-        font-size: 1.5rem;
-    }
-
-    .text-tip {
-        font-size: 1rem;
-    }
-}
-
-/* Mobile View */
-@media (max-width: 768px) {
-    .coach-tips {
-        display: block; /* Stack vertically on mobile */
-    }
-
-    .tip-container {
-        width: 100%; /* Full width for mobile */
-        transform: translateX(0); /* No slide effect to prevent overflow */
-        font-size: 0.9rem;
-    }
-
-    .kanji-icon {
-        font-size: 1.2rem;
-    }
-
-    .text-tip {
-        font-size: 0.9rem;
     }
 }
