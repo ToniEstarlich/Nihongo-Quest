@@ -4,6 +4,13 @@
 Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
 ![Website Preview](./static/screenshots/responsive.jpg)
 
+You can find the source code for **Nihongo Quest** in the GitHub repository below:  
+- **Repository**: [Nihongo Quest GitHub Repository](https://github.com/ToniEstarlich/Nihongo-Quest)  
+
+The live version of the project is accessible here:  
+- **Live Project**: [Nihongo Quest](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)  
+
+
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
 2. [Wireframes](#wireframes)
