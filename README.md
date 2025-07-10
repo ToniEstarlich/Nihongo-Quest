@@ -218,7 +218,7 @@ Curiosity is key to language learning — discovering new manga can expand your 
 
 1. Clone the repository:  
    ```sh
-   git clone https://github.com/your-username/nihongo-quest.git
+   git clone https://github.com/ToniEstarlich/nihongo-quest.git
    cd nihongo-quest
    ```
 
