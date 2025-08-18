@@ -203,52 +203,52 @@ Curiosity is key to language learning — discovering new manga can expand your 
 # [Comeback to Readme](#nihongo-quest)
 
 ---
-## Problems and Solutions  
 
-### Pages to references: 
- - **[Flask-WTF](https://flask-wtf.readthedocs.io/en/1.2.x/)** 
+#  Project Architecture
 
-### ❌ **Problem: CSRF Token Errors in Quiz Form**  
-- **Issue:** The CSRF token was missing or not being validated correctly in the form submission.  
-- **Solution:**  
-  - Ensured that `CSRFProtect(app)` was correctly initialized in `app.py`.  
-  - Passed the CSRF token explicitly in `render_template()`.  
-  - Added a hidden input field in `quiz.html` to include the CSRF token in the form.  
 
-### ❌ **Problem: Understanding Mako Templates**  
-- **What is Mako?**  
-  Mako is a templating engine for Python, similar to Jinja2 but with a syntax closer to standard Python expressions.  
-  - **Why is it relevant?** Mako is sometimes used in Flask applications when working with certain frameworks or plugins that require an alternative template engine.  
-  - **In Nihongo Quest:** We are using Jinja2 (Flask's default template engine), so Mako is not needed for now. However, understanding Mako can be useful for other Python projects.  
+<img src="./static/screenshots/Diagram-NQ.PNG" alt="Mobile Screenshot" width="450">
 
-## Installation  
+This project follows an **MVC-like structure** inspired by Django MTV and .NET MVC.  
+Each layer has a clear responsibility and works together to build a scalable web application.  
 
-1. Clone the repository:  
-   ```sh
-   git clone https://github.com/ToniEstarlich/nihongo-quest.git
-   cd nihongo-quest
-   ```
+---
 
-2. Create and activate a virtual envionment:
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+### 🟢 Python – Blueprint
+- **Blueprints** allow splitting the app into modules (users, products, news, etc.).  
+- Keeps the code organized and reusable in large projects.  
 
-   ```
+---
 
-3. Install independecies:
-   ```sh
-   pip install -r requirements.txt
+### 🟠 HTML – Jinja
+- **Jinja** is Flask’s templating engine, inserting dynamic data into HTML.  
+- Enables the use of variables, loops, and conditions directly in web pages.  
 
-   ```
-4. Run the application
-   ```sh
-   flask run
+---
 
-   ```
-## Contributing  
+### 🔵 PostgreSQL – Database
+- **PostgreSQL** stores application data (users, articles, orders, etc.).  
+- **SQLAlchemy** maps Python classes to database tables.  
+- **Flask-WTF + CSRF** handles secure web forms.  
 
-Feel free to open issues or submit pull requests to improve Nihongo Quest! 
+---
+
+### 🟣 Pytest – Testing
+- **Pytest** is used for automated testing.  
+- Ensures that routes, models, and forms work correctly after changes.  
+
+---
+
+### 📂 Project Structure
+- **templates/** → HTML templates with Jinja.  
+- **routes/** → Flask routes (URL handling).  
+- **models/** → Database models (SQLAlchemy).  
+- **tests/** → Automated tests with Pytest.  
+- **forms.py** → Web forms defined with Flask-WTF.  
+
+<img src="./static/screenshots/diagram-code.JPEG" alt="Mobile Screenshot" width="450">
+
+---
 
 # [Comeback to Readme](#nihongo-quest)
 
@@ -582,5 +582,53 @@ quiz.html end explanation:
 ```
 # [Comeback to Readme](#nihongo-quest)
 ---
+
+## Problems and Solutions  
+
+### Pages to references: 
+ - **[Flask-WTF](https://flask-wtf.readthedocs.io/en/1.2.x/)** 
+
+### ❌ **Problem: CSRF Token Errors in Quiz Form**  
+- **Issue:** The CSRF token was missing or not being validated correctly in the form submission.  
+- **Solution:**  
+  - Ensured that `CSRFProtect(app)` was correctly initialized in `app.py`.  
+  - Passed the CSRF token explicitly in `render_template()`.  
+  - Added a hidden input field in `quiz.html` to include the CSRF token in the form.  
+
+### ❌ **Problem: Understanding Mako Templates**  
+- **What is Mako?**  
+  Mako is a templating engine for Python, similar to Jinja2 but with a syntax closer to standard Python expressions.  
+  - **Why is it relevant?** Mako is sometimes used in Flask applications when working with certain frameworks or plugins that require an alternative template engine.  
+  - **In Nihongo Quest:** We are using Jinja2 (Flask's default template engine), so Mako is not needed for now. However, understanding Mako can be useful for other Python projects.  
+
+## Installation  
+
+1. Clone the repository:  
+   ```sh
+   git clone https://github.com/ToniEstarlich/nihongo-quest.git
+   cd nihongo-quest
+   ```
+
+2. Create and activate a virtual envionment:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+   ```
+
+3. Install independecies:
+   ```sh
+   pip install -r requirements.txt
+
+   ```
+4. Run the application
+   ```sh
+   flask run
+
+   ```
+## Contributing  
+
+Feel free to open issues or submit pull requests to improve Nihongo Quest! 
+
 
 
