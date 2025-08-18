@@ -215,7 +215,7 @@ Each layer has a clear responsibility and works together to build a scalable web
 ---
 
 ### 🟢 Python – Blueprint
-- **Blueprints** allow splitting the app into modules (users, products, news, etc.).  
+- **Blueprints** allow splitting the app into modules (users, words, flashcards, etc.).  
 - Keeps the code organized and reusable in large projects.  
 
 ---
@@ -227,10 +227,10 @@ Each layer has a clear responsibility and works together to build a scalable web
 ---
 
 ### 🔵 PostgreSQL – Database
-- **PostgreSQL** stores application data (users, articles, orders, etc.).  
+- **PostgreSQL** stores application data (users, words, flashcards, etc.).  
 - **SQLAlchemy** maps Python classes to database tables.  
 - **Flask-WTF + CSRF** handles secure web forms.  
-
+ 
 ---
 
 ### 🟣 Pytest – Testing
