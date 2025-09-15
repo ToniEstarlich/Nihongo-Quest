@@ -4,6 +4,18 @@
 Nihongo Quest is a Flask-based web application designed to help users learn Japanese vocabulary through interactive quizzes. Users can log in, take quizzes, and test their knowledge by answering questions about Japanese words.
 ![Website Preview](./static/screenshots/responsive.jpg)
 
+##  - User Stories  
+
+As a user:  
+
+- create an account and log in so that I can track my progress and save my quiz results.  
+- practice with flashcards so that I can memorize Japanese vocabulary more effectively.  
+- take quizzes so that I can test my knowledge and receive feedback instantly.  
+- explore manga and cultural sections so that learning Japanese feels fun and immersive.  
+- the website to be responsive so that I can use it easily on desktop, tablet, and mobile devices.  
+
+---
+
 You can find the source code for **Nihongo Quest** in the GitHub repository below:  
 - **Repository**: [Nihongo Quest GitHub Repository](https://github.com/ToniEstarlich/Nihongo-Quest)  
 
@@ -76,7 +88,19 @@ This project uses `pytest` for testing the Flask application. Fixtures are defin
 # WIREFRAMES  
 # 📐 
 
-Nihongo Quest features several interactive sections, each designed to enhance the learning experience: **Home**, **Alphabet**, **Flashcards**, **Manga**, and **Quiz**. Below are the wireframes for the four main sections:  
+Nihongo Quest features several interactive sections, each designed to enhance the learning experience: **Home**, **Alphabet**, **Flashcards**, **Manga**, and **Quiz**. Below are the wireframes for the four main sections: 
+
+## - Design Iteration  
+
+The project started with wireframes to outline the main sections: Home, Flashcards, Alphabet, Manga, and Quiz.  
+
+- Early versions were simple and focused mainly on functionality.  
+- Based on feedback, the design was refined to improve navigation, responsiveness, and visual consistency.  
+- A color palette inspired by Japanese culture and a custom logo were introduced to give the app a stronger identity.  
+- Iterations also focused on UI/UX improvements, such as adjusting button placement, form validation, and adding motivational feedback during quizzes.  
+- later expanded the app in add imagens.  
+
+---
 
 ## 🏠 Home  
 
@@ -247,6 +271,14 @@ Each layer has a clear responsibility and works together to build a scalable web
 - **forms.py** → Web forms defined with Flask-WTF.  
 
 <img src="./static/screenshots/diagram-code.JPEG" alt="Mobile Screenshot" width="450">
+
+##  - Git & Version Control  
+
+- Version control was managed using Git and hosted on GitHub.  
+- Each new feature (e.g., login system, flashcards, quiz logic) was developed in a separate branch before merging into the main branch.  
+- Regular commits documented the progress and made it easier to track changes.  
+- Pull requests were used to review changes before merging.  
+- GitHub also served as a central hub for deployment to Heroku and collaboration.  
 
 ---
 
