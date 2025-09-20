@@ -278,7 +278,8 @@ Each layer has a clear responsibility and works together to build a scalable web
 - Each new feature (e.g., login system, flashcards, quiz logic) was developed in a separate branch before merging into the main branch.  
 - Regular commits documented the progress and made it easier to track changes.  
 - Pull requests were used to review changes before merging.  
-- GitHub also served as a central hub for deployment to Heroku and collaboration.  
+- GitHub also served as a central hub for deployment to Heroku and collaboration. 
+- Additionally, package.json and package-lock.json were included in version control to document the Node.js dependencies (used for JavaScript testing with Jest). These files ensure consistency if the environment needs to be reinstalled or tested by others.
 
 ---
 
@@ -472,14 +473,6 @@ The application uses **Jinja2** for rendering dynamic HTML pages.
 ---
 
 # [Comeback to Readme](#nihongo-quest)
-
----
-##  Next Steps
-# 🚀
-
-- 1. **Testing** & bug fixing
-
-- 2.  Deploy to **Heroku**
 
 ---
 # EXAMPLE OF ALGORITHM & CODE:
