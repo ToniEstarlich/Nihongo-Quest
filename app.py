@@ -1,14 +1,18 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from flask import Flask, render_template, request, flash, url_for, redirect
 from flask_wtf.csrf import CSRFProtect, CSRFError, generate_csrf
 from config import Config
 from extensions import bcrypt, db, login_manager, migrate
 from flask_login import login_user, logout_user, login_required, current_user
 import os
-from dotenv import load_dotenv
 from models.user import User
 from models.word import Word
 
-load_dotenv()
+
+
+print("DATABASE_URL =", os.environ.get("DATABASE_URL"))
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -29,6 +33,7 @@ from routes.alphabet_routes import alphabet_bp
 from routes.image_routes import image_bp
 from routes.manga_routes import manga_routes
 from routes.flashcards_routes import flashcards_bp
+from routes.errors import errors
 
 app.register_blueprint(users_bp,)  
 app.register_blueprint(words_bp)  
@@ -36,6 +41,7 @@ app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
 app.register_blueprint(image_bp, url_prefix="/images")
 app.register_blueprint(manga_routes)
 app.register_blueprint(flashcards_bp,)
+app.register_blueprint(errors)
 
 
 @login_manager.user_loader

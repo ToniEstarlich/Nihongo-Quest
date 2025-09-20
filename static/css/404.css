@@ -1,0 +1,36 @@
+.error-container {
+    text-align: center;
+    padding: 60px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-code {
+    font-size: 100px;
+    color: #ff4757;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 24px;
+    color: #e6e6e6;
+    margin-bottom: 20px;
+}
+
+.error-link {
+    font-size: 18px;
+    color: #ff311e;
+    text-decoration: none;
+    border: 2px solid #59101f;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.error-link:hover {
+    background-color:  #ff4757;
+    color: #fff;
+}
