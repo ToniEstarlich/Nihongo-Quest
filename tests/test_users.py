@@ -1,5 +1,6 @@
 import pytest
-from app import app as flask_app, db
+from app import app as flask_app
+from extensions import db
 from models.user import User
 from werkzeug.security import generate_password_hash
 

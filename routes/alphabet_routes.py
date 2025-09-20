@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from db import db  # Import db from db.py
+from extensions import db  # Import db from db.py
 from models.alphabet import Hiragana, Katakana, Kanji  # Import models
 
 # Define Blueprint

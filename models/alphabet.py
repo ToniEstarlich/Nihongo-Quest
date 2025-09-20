@@ -1,4 +1,4 @@
-from db import db  # Import db from db.py
+
 from extensions import db
 
 # Define the Hiragana table

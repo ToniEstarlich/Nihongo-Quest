@@ -2,7 +2,8 @@ import pytest
 from flask import url_for
 from models.user import User
 from models.word import Word
-from app import app, db
+from app import app
+from extensions import db
 
 @pytest.fixture
 def new_word_data():
