@@ -1,0 +1,47 @@
+.lookup {
+  text-align: center;
+  padding: 20px;
+  margin: 5%;
+}
+
+.results {
+  max-width: 600px;
+  margin: 20px auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.result-field {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.result-field button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background: rgb(71, 6, 42);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.result-field button:hover {
+  background: rgb(120, 30, 80);
+}
+
+/* Small toast */
+.copy-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  opacity: 0.9;
+  font-size: 0.9em;
+  z-index: 1000;
+}

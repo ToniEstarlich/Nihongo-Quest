@@ -37,7 +37,12 @@
     
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-    
+        
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('translator.word_lookup_page') }}">
+                        <i class="fas fa-compass fa-2x me-1"></i>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url_for('index') }}">Home</a>
                 </li>
@@ -47,10 +52,10 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url_for('alphabet.alphabet') }}">Alphabet</a>
                 </li>
-                <li  class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url_for('flashcards.flashcards') }}">FlashCard</a>
                 </li>
-    
+        
                 <!-- Dropdown Words -->
                 <li class="nav-item dropdown">
                     <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownWords" role="button"

@@ -33,6 +33,7 @@ from routes.alphabet_routes import alphabet_bp
 from routes.image_routes import image_bp
 from routes.manga_routes import manga_routes
 from routes.flashcards_routes import flashcards_bp
+from routes.translator import translator_bp
 from routes.errors import errors
 
 app.register_blueprint(users_bp,)  
@@ -41,6 +42,7 @@ app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
 app.register_blueprint(image_bp, url_prefix="/images")
 app.register_blueprint(manga_routes)
 app.register_blueprint(flashcards_bp,)
+app.register_blueprint(translator_bp)
 app.register_blueprint(errors)
 
 
