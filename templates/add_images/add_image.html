@@ -4,42 +4,81 @@
 {% block title %}Add New Entry - Nihongo Quest{% endblock %}
 
 {% block extra_styles %}
-       <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
 {% endblock %}
 
 {% block content %}
-<h2 class="tittle_add">Add New Entry to Dictionary</h2>
-<h4 class="how">How use Add Visual Dictionary?</h4>
+<h2 class="tittle_add">Visual Dictionary</h2>
+<h4 class="how">Associate images with Japanese words</h4>
 <p class="text-how">
-    The Visual Dictionary is an interactive learning tool that helps you associate images with Japanese words. Observe, explore, and capture visuals while writing the corresponding Japanese words and their pronunciation. Contribute to the Nihongo Quest community and enhance your language-learning journey!
+  Observe, search and select images for each word. The search is the main tool: it translates the word to Japanese, shows related images and lets you save the entry with pronunciation. Improve your visual learning!
 </p>
 
-<!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
+  {% if messages %}
     {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
+      <div class="alert alert-{{ category }}">{{ message }}</div>
     {% endfor %}
-{% endif %}
+  {% endif %}
 {% endwith %}
 
-<!-- Form -->
-<form method="POST" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
-
-    <label>Image:</label>
-    {{ form.image(class="form-control") }}
-
-    <label>Category:</label>
-    {{ form.category(class="form-control") }}
-
-    <label>Japanese Word:</label>
-    {{ form.japanese_word(class="form-control") }}
-
-    <label>Pronunciation:</label>
-    {{ form.pronunciation(class="form-control") }}
-
-    <button type="submit" class="button">Add Entry</button>
+<!-- search translate -->
+<form method="get" action="{{ url_for('visual.search_translate_image') }}" class="mb-3 d-flex gap-2">
+    <input type="text" name="q" placeholder="Enter English word" required class="form-control" value="{{ query or '' }}">
+    <button type="submit" class="btn btn-primary">Search Images</button>
 </form>
+
+<!-- results -->
+{% if result %}
+  <h3 class="how">Result for "{{ result.english }}"</h3>
+  <div class="card mb-3" style="max-width:640px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ result.image }}" class="img-fluid rounded-start" alt="{{ result.english }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <strong>Japanese:</strong><h5 class="japa-word">{{ result.japanese }}</h5> <strong class="Japa-word"></strong>
+          <strong>Kana:</strong><p class="japa-word"> {{ result.kana }}</p>
+          <strong>Romaji:</strong><p class="card-text"> {{ result.romaji }}</p>
+
+        <form method="post" action="{{ url_for('visual.add_image_from_result') }}">
+            {{ form.hidden_tag() }}
+            {{ form.image_url(value=result.image, type="hidden") }}
+            {{ form.japanese_word(value=result.japanese or result.english, type="hidden") }}
+            {{ form.pronunciation(value=result.romaji, type="hidden") }}
+            {{ form.category(value=result.category, type="hidden") }}
+            {{ form.submit(class="btn btn-success mt-2") }}
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% elif query %}
+  <div class="alert alert-info">No images found for "{{ query }}".</div>
+{% endif %}
+<div class="card mt-4">
+  <div class="card-body">
+    <h4 class="card-title mb-3">Add a New Word Manually</h4>
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+      {{ form.hidden_tag() }}
+
+      <label>Image:</label>
+      {{ form.image(class="form-control") }}
+
+      <label>Category:</label>
+      {{ form.category(class="form-control") }}
+
+      <label>Japanese Word:</label>
+      {{ form.japanese_word(class="form-control") }}
+
+      <label>Pronunciation:</label>
+      {{ form.pronunciation(class="form-control") }}
+
+      <button type="submit" class="btn btn-primary mt-2">Add Entry</button>
+    </form>
+  </div>
+</div>
 
 {% endblock %}

@@ -152,6 +152,11 @@ p {
 
 /* Responsive layout for screens smaller than 480px (mobile phones) */
 @media (max-width: 480px) {
+    .alphabet-card:hover {
+       transform: scale(1.9);
+       z-index: 3;
+    }
+
     .alphabet-parent {
         grid-template-columns: 1fr; /* 1 column */
         gap: 10px;

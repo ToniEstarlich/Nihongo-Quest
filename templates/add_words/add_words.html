@@ -1,44 +1,88 @@
+{% extends "base.html" %}
 
-    {% extends "base.html" %}
+{% block title %}Add New Entry - Nihongo Quest{% endblock %}
 
-    {% block title %}Home - Nihongo Quest{% endblock %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
+{% endblock %}
 
-    {% block extra_styles %}
-       <link rel="stylesheet" href="{{ url_for('static', filename='css/add_delete_edit.css') }}">
-    {% endblock %}
+{% block content %}
+<h2 class="tittle_add">Add Words</h2>
+<h4 class="how">How to use Add Words</h4>
+<p class="text-how">
+    Add new Japanese words and their pronunciation to your FlashCards memory game. 
+    These words will appear in your learning deck, helping you practice and strengthen your memory through interactive play.
+</p>
 
-    {% block content %}
 
-    <div class="container">
-        <h2 class="tittle_add">Add a New Japanese Word</h2>
-        <h4 class="how">How use Add Words?</h4>
-        <p class="text-how">
-            Add words and create your own personalized learning experience! As you progress and expand your memorized vocabulary, you'll be able to write and edit your flashcards with ease. Explore, read, and practice writing Japanese words while learning their pronunciation. Enhance your Nihongo Quest and take your language skills to the next level!
-        </p>
-        
-    
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
         <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-    
-        <!-- Form to add words -->
-        <form method="POST" action="/add_word">
-            {{ form.hidden_tag() }}        
-            <label for="japanese">Japanese:</label>
-            <input type="text" id="japanese" name="japanese" required>
-        
-            <label for="english">English:</label>
-            <input type="text" id="english" name="english" required>
-        
-            <label for="pronunciation">Pronunciation:</label>
-            <input type="text" id="pronunciation" name="pronunciation">
-        
-            <button type="submit" class="button">Add Word</button>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+<form method="get" action="{{ url_for('translator.word_lookup_page') }}">
+    <input type="text" name="q" placeholder="Enter English word">
+    <button type="submit">Translate</button>
+</form>
+
+<!-- Translation Result Section -->
+{% if result %}
+<div class="card mb-4">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ result.image }}" class="img-fluid rounded-start" alt="{{ result.english }}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <strong>Japanese:</strong><h5 class="japa-word">{{ result.japanese }}</h5>
+                <strong>Kana:</strong><p class="japa-word"> {{ result.kana }}</p>
+                <strong>Romaji:</strong><p class="card-text">{{ result.romaji }}</p>
+
+                {% if current_user.is_authenticated %}
+                <!-- Hidden form to add word from translation -->
+                <form method="post" action="{{ url_for('translator.add_word_from_result') }}">
+                    {{ add_result_form.hidden_tag() }}
+                    {{ add_result_form.english(value=result.english, type="hidden") }}
+                    {{ add_result_form.japanese(value=result.japanese, type="hidden") }}
+                    {{ add_result_form.pronunciation(value=result.romaji, type="hidden") }}
+                    {{ add_result_form.submit(class="btn btn-success") }}
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Manual Add Word Form -->
+{% if current_user.is_authenticated %}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4 class="card-title mb-3">Add a New Word Manually</h4>
+        <form method="post" action="{{ url_for('translator.add_word') }}">
+            {{ form.hidden_tag() }}
+
+            <label>English:</label>
+            {{ form.english(class="form-control") }}
+
+            <label>Japanese:</label>
+            {{ form.japanese(class="form-control") }}
+
+            <label>Pronunciation:</label>
+            {{ form.pronunciation(class="form-control") }}
+
+            {{ form.submit(class="btn btn-primary mt-3") }}
         </form>
-        
-    {% endblock %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/copy_paste.js') }}"></script>
+{% endblock %}

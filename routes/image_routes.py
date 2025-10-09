@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from werkzeug.utils import secure_filename
 from extensions import db
 from models.image import Image
@@ -9,6 +9,7 @@ from flask_login import login_required
 import uuid
 from flask import current_app
 from flask_login import current_user, login_required
+import requests
 
 image_bp = Blueprint('image', __name__)
 
@@ -50,9 +51,7 @@ def add_image():
             flash("New entry added successfully!", "success")
             return redirect(url_for('image.add_image'))  # Redirect after success
 
-    return render_template('add_images/add_image.html', form=form)  # Pass form to template
-
-
+    return render_template('add_images/add_image.html', form=form, result=None)  # Pass form to template
 
 # image_list route
 @image_bp.route('/')
@@ -99,15 +98,7 @@ def edit_image(image_id):
     form = TaskImagenForm(obj=image)
 
     if form.validate_on_submit():
-        if form.image.data:  # If a new image is uploaded
-            file = form.image.data
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                filepath = os.path.join(UPLOAD_FOLDER, filename)
-                file.save(filepath)
-                image.image_path = f'uploads/{filename}'  # Update the image path
-        
-        # Update other fields (even if no new image is uploaded)
+       
         image.category = form.category.data
         image.japanese_word = form.japanese_word.data
         image.pronunciation = form.pronunciation.data

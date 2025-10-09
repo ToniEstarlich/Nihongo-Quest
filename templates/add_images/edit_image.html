@@ -10,26 +10,27 @@
     {% block content %}
      
     <!-- edit_image.html -->
-     <h2 class="tittle_add">Edit Image</h2>
-     <form method="POST" enctype="multipart/form-data">
-         {{ form.hidden_tag() }}
-         <p>
-             {{ form.image.label }}<br>
-             {{ form.image }}
-         </p>
-         <p>
-             {{ form.category.label }}<br>
-             {{ form.category }}
-         </p>
-         <p>
-             {{ form.japanese_word.label }}<br>
-             {{ form.japanese_word }}
-         </p>
-         <p>
-             {{ form.pronunciation.label }}<br>
-             {{ form.pronunciation }}
-         </p>
-         <button class="button" type="submit">Update</button>
-         <a class="cancel" href="{{ url_for('image.image_list') }}">Cancel</a>
-     </form>
-    {% endblock %}
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <div style="text-align:center; margin-bottom:10px;">
+        <img src="{{ url_for('static', filename=image.image_path) }}" alt="Current image" style="max-width:200px; border-radius:8px;">
+    </div>
+
+    <p>
+        {{ form.category.label }}<br>
+        {{ form.category }}
+    </p>
+    <p>
+        {{ form.japanese_word.label }}<br>
+        {{ form.japanese_word }}
+    </p>
+    <p>
+        {{ form.pronunciation.label }}<br>
+        {{ form.pronunciation }}
+    </p>
+
+    <button class="button" type="submit">Update</button>
+    <a class="cancel" href="{{ url_for('image.image_list') }}">Cancel</a>
+</form>  
+{% endblock %}

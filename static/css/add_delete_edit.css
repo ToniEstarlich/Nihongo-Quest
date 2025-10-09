@@ -1,123 +1,149 @@
-/* title */
+/* ===== Glass Card & Responsive Styles ===== */
 
+/* Title */
 .tittle_add {
-    font-size: 3rem;  
+    font-size: 2.5rem;  
     font-weight: bold;
     text-align: center;
     color: #ff4646;
-    text-shadow: 12px 12px 12px #2e0319;
-    margin: 5%;
+    text-shadow: 4px 4px 6px #2e0319;
+    margin: 2rem 0;
 }
 
-/* Text */
-
-.how {
-    font-size: 2rem;  
+/* Text info */
+.how, .sure, .text-how {
     font-weight: bold;
     text-align: center;
-    color: #ff4646;
-    text-shadow: 12px 12px 12px #2e0319;
-    margin: 5%; 
+    margin: 1rem 2rem;
+    text-shadow: 2px 2px 4px #2e0319;
 }
 
-.sure {
-    font-size: 1rem;  
-    font-weight: bold;
-    text-align: center;
-    color: #ffffff;
-    text-shadow: 12px 12px 12px #2e0319;
-    margin: 5%; 
-}
+.how { font-size: 1.8rem; color: #ff4646; }
+.sure { font-size: 1rem; color: #fff; }
+.text-how { font-size: 1rem; color: #ff8e8e; }
 
-.text-how {
-    font-size: 1rem;  
-    font-weight: bold;
-    text-align: center;
-    color: rgb(255, 142, 142);
-    text-shadow: 12px 12px 12px #2e0319;
-    margin: 5%; 
-}
-
-/* form */
-
+/* Form Card Glass */
 form {
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: 20px auto;
-    border: 1px solid #ddd;
-    background-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Label */
+form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
 
+/* Labels */
 label {
     display: block;
-    margin-top: 10px;
+    margin: 0.5rem 0 0.2rem;
     font-size: 1rem;
-    color: #f0f0f0; 
-    font-weight: bold;
+    color: #fff;
 }
 
-/* input */
-
-input {
+/* Inputs */
+input, select, textarea {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
     border: none;
-    border-radius: 5px;
     font-size: 1rem;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
     background: rgba(255, 255, 255, 0.9);
     color: black;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* botton */
-.button {
-    margin-top: 5px;
-    border-radius: 10px;
-}
-
-button {
-    background: linear-gradient(45deg,#ff3314 0%, #86070b 29% );
-    color: white;
+/* Buttons */
+button, .button {
+    background: linear-gradient(45deg, #ff3314, #86070b);
+    color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 0.6rem 1.5rem;
     font-size: 1rem;
     cursor: pointer;
+    border-radius: 12px;
+    margin: 0.5rem 0.2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
 }
 
-button:hover {
+button:hover, .button:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.8);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.8);
 }
 
 /* Cancel button */
-
 .cancel {
     background: grey;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
+    color: #fff;
 }
 
-/* Delete Image*/
-
+/* Delete Image button */
 .delete-img {
-    margin-left: 45%;
+    display: block;
+    margin: 1rem auto;
+    max-width: 120px;
+    border-radius: 8px;
+}
+
+/* Card for search results */
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+    margin: 1rem auto;
+    max-width: 640px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Card image */
+.card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Card body text */
+.card-body {
+    padding: 1rem;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    form, .card {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    .tittle_add { font-size: 2rem; }
+    .how { font-size: 1.5rem; }
+}
+@media screen and (max-width: 480px) {
+    .tittle_add { font-size: 1.5rem; }
+    .how { font-size: 1.2rem; }
+    button, .button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.japa-word {
+    font-size: 2rem;  
+    font-weight: bold;
+    text-align: center;
+    color: #2f2f2f;
+    text-shadow: 1px 1px #ffffff;
 }

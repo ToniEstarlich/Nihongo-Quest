@@ -12,7 +12,8 @@ As a user:
 - practice with flashcards so that I can memorize Japanese vocabulary more effectively.  
 - take quizzes so that I can test my knowledge and receive feedback instantly.  
 - explore manga and cultural sections so that learning Japanese feels fun and immersive.  
-- the website to be responsive so that I can use it easily on desktop, tablet, and mobile devices.  
+- the website to be responsive so that I can use it easily on desktop, tablet, and mobile devices. 
+- translate and add words to design my own flashcards, and add words with images in the “Add Image” section to enhance my learning.
 
 ---
 
@@ -98,7 +99,8 @@ The project started with wireframes to outline the main sections: Home, Flashcar
 - Based on feedback, the design was refined to improve navigation, responsiveness, and visual consistency.  
 - A color palette inspired by Japanese culture and a custom logo were introduced to give the app a stronger identity.  
 - Iterations also focused on UI/UX improvements, such as adjusting button placement, form validation, and adding motivational feedback during quizzes.  
-- later expanded the app in add imagens.  
+- later expanded the app in add imagens.
+-  Finally, translator functionality was added to “Add Words” and “Add Images”, enabling users to translate, add, and design their own words for flashcards while managing images in their personal Image List. 
 
 ---
 
@@ -280,6 +282,7 @@ Each layer has a clear responsibility and works together to build a scalable web
 - Pull requests were used to review changes before merging.  
 - GitHub also served as a central hub for deployment to Heroku and collaboration. 
 - Additionally, package.json and package-lock.json were included in version control to document the Node.js dependencies (used for JavaScript testing with Jest). These files ensure consistency if the environment needs to be reinstalled or tested by others.
+- The latest commits added the translator functionality to “Add Words” and “Add Image”, allowing users to translate, add, and design their own words for flashcards, while also managing images in their personal Image List. These changes involved updates to `routes/translator.py` and `routes/image_translator.py`.
 
 ---
 
@@ -624,7 +627,19 @@ quiz.html end explanation:
 - **What is Mako?**  
   Mako is a templating engine for Python, similar to Jinja2 but with a syntax closer to standard Python expressions.  
   - **Why is it relevant?** Mako is sometimes used in Flask applications when working with certain frameworks or plugins that require an alternative template engine.  
-  - **In Nihongo Quest:** We are using Jinja2 (Flask's default template engine), so Mako is not needed for now. However, understanding Mako can be useful for other Python projects.  
+  - **In Nihongo Quest:** We are using Jinja2 (Flask's default template engine), so Mako is not needed for now. However, understanding Mako can be useful for other Python projects. 
+
+ ## Deployment
+
+The project was deployed to **Heroku** using a **Heroku PostgreSQL database**. Follow these steps to deploy:
+
+1. Make sure all changes are committed and pushed to the main branch of your GitHub repository.
+2. Log in to [Heroku](https://dashboard.heroku.com/) and create a new app.
+3. In the **Resources** tab, add the **Heroku Postgres** add-on for the database.
+4. In the **Deploy** tab of your Heroku app, connect your GitHub repository and select the main branch.
+5. Click **Deploy Branch** to deploy the app.
+6. Once the deployment is finished, open the app via the **Open App** button or directly using the link:  
+   [https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
 
 ## Installation  
 

@@ -1,3 +1,4 @@
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from models.word import Word
@@ -14,6 +15,7 @@ def words():
          f"User {current_user.id} words: {[w.japanese for w in words]}"
     ) # for debugs
     return render_template("add_words/words.html", words=words)
+
 
 @words_bp.route("/add_word", methods=["GET", "POST"])
 @login_required

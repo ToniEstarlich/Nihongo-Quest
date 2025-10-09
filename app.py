@@ -10,8 +10,6 @@ import os
 from models.user import User
 from models.word import Word
 
-
-
 print("DATABASE_URL =", os.environ.get("DATABASE_URL"))
 
 app = Flask(__name__)
@@ -35,14 +33,16 @@ from routes.manga_routes import manga_routes
 from routes.flashcards_routes import flashcards_bp
 from routes.translator import translator_bp
 from routes.errors import errors
+from routes.image_translator import visual_bp
 
 app.register_blueprint(users_bp,)  
 app.register_blueprint(words_bp)  
 app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
 app.register_blueprint(image_bp, url_prefix="/images")
+app.register_blueprint(visual_bp, url_prefix="/visual")
 app.register_blueprint(manga_routes)
 app.register_blueprint(flashcards_bp,)
-app.register_blueprint(translator_bp)
+app.register_blueprint(translator_bp, url_prefix='/translator')
 app.register_blueprint(errors)
 
 
