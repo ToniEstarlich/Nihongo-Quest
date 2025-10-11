@@ -189,6 +189,8 @@ def add_image_from_result():
             japanese_word=japanese_word,
             pronunciation=pronunciation or "",
             user_id=current_user.id
+            content_type=resp.headers.get('Content-Type'),
+            data=resp.content
         )
         db.session.add(new_entry)
         current_app.logger.debug(f"About to commit Image entry: {new_entry}")
