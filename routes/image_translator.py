@@ -1,16 +1,13 @@
 import os
-from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
-from werkzeug.utils import secure_filename
-from extensions import db
-from models.image import Image
-from forms import TaskImagenForm  # Import the form
-from forms import DeleteImageForm 
-from flask_login import login_required
 import uuid
-from flask import current_app
-from flask_login import current_user, login_required
 import requests
 import pykakasi
+
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app, Response, abort
+from flask_login import current_user, login_required
+from extensions import db
+from models.image import Image
+from forms import TaskImagenForm, DeleteImageForm
 
 visual_bp = Blueprint('visual', __name__)
 
@@ -210,5 +207,14 @@ def add_image_from_result():
 
     flash("Image added from result successfully!", "success")
     return redirect(url_for('image.image_list'))
+
+@visual_bp.route("/image/<int:image_id>")
+def serve_image(image_id):
+    img = Image.query.get(image_id)
+    if not img:
+        abort(404)
+    if img.data:
+        return Response(img.data, mimetype=img.content_type or "image/jpeg")
+    return redirect(url_for('static', filename=img.image_path))
 
 
