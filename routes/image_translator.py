@@ -122,15 +122,13 @@ def search_translate_image():
 
 # add and download image from results -----------------------------------
 def download_image_to_uploads(url, suggested_ext=None, timeout=10):
-    """
-    Download image from URL
-    """
+
     try:
         resp = requests.get(url, timeout=timeout)
         resp.raise_for_status()
     except Exception as e:
         current_app.logger.error(f"Failed to download image from {url}: {e}")
-        return None   
+        return None, None, None
 
     # Determine extension 
     content_type = resp.headers.get('Content-Type', '').lower()
@@ -155,9 +153,9 @@ def download_image_to_uploads(url, suggested_ext=None, timeout=10):
             f.write(resp.content)
     except Exception as e:
         current_app.logger.error(f"Failed to write image to disk: {e}")
-        return None
+        return None, None, None
     
-    return f"uploads/{filename}"
+    return f"uploads/{filename}", resp.content, resp.headers.get('Content-type')
 
 
 @visual_bp.route('/add_image_from_result', methods=['POST'])
@@ -170,16 +168,16 @@ def add_image_from_result():
     category = request.form.get("category", "Object").strip() or "Object"
 
     if not image_url:
-        flash("Missing image URL.", "danger")
+        flash("Missing image URL.")
         return redirect(url_for('translator.word_lookup_page', q=english_word or japanese_word))
 
     if not japanese_word:
         # fallback: if translation didn't provide japanese, store english as japanese_word
         japanese_word = english_word or ""
 
-    saved_rel_path = download_image_to_uploads(image_url)
+    saved_rel_path, img_data, content_type = download_image_to_uploads(image_url)
     if not saved_rel_path:
-        flash("Failed to download/save the image.", "danger")
+        flash("Failed to download/save the image.")
         return redirect(url_for('translator.word_lookup_page', q=english_word or japanese_word))
 
     try:
@@ -188,9 +186,9 @@ def add_image_from_result():
             category=category,
             japanese_word=japanese_word,
             pronunciation=pronunciation or "",
-            user_id=current_user.id
-            content_type=resp.headers.get('Content-Type'),
-            data=resp.content
+            user_id=current_user.id,
+            data=img_data,
+            content_type=content_type
         )
         db.session.add(new_entry)
         current_app.logger.debug(f"About to commit Image entry: {new_entry}")
