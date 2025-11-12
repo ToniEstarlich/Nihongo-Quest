@@ -1,3 +1,5 @@
+import os
+
 # foms.py
 from forms import WordForm, DeleteWordForm, AddWordFromResultForm
 
@@ -6,6 +8,11 @@ from flask import Blueprint, request, jsonify, current_app, redirect, url_for, r
 from forms import WordForm, DeleteWordForm
 import requests
 import pykakasi
+
+# Pixels API Key from environment variable
+from dotenv import load_dotenv
+load_dotenv() # Load environment variables from .env file
+PEXELS_KEY = os.environ.get("PEXELS_KEY")
 
 # For CRUD operations on Word model
 from flask_login import login_required, current_user
@@ -37,8 +44,8 @@ def get_translation(text_en):
     reading_romaji = " ".join([item.get('hepburn', '') for item in conv]).strip()
     
     # --- Pexels API Integration ---
-    headers = {"Authorization": "pZfFJ8TG6tJnZVUlgoOK7A9CQYYDibcMrZNLVFsqxFQoftV2UjB1dF1N"}
-    image_url = f"https://via.placeholder.com/400x300?text={text_en}"  # fallback por si falla
+    headers = {"Authorization": PEXELS_KEY}
+    image_url = f"https://via.placeholder.com/400x300?text={text_en}"  # fallback
     try:
         pexels_resp = requests.get(
             "https://api.pexels.com/v1/search",

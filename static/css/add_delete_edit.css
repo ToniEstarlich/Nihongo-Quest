@@ -147,3 +147,8 @@ button:hover, .button:hover {
     color: #2f2f2f;
     text-shadow: 1px 1px #ffffff;
 }
+
+/* text of the result in translate */
+.card-text {
+    margin-left: 45%;
+}

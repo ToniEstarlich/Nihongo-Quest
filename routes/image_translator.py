@@ -19,13 +19,15 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
+# Pixels API Key from environment variable
+from dotenv import load_dotenv
+load_dotenv() # Load environment variables from .env file
+PEXELS_KEY = os.environ.get("PEXELS_KEY")
 
 # Search for an image related to an English word using Pexels API ---------------------------------
 
 def get_image_for_word(text_en):
-    PEXELS_API_KEY = current_app.config.get("PEXELS_API_KEY", "pZfFJ8TG6tJnZVUlgoOK7A9CQYYDibcMrZNLVFsqxFQoftV2UjB1dF1N")
-    headers = {"Authorization": PEXELS_API_KEY}
+    headers = {"Authorization": PEXELS_KEY}
     image_url = f"https://via.placeholder.com/400x300?text={text_en}"
 
     try:

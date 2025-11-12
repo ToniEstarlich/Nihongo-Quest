@@ -184,7 +184,7 @@ The color palette for Nihongo Quest was carefully selected to reflect Japanese c
 #  UI/UX Screenshots 
 #  🎨
 
-## 🏠 Home  
+##  Home  
 
 The **Home** section introduces the Nihongo Quest web app and sets the tone for the learning experience.  
 
@@ -204,7 +204,7 @@ Explore four of the most important cities in Japan — but Nihongo Quest doesn't
 
 ---  
 
-## 🃏 Flashcards  
+## Flashcards  
 
 | Desktop View | Tablet View | Mobile View |  
 |--------------|-------------|-------------|  
@@ -216,7 +216,7 @@ Challenge yourself daily with flashcards to reinforce your learning and track yo
 
 ---  
 
-## 📖 Manga Section  
+##  Manga Section  
 
 | Desktop View | Tablet View | Mobile View |  
 |--------------|-------------|-------------|  
@@ -226,9 +226,19 @@ The **Manga** section is a manga search tool where you can explore your favorite
 Curiosity is key to language learning — discovering new manga can expand your vocabulary and strengthen your reading skills.  
 > _"Progress comes from curiosity."_
 
+---
+
+##  Translate + Add Word  
+
+| Desktop View | Tablet View | Mobile View |  
+|--------------|-------------|-------------|  
+| <img src="./static/screenshots/translate-pc.jpeg" alt="Desktop Screenshot" width="330"> | <img src="./static/screenshots/translate-tablet.jpeg" alt="Tablet Screenshot" width="150"> | <img src="./static/screenshots/translate-phone.jpeg" alt="Mobile Screenshot" width="50"> |  
+
+At the end of the project, a **word translator** was added to improve the user experience. Users can first translate the word they search for and then choose to add it to their vocabulary. There is also an option to add words manually.
+
 # [Comeback to Readme](#nihongo-quest)
 
----
+---  
 
 #  Project Architecture
 
@@ -478,7 +488,7 @@ The application uses **Jinja2** for rendering dynamic HTML pages.
 # [Comeback to Readme](#nihongo-quest)
 
 ---
-# EXAMPLE OF ALGORITHM & CODE:
+# EXAMPLE OF  CODE:
 
 ## 📌 Quiz Function Explanation
 The `quiz()` function handles the quiz logic in a Flask web application. It:
@@ -574,7 +584,7 @@ def quiz():  # Function definition
 
 
 
-## ✅ Summary algorithm
+## ✅ Summary 
 - This function is responsible for handling quiz logic in the Flask app.
 - Uses database queries to fetch words from the database.
 - Uses a for loop to iterate through words and compare answers.
@@ -641,6 +651,18 @@ The project was deployed to **Heroku** using a **Heroku PostgreSQL database**. F
 6. Once the deployment is finished, open the app via the **Open App** button or directly using the link:  
    [https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
 
+### Deployment
+The project was deployed to **Heroku** using a PostgreSQL database. The steps to deploy are as follows:
+
+1. Login to Heroku CLI and create a new app.
+2. Add the Heroku PostgreSQL add-on for the database.
+3. Push the project to Heroku using Git.
+4. Initialize the database tables in production.
+5. Open the app using the live link below.
+
+The live link can be found here: [Nihongo Quest](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
+
+
 ## Installation  
 
 1. Clone the repository:  
@@ -652,7 +674,8 @@ The project was deployed to **Heroku** using a **Heroku PostgreSQL database**. F
 2. Create and activate a virtual envionment:
    ```sh
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+     
+     venv\Scripts\activate  # On IOs: source venv/bin/activate
 
    ```
 
@@ -663,7 +686,7 @@ The project was deployed to **Heroku** using a **Heroku PostgreSQL database**. F
    ```
 4. Run the application
    ```sh
-   flask run
+   python app.py
 
    ```
 ## Contributing  
