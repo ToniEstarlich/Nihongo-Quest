@@ -26,7 +26,6 @@ bcrypt.init_app(app)
 
 # Import blueprints
 from routes.users_routes import users_bp
-from routes.words_routes import words_bp
 from routes.alphabet_routes import alphabet_bp
 from routes.image_routes import image_bp
 from routes.manga_routes import manga_routes
@@ -36,7 +35,7 @@ from routes.errors import errors
 from routes.image_translator import visual_bp
 
 app.register_blueprint(users_bp,)  
-app.register_blueprint(words_bp)  
+ 
 app.register_blueprint(alphabet_bp, url_prefix="/alphabet")
 app.register_blueprint(image_bp, url_prefix="/images")
 app.register_blueprint(visual_bp, url_prefix="/visual")
@@ -45,6 +44,8 @@ app.register_blueprint(flashcards_bp,)
 app.register_blueprint(translator_bp, url_prefix='/translator')
 app.register_blueprint(errors)
 
+from routes.words_routes import words_bp
+app.register_blueprint(words_bp) 
 
 @login_manager.user_loader
 def load_user(user_id):

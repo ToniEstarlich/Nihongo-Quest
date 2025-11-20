@@ -68,10 +68,16 @@ def get_translation(text_en):
         "image": image_url
     }
 
+# Show all words added by the current user.
+@translator_bp.route("/words")
+@login_required
+def words():
 
+    user_words = Word.query.filter_by(user_id=current_user.id).all()
+    current_app.logger.debug(f"User {current_user.id} words: {[w.japanese for w in user_words]}")
+    return render_template("add_words/words.html", words=user_words)
 
 # Main translation page (with form and lookup feature)
-
 @translator_bp.route('/add_words')
 def word_lookup_page():
     word = request.args.get('q')
@@ -84,23 +90,8 @@ def word_lookup_page():
         form=form,
         add_result_form=add_result_form
     )
-   
-
-
 
 # CRUD for Words integrated into translator blueprint
-
-# Show all words added by the current user.
-
-@translator_bp.route("/words")
-@login_required
-def words():
-
-    user_words = Word.query.filter_by(user_id=current_user.id).all()
-    current_app.logger.debug(f"User {current_user.id} words: {[w.japanese for w in user_words]}")
-    return render_template("add_words/words.html", words=user_words)
-
-
 @translator_bp.route("/add_word_from_result", methods=["POST"])
 @login_required
 def add_word_from_result():
@@ -122,61 +113,3 @@ def add_word_from_result():
     db.session.commit()
     flash("New word added from result!", "success")
     return redirect(url_for("translator.words"))
-
-# Add a new word manually using the WordForm.
-
-@translator_bp.route("/add_word", methods=["GET", "POST"])
-@login_required
-def add_word():
-    form = WordForm()
-    add_result_form = AddWordFromResultForm()
-    if request.method == "POST" and form.validate_on_submit():
-        new_word = Word(
-            japanese=form.japanese.data,
-            english=form.english.data,
-            pronunciation=form.pronunciation.data,
-            user_id=current_user.id,
-        )
-        db.session.add(new_word)
-        db.session.commit()
-        flash("New word added successfully!", "success")
-        return redirect(url_for("translator.words"))
-    return render_template("add_words/add_words.html", form=form)
-
-
-# Edit an existing word belonging to the current user.
-@translator_bp.route("/edit_word/<int:word_id>", methods=["GET", "POST"])
-@login_required
-def edit_word(word_id):
-    
-    word = Word.query.get_or_404(word_id)
-    if word.user_id != current_user.id:
-        flash("You are not authorized to edit this word.", "danger")
-        return redirect(url_for("translator.add_word"))
-
-    form = WordForm(obj=word)
-    if request.method == "POST" and form.validate_on_submit():
-        word.japanese = form.japanese.data
-        word.english = form.english.data
-        word.pronunciation = form.pronunciation.data
-        db.session.commit()
-        flash("Word updated successfully!", "success")
-        return redirect(url_for("translator.words"))
-    return render_template("add_words/edit_word.html", form=form, word=word)
-
-# Delete a word from the current user's list.
-@translator_bp.route("/delete_word/<int:word_id>", methods=["GET", "POST"])
-@login_required
-def delete_word(word_id):
-    word = Word.query.get_or_404(word_id)
-    if word.user_id != current_user.id:
-        flash("You are not authorized to delete this word.", "danger")
-        return redirect(url_for("translator.words"))
-
-    form = DeleteWordForm()
-    if request.method == "POST" and form.validate_on_submit():
-        db.session.delete(word)
-        db.session.commit()
-        flash("Word deleted successfully!", "success")
-        return redirect(url_for("translator.words"))
-    return render_template("add_words/delete_word.html", word=word, form=form)

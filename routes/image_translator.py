@@ -218,5 +218,3 @@ def serve_image(image_id):
     if img.data:
         return Response(img.data, mimetype=img.content_type or "image/jpeg")
     return redirect(url_for('static', filename=img.image_path))
-
-
