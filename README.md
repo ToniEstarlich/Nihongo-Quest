@@ -33,6 +33,7 @@ The live version of the project is accessible here:
 6. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
 7. [Routes, functions & tests](#nihongo-quest--routes-functions--tests-overview)
 8. [Problems & Solutions](#problems-and-solutions)
+9. [Deployment](#deployment)
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
@@ -631,18 +632,6 @@ After creating an account, the user can:
   Mako is a templating engine for Python, similar to Jinja2 but with a syntax closer to standard Python expressions.  
   - **Why is it relevant?** Mako is sometimes used in Flask applications when working with certain frameworks or plugins that require an alternative template engine.  
   - **In Nihongo Quest:** We are using Jinja2 (Flask's default template engine), so Mako is not needed for now. However, understanding Mako can be useful for other Python projects. 
-
- ## Deployment
-
-The project was deployed to **Heroku** using a **Heroku PostgreSQL database**. Follow these steps to deploy:
-
-1. Make sure all changes are committed and pushed to the main branch of your GitHub repository.
-2. Log in to [Heroku](https://dashboard.heroku.com/) and create a new app.
-3. In the **Resources** tab, add the **Heroku Postgres** add-on for the database.
-4. In the **Deploy** tab of your Heroku app, connect your GitHub repository and select the main branch.
-5. Click **Deploy Branch** to deploy the app.
-6. Once the deployment is finished, open the app via the **Open App** button or directly using the link:  
-   [https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
 
 ### Deployment
 The project was deployed to **Heroku** using a PostgreSQL database. The steps to deploy are as follows:
