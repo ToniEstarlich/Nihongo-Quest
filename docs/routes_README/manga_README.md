@@ -1,4 +1,4 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 
 # Routes/manga_routes.py
 
@@ -54,4 +54,4 @@ Fetch search results from Jikan API based on the query
 3- Passes the list to the template as manga_data.
 
 4- HTML loops through results and displays titles, images, etc.
-  ## Comeback [README](../README.md)
+  ## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

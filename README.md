@@ -31,8 +31,8 @@ The live version of the project is accessible here:
 4. [Colors](#colors)
 5. [Screenshots](#uiux-screenshots)
 6. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
-7. [Problems & Solutions](#problems-and-solutions)
-8. [Algorithm](#example-of-algorithm--code)
+7. [Routes, functions & tests](#nihongo-quest--routes-functions--tests-overview)
+8. [Problems & Solutions](#problems-and-solutions)
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
@@ -249,6 +249,12 @@ This project follows an **MVC-like structure** inspired by Django MTV and .NET M
 Each layer has a clear responsibility and works together to build a scalable web application.  
 
 ---
+### 🔵 PostgreSQL – Database
+- **PostgreSQL** stores application data (users, words, flashcards, etc.).  
+- **SQLAlchemy** maps Python classes to database tables.  
+- **Flask-WTF + CSRF** handles secure web forms.  
+ 
+---
 
 ### 🟢 Python – Blueprint
 - **Blueprints** allow splitting the app into modules (users, words, flashcards, etc.).  
@@ -262,20 +268,13 @@ Each layer has a clear responsibility and works together to build a scalable web
 
 ---
 
-### 🔵 PostgreSQL – Database
-- **PostgreSQL** stores application data (users, words, flashcards, etc.).  
-- **SQLAlchemy** maps Python classes to database tables.  
-- **Flask-WTF + CSRF** handles secure web forms.  
- 
----
-
 ### 🟣 Pytest – Testing
 - **Pytest** is used for automated testing.  
 - Ensures that routes, models, and forms work correctly after changes.  
 
 ---
 
-### 📂 Project Structure
+### 📂 Example Project Structure
 - **templates/** → HTML templates with Jinja.  
 - **routes/** → Flask routes (URL handling).  
 - **models/** → Database models (SQLAlchemy).  
@@ -486,140 +485,134 @@ The application uses **Jinja2** for rendering dynamic HTML pages.
 ---
 
 # [Comeback to Readme](#nihongo-quest)
+---
+ # NIHONGO QUEST — Routes, Functions & Tests Overview 
+ # 📘
+
+**Legend:**  
+🟢 Implemented / Documented · 🔴 Tests incomplete or failing
+
+This document provides a complete overview of all route modules in the **Nihongo Quest** Flask application, including their functionality and current test coverage. Below you will also find a clear explanation of the **user experience flow** inside the app.
 
 ---
-# EXAMPLE OF  CODE:
 
-## 📌 Quiz Function Explanation
-The `quiz()` function handles the quiz logic in a Flask web application. It:
+# 🚏 Routes & Tests
 
-- Displays a form with words from the database.
-- Processes user answers and checks correctness.
-- Uses Flask routes, loops, if-else conditions, dictionaries, and flash messages.
-- Requires user authentication `(@login_required)`.
-- Redirects users after submission.
+## 👤 Users — Authentication  
+### Route Documentation: [users](/docs/routes_README/users_README.md) 🟢  
+Handles user registration, login, and logout with hashed passwords, form validation, and session management using Flask-Login.
 
-## 📌 Code analysis of word.py:
+### Tests: [users tests](/docs/tests_README/users_README.md) 🔴  
+Validates authentication workflows: registration, login, logout, session handling, and flash messages across success and failure scenarios.
 
-Flask and PostgreSQL.
-```python
-# 1. Importing Dependencies: "word.py"  
-from flask import current_app
-from extensions import db
-
-class Word(db.Model):  #  2. Defining the `Word` Model: "Defines a SQLAlchemy model for a database table"
-   
-    #  3. Defining Database Columns:
-    id = db.Column(db.Integer, primary_key=True)  # Unique ID for each word (Primary Key)
-    japanese = db.Column(db.String(100), nullable=False)  # Japanese word (max 100 chars)
-    english = db.Column(db.String(100), nullable=False)  # English translation (max 100 chars)
-
-    def __repr__(self):
-        return f"<Word {self.japanese} - {self.english}>"  # String representation for debugging
-
-```
-
-## 🔍 Code with Detailed Comments
-
-```python
-# Function: Defines a route for the quiz page
-@app.route("/quiz", methods=["GET", "POST"])  # Flask route decorator
-@login_required  # Restricts access to logged-in users
-def quiz():  # Function definition
-    words = Word.query.all()  # Query database (Array/List of objects)
-    feedback = {}  # Dictionary to store feedback
-
-    # If-Else Condition: Checks if the request method is POST (Form submitted)
-    if request.method == "POST":
-        answers = {}  # Dictionary to store user's answers
-        correct_answers = 0  # Counter for correct answers
-        total_questions = 0  # Counter for total questions
-
-        # For Loop: Iterates over each word in the database
-        for word in Word.query.all():
-            answer_key = f"answer_{word.id}"  # Generates form key dynamically
-            user_answer = request.form.get(answer_key, "").strip()  # Gets user input
-            correct_answer = word.english.strip()  # Fetches correct answer
-
-            # If Condition: Compares user input with the correct answer (Case insensitive)
-            if user_answer.lower() == correct_answer.lower():
-                correct_answers += 1  # Increments correct answer count
-
-            total_questions += 1  # Increments total question count
-            answers[word.id] = user_answer  # Stores user's answer in dictionary
-
-        # If-Else Condition: Provides feedback based on quiz performance
-        if correct_answers == total_questions:
-            flash("Perfect score! All answers are correct. 🎉", "success")  # Success message
-        elif correct_answers > 0:
-            flash(f"{correct_answers} correct answers. Keep practicing!💪", "warning")  # Encouragement
-        else:
-            flash("No correct answers. Keep practicing! 💪", "danger")  # Motivational message
-
-        return redirect(url_for("index"))  # Redirects to homepage after submission
-
-    # Else If Condition: Handles GET request (Displays quiz form)
-    elif request.method == "GET":
-        words = Word.query.all()  # Fetches all words from database
-
-    return render_template("quiz.html", words=words)  # Renders quiz page
-```
-## 📌 Explanation with W3Schools References
-
-| Concept                              | Explanation                                                                | W3Schools, flask, and SQLAlquemy Links       |
-|--------------------------------------|----------------------------------------------------------------------------|----------------------|
-| **Function (`def`)**                 | Defines a function (`quiz()`) to handle requests.                          | [Python Functions](https://www.w3schools.com/python/python_functions.asp) |
-| **Flask Route (`@app.route`)**       | Defines a route (`/quiz`) that handles GET and POST requests.              | [Flask Routes](https://flask.palletsprojects.com/en/2.3.x/quickstart/#routing) |
-| **If-Else (`if request.method == "POST"`)** | Checks whether the request is a form submission (POST) or just loading the page (GET). | [Python If-Else](https://www.w3schools.com/python/python_conditions.asp) |
-| **Loop (`for word in Word.query.all()`)** | Iterates over each word stored in the database.                            | [Python Loops](https://www.w3schools.com/python/python_for_loops.asp) |
-| **Dictionary (`answers = {}`)**      | Stores user answers using key-value pairs.                                 | [Python Dictionaries](https://www.w3schools.com/python/python_dictionaries.asp) |
-| **Flask Flash Messages (`flash()`)** | Displays messages to users based on their score.                           | [Flask Flash Messages](https://flask.palletsprojects.com/en/2.3.x/patterns/flashing/) |
-| **Flask Redirect (`redirect(url_for("index"))`)** | Redirects users to another route.                                    | [Flask Redirect](https://flask.palletsprojects.com/en/2.3.x/api/#flask.redirect) |
-| **Class (`class Word`)**             | Defines a database model (`Word`) with attributes `id`, `japanese`, and `english`. | [Python Classes](https://www.w3schools.com/python/python_classes.asp) |
-| **SQLAlchemy Model (`db.Model`)**    | Connects the `Word` class to the PostgreSQL database using SQLAlchemy.     | [SQLAlchemy Models](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/) |
-| **Database Column (`db.Column`)**    | Defines table columns (`id`, `japanese`, `english`) in the database.       | [SQLAlchemy Column](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/#column) |
-| **String Data Type (`db.String`)**   | Stores text data with a max length (e.g., `100` characters).               | [SQLAlchemy String](https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.String) |
-| **Primary Key (`primary_key=True`)** | Uniquely identifies each word entry in the database.                       | [Primary Key](https://www.w3schools.com/sql/sql_primarykey.asp) |
-| **Special Method (`__repr__`)**      | Returns a string representation of the object (`"<Word Japanese - English>"`). | [Python __repr__](https://www.w3schools.com/python/ref_func_repr.asp) |
-
-
-
-## ✅ Summary 
-- This function is responsible for handling quiz logic in the Flask app.
-- Uses database queries to fetch words from the database.
-- Uses a for loop to iterate through words and compare answers.
-- Implements flash messages to give users feedback.
-- Uses redirect() to send users back to the homepage after submission.
-📌 For more information, check the W3Schools and Flask links above! 🚀
-
-quiz.html end explanation:
-```html
-<!-- 1. Page Header: "Displays the title of the quiz page" -->
-<h1>Japanese Quiz</h1>
-
-<!-- 2. Form Setup: "Defines a form that submits data to the '/quiz' route via POST" -->
-<form action="{{ url_for('quiz')}}" method="POST">
-
-    <!-- 3. CSRF Token: "Prevents CSRF attacks for security" -->
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-    <!-- 4. Looping Through Words: "Displays each Japanese word and an input box for the answer" -->
-    {% for word in words %}
-       <p>What is the meaning of "{{ word.japanese }}"?</p>
-       <input type="text" name="answer_{{ word.id }}" 
-       class="{% if feedback and feedback[word.id] == 'correct' %}correct{% elif feedback and feedback[word.id] == 'incorrect' %}incorrect{% endif %}">
-    {% endfor %}
-
-    <!-- 5. Submit Button: "Sends the user's answers for evaluation" -->
-    <button type="submit">Submit</button>
-</form>
-
-<!-- 6. Return Link: "Navigates back to the homepage" -->
-<a href="/">Return to Home</a>
-
-```
-# [Comeback to Readme](#nihongo-quest)
 ---
+
+## 🔤 Translator — English → Japanese  
+### Route Documentation: [translator](/docs/routes_README/translator_README.md) 🟢  
+Translates English words into Japanese (Kanji, Kana, Romaji) using external APIs and `pykakasi`. Also fetches a related image from Pexels and integrates the results into Flask forms for saving.
+
+### Tests: [translator tests](/docs/tests_README/translator_README.md) 🔴  
+Ensures the translation module returns complete, valid dictionaries; handles empty inputs gracefully; validates all fields; and provides reliable image fallback behavior.
+
+---
+
+## 📝 Words — Vocabulary CRUD  
+### Route Documentation: [words](/docs/routes_README/words_README.md) 🟢  
+Provides full CRUD functionality for user-saved vocabulary (English ⇄ Japanese) using authenticated Flask routes and WTForms.
+
+### Tests: [words tests](/docs/tests_README/words_README.md) 🔴  
+Verifies correct behavior in listing, adding, editing, and deleting words, ensuring access control, database integrity, and proper flash messaging.
+
+---
+
+## 🃏 Flashcards & Quiz  
+### Route Documentation: [flashcard](/docs/routes_README/flashcards_README.md) 🟢  
+Generates 5-word flashcards from user vocabulary and provides an interactive quiz system with answer checking, visual feedback, and score-based flash messages.
+
+### Tests: [flashcard tests](/docs/tests_README/flashcard_README.md) 🔴  
+Validates flashcard loading, correct rendering, quiz evaluation accuracy, and proper feedback messaging.
+
+---
+
+## 🈁 Alphabet — Hiragana, Katakana, Kanji  
+### Route Documentation: [alphabet](/docs/routes_README/alphabet_README.md) 🟢  
+Serves Japanese alphabets and Kanji, querying the database and rendering characters with readings and meanings.
+
+### Tests: [alphabet tests](/docs/tests_README/alphabet_README.md) 🔴  
+Ensures that alphabet overview and individual pages load successfully with the expected content.
+
+---
+
+## 🖼️ Image Manager  
+### Route Documentation: [image](/docs/routes_README/image_README.md) 🟢  
+Allows authenticated users to upload, view, edit, and delete images, each linked to Japanese word metadata. Includes file validation and DB integration.
+
+### Tests: [image tests](/docs/tests_README/image_README.md) 🔴  
+Ensures the image list loads correctly and displays user-specific images with their Japanese metadata.
+
+---
+
+## 🌉 Image Translator — English → Japanese + Image Fetch  
+### Route Documentation: [image translator](/docs/routes_README/image_translator_README.md) 🟢  
+Translates English queries into Japanese, converts them to Kana/Romaji, fetches a related Pexels image, and allows saving metadata and images to the database.
+
+### Tests: [image translator tests](/docs/tests_README/image_translator_README.md) 🔴  
+Validates complete dictionary responses, safe empty-query handling, preservation of original English words, and the presence of a valid image URL.
+
+---
+
+## 📚 Manga Explorer  
+### Route Documentation: [manga](/docs/routes_README/manga_README.md) 🟢  
+Displays manga lists and search results using the Jikan API, showing titles, images, and synopses.
+
+### Tests: [manga tests](/docs/tests_README/manga_README.md) 🔴  
+Ensures list and search pages load correctly, handle mocked API responses, display content properly, and respond correctly to empty or provided search queries.
+
+---
+
+# 🎮 User Experience (UX) — Nihongo Quest
+
+After creating an account, the user can:
+
+---
+
+## 1. 👤 Authenticate  
+- Register  
+- Log in / log out  
+- Persistent user sessions  
+
+---
+
+## 2. 🈶 Learn & Save Vocabulary  
+- Translate English → Japanese  
+- Manually add words  
+- Every saved word is automatically linked to the flashcard system  
+
+---
+
+## 3. 🖼️ Memorize with Images  
+- Upload images  
+- Link images to their Japanese words  
+- View and manage a personal image library  
+
+---
+
+## 4. 🔍 Explore Japanese Content  
+- Study Hiragana, Katakana, and Kanji  
+- Search manga (via Jikan API)  
+- View readings, meanings, and illustrations  
+
+---
+
+## 5. 🃏 Practice With Flashcards  
+- Automatically generated flashcard sets  
+- Quiz with scoring and correctness feedback  
+- Flash messages for progress tracking  
+
+---
+
+### ✔ All user data, vocabulary, images, and progress are saved per account.
+
 
 ## Problems and Solutions  
 
@@ -662,7 +655,7 @@ The project was deployed to **Heroku** using a PostgreSQL database. The steps to
 
 The live link can be found here: [Nihongo Quest](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
 
-
+# [Comeback to Readme](#nihongo-quest)
 ## Installation  
 
 1. Clone the repository:  
@@ -693,5 +686,5 @@ The live link can be found here: [Nihongo Quest](https://nihongo-quest-app-54ed3
 
 Feel free to open issues or submit pull requests to improve Nihongo Quest! 
 
-
+# [Comeback to Readme](#nihongo-quest)
 

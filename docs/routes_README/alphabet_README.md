@@ -1,4 +1,4 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 # routes/alphabet_routes.py
 **Blueprint:** ``alphabet_bp`` ``(url_prefix="/alphabet")``
 **Purpose:** Serve pages with the Japanese alphabets (Hiragana, Katakana) and a Kanji overview, reading data from the DB.
@@ -106,4 +106,4 @@
 3- Routes are public (no login_required) — ensure DB is seeded with kana/kanji data.
 
 4- Consider DB pagination or caching if lists become large.
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

@@ -1,4 +1,4 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 # Routes/translator.py
 
 ### get_translation(text_en)
@@ -116,4 +116,4 @@ Summary:
   {{ add_result_form.english(value=result.english) }}
   {{ add_result_form.pronunciation(value=result.romaji) }}
   ```
-  ## Comeback [README](../README.md)
+  ## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

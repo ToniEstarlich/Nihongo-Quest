@@ -1,4 +1,4 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 # routes/flashcards_routes.py
 
 **Purpose:** Display flashcards and run quizzes with score feedback.
@@ -84,4 +84,4 @@ jinja create a loop card and separate in 5 words for card
 - none correct → danger.
 
 4- Redirects back to the flashcards list after submission.
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

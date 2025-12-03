@@ -1,5 +1,4 @@
-## Comeback [README](../README.md)
-# routes/users_routes.py
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 **Purpose** Handle user registration, login, and logout using ``Flask-Login`` + hashed passwords.
 
 ### /register (GET, POST)
@@ -94,4 +93,4 @@ class User(db.Model, UserMixin):
 2- Redirects to homepage.
 
 3- Shows a flash message.
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

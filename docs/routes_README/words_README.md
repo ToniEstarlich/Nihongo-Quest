@@ -1,8 +1,8 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 ---
 # Routes/words_routes.py
 
-Description (CRUD manual words):
+**Description** (**CRUD** manual words):
 
 1-  Lists all words saved by the current user.
 
@@ -126,4 +126,4 @@ Description (CRUD manual words):
 
 
 
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

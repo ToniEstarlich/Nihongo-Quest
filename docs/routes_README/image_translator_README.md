@@ -1,4 +1,4 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 # Routes/image_translator.py
 
 ### /search_translate_image :
@@ -109,4 +109,4 @@ form = TaskImagenForm()
 3- Creates a new Image record in the database.
 
 4- Redirects with flash messages depending on success/failure.
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)

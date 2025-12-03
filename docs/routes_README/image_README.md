@@ -1,4 +1,4 @@
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
 
 # | Routes/image_routes.py
 - **/task/** add **(GET & POST)**
@@ -134,4 +134,4 @@ def image_list():
 
 4- Redirects to the image list with a flash message.
 
-## Comeback [README](../README.md)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
