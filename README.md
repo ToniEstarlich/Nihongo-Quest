@@ -32,8 +32,10 @@ The live version of the project is accessible here:
 5. [Screenshots](#uiux-screenshots)
 6. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
 7. [Routes, functions & tests](#nihongo-quest--routes-functions--tests-overview)
-8. [Problems & Solutions](#problems-and-solutions)
-9. [Deployment](#deployment)
+8. [CRUDs](#cruds)
+9. [Testing](#test-results)
+10. [Problems & Solutions](#problems-and-solutions)
+11. [Deployment](#deployment)
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
@@ -573,7 +575,7 @@ Ensures list and search pages load correctly, handle mocked API responses, displ
 
 # 🎮 User Experience (UX) — Nihongo Quest
 
-After creating an account, the user can:
+
 
 ---
 
@@ -613,18 +615,107 @@ After creating an account, the user can:
 ---
 
 ### ✔ All user data, vocabulary, images, and progress are saved per account.
+# [Comeback to Readme](#nihongo-quest)
+After creating an account, the user can:
+# CRUDs
+### Words
+- Translate a word
 
+<img src="./static/guide_screenshots/search-word.jpeg" alt="Website Preview" width="300">
 
+- Add the word from the translate or manually
+
+<img src="./static/guide_screenshots/add_word.jpeg" alt="Website Preview" width="300">
+
+- The word is automatically added in `words` and `flashcards`
+
+<img src="./static/guide_screenshots/add_flashcard.jpeg" alt="Website Preview" width="300">
+
+- Edit the word
+
+<img src="./static/guide_screenshots/edit_word.jpeg" alt="Website Preview" width="300">
+
+- Or delete the word
+
+<img src="./static/guide_screenshots/delete_word.jpeg" alt="Website Preview" width="300">
+
+### Images
+- Translate and search an image
+
+<img src="./static/guide_screenshots/search_img.jpeg" alt="Website Preview" width="300">
+
+- Add the image to your `image list`
+
+<img src="./static/guide_screenshots/add_img.jpeg" alt="Website Preview" width="300">
+
+- Edit or delete the image
+
+<img src="./static/guide_screenshots/edit_img.jpeg" alt="Website Preview" width="300">
+
+<img src="./static/guide_screenshots/delete_img.jpeg" alt="Website Preview" width="300">
+
+### Flashcard Game
+- Enter flashcards and start the quiz (5 words per card)
+
+<img src="./static/guide_screenshots/flashCards_game.jpeg" alt="Website Preview" width="300">
+
+- Answer the Japanese words
+
+<img src="./static/guide_screenshots/question-flascard.jpeg" alt="Website Preview" width="300">
+
+- After submitting, you can see the results:
+  - Correct answer: "Perfect score! All answers are correct. 🎉", "success"
+  - Some correct: "Correct answers. Keep practicing! 💪", "warning"
+  - All incorrect: "No correct answers. Keep practicing! 💪", "danger"
+
+<img src="./static/guide_screenshots/results-cards.jpeg" alt="Website Preview" width="300">
+
+# [Comeback to Readme](#nihongo-quest)
+
+## Test Results
+# 🧪 
+
+All automated tests for Nihongo Quest passed successfully:
+
+<img src="./static/guide_screenshots/pytest.png" alt="Website Preview" width="500">
+
+This demonstrates that:
+- User authentication works correctly
+- Word CRUD functions properly
+- Image upload, edit, and deletion works
+- Flashcard quiz system functions as expected
+- Translation and image fetching modules operate reliably
+### How to Run Tests
+
+To run all automated tests for Nihongo Quest, follow these steps:
+
+```bash
+# Activate your virtual environment
+source venv/bin/activate   # Linux / Mac
+venv\Scripts\activate      # Windows
+
+# Run all tests
+pytest
+
+# Run tests in a specific directory
+pytest tests/
+```
+# [Comeback to Readme](#nihongo-quest)
 ## Problems and Solutions  
 
 ### Pages to references: 
  - **[Flask-WTF](https://flask-wtf.readthedocs.io/en/1.2.x/)** 
 
 ### ❌ **Problem: CSRF Token Errors in Quiz Form**  
+
 - **Issue:** The CSRF token was missing or not being validated correctly in the form submission.  
+
 - **Solution:**  
+  
   - Ensured that `CSRFProtect(app)` was correctly initialized in `app.py`.  
+  
   - Passed the CSRF token explicitly in `render_template()`.  
+  
   - Added a hidden input field in `quiz.html` to include the CSRF token in the form.  
 
 ### ❌ **Problem: Understanding Mako Templates**  
