@@ -57,7 +57,7 @@ def get_translation(text_en):
 
     # --- Pexels API Integration ---
     headers = {"Authorization": PEXELS_KEY}
-    image_url = f"https://via.placeholder.com/400x300?text={quote(text_en)}" # fallback
+    image_url = f"https://via.placeholder.com/400x300?text={quote(text_en, safe='')}" # fallback
     try:
         pexels_resp = requests.get(
             "https://api.pexels.com/v1/search",
