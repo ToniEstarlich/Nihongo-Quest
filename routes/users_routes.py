@@ -7,6 +7,7 @@ from extensions import db, bcrypt
 
 users_bp = Blueprint("users", __name__, template_folder="../../templates/users")
 
+
 @users_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -27,6 +28,7 @@ def register():
 
     return render_template("users/register.html")
 
+
 @users_bp.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -39,11 +41,12 @@ def login():
         if user and user.check_password(password):
             login_user(user)
             flash("Login successful!", "success")
-            return redirect(request.args.get('next') or url_for("index"))
+            return redirect(request.args.get("next") or url_for("index"))
         else:
             flash("Invalid username or password", "danger")
 
     return render_template("users/login.html", form=form)
+
 
 @users_bp.route("/logout")
 @login_required

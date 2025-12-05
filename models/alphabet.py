@@ -1,5 +1,5 @@
-
 from extensions import db
+
 
 # Define the Hiragana table
 class Hiragana(db.Model):
@@ -10,8 +10,9 @@ class Hiragana(db.Model):
     meaning = db.Column(db.String(100))
 
     def __repr__(self):
-        return f'<Hiragana {self.character}>'
-    
+        return f"<Hiragana {self.character}>"
+
+
 # Define the Katakana table
 class Katakana(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,8 +22,9 @@ class Katakana(db.Model):
     meaning = db.Column(db.String(100))
 
     def __repr__(self):
-        return f'<Katakana {self.character}>'
-    
+        return f"<Katakana {self.character}>"
+
+
 # Define the Kanji table
 class Kanji(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -32,4 +34,4 @@ class Kanji(db.Model):
     meaning = db.Column(db.String(100))
 
     def __repr__(self):
-        return f'<Kanji {self.character}>'
+        return f"<Kanji {self.character}>"

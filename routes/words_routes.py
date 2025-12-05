@@ -1,4 +1,3 @@
-
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from models.word import Word
@@ -7,13 +6,12 @@ from extensions import db
 
 words_bp = Blueprint("words", __name__, template_folder="../../templates/add_words")
 
+
 @words_bp.route("/words")
 @login_required
 def words():
     words = Word.query.filter_by(user_id=current_user.id).all()
-    print(
-         f"User {current_user.id} words: {[w.japanese for w in words]}"
-    ) # for debugs
+    print(f"User {current_user.id} words: {[w.japanese for w in words]}")  # for debugs
     return render_template("add_words/words.html", words=words)
 
 
@@ -34,6 +32,7 @@ def add_word():
         return redirect(url_for("words.words"))
     return render_template("add_words/add_words.html", form=form)
 
+
 @words_bp.route("/edit_word/<int:word_id>", methods=["GET", "POST"])
 @login_required
 def edit_word(word_id):
@@ -51,6 +50,7 @@ def edit_word(word_id):
         flash("Word updated successfully!", "success")
         return redirect(url_for("words.add_word"))
     return render_template("add_words/edit_word.html", form=form, word=word)
+
 
 @words_bp.route("/delete_word/<int:word_id>", methods=["GET", "POST"])
 @login_required

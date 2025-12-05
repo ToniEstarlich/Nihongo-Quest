@@ -35,7 +35,9 @@ The live version of the project is accessible here:
 8. [CRUDs](#cruds)
 9. [Testing](#test-results)
 10. [Problems & Solutions](#problems-and-solutions)
-11. [Deployment](#deployment)
+11. [**flake8** and **black**](#code-style-and-pep8-compliance)
+12. [Segurity and environment variables](#security-and-environment-variables)
+13. [Deployment](#deployment)
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
@@ -572,12 +574,7 @@ Displays manga lists and search results using the Jikan API, showing titles, ima
 Ensures list and search pages load correctly, handle mocked API responses, display content properly, and respond correctly to empty or provided search queries.
 
 ---
-
 # 🎮 User Experience (UX) — Nihongo Quest
-
-
-
----
 
 ## 1. 👤 Authenticate  
 - Register  
@@ -724,16 +721,27 @@ pytest tests/
   - **Why is it relevant?** Mako is sometimes used in Flask applications when working with certain frameworks or plugins that require an alternative template engine.  
   - **In Nihongo Quest:** We are using Jinja2 (Flask's default template engine), so Mako is not needed for now. However, understanding Mako can be useful for other Python projects. 
 
-### Deployment
-The project was deployed to **Heroku** using a PostgreSQL database. The steps to deploy are as follows:
+## W3C Validation
 
-1. Login to Heroku CLI and create a new app.
-2. Add the Heroku PostgreSQL add-on for the database.
-3. Push the project to Heroku using Git.
-4. Initialize the database tables in production.
-5. Open the app using the live link below.
+The project has been checked using W3C validators for **HTML** and **CSS**.
 
-The live link can be found here: [Nihongo Quest](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
+### HTML
+
+- Multiple `<h1>` elements were used in some pages for headings like city names or practice sections.  
+- **Accessibility best practice:** only one `<h1>` should be used per page as the top-level heading. Secondary headings should use `<h2>` or `<h3>`.  
+- Current usage works correctly but may trigger accessibility warnings in W3C validation.
+
+### CSS
+
+- The project uses external libraries such as **Font Awesome 6**.  
+- Some CSS warnings and one minor error are caused by:
+  - Vendor extensions (e.g., `-webkit-`, `-moz-`)  
+  - CSS variables and dynamic rules (`var(--fa-rotate-angle)` in Font Awesome)  
+- These issues come from the external library, **not from your own CSS**, and do not affect functionality or browser compatibility.
+
+**Conclusion:**  
+The HTML and CSS are fully functional. W3C warnings are either accessibility suggestions (HTML `<h1>` hierarchy) or external library quirks (CSS), and do not prevent correct operation.
+
 
 # [Comeback to Readme](#nihongo-quest)
 ## Installation  
@@ -762,6 +770,49 @@ The live link can be found here: [Nihongo Quest](https://nihongo-quest-app-54ed3
    python app.py
 
    ```
+## Code Style and PEP8 Compliance
+
+The project follows PEP8 style guidelines to ensure clean, readable, and maintainable Python code.  
+To validate code quality, the project uses **flake8** and **black** as linters/formatters.
+
+```bash
+# Run flake8
+python -m flake8 .
+
+# Format code with Black
+python -m black .
+```
+All Python files were checked and formatted before submission to ensure PEP8 compliance.
+Some minor flake8 warnings (e.g., long lines in tests or unused imports) remain but do not affect functionality.
+## Security and Environment Variables
+
+This project uses environment variables to protect sensitive information.  
+No credentials are stored directly in the source code, and the `.env` file is excluded from version control using the `.gitignore` configuration.
+
+### Environment variables used in this project:
+
+- `DATABASE_URL` — PostgreSQL connection string used by the application.
+- `SECRET_KEY` — Flask secret key for session management and security.
+- `PEXELS_KEY` — API key used for fetching images from the Pexels API.
+
+Example `.env` file structure:
+
+```bash
+DATABASE_URL="database-url"
+SECRET_KEY="secret-key"
+PEXELS_KEY="pexels-api-key"
+```
+### Deployment
+The project was deployed to **Heroku** using a PostgreSQL database. The steps to deploy are as follows:
+
+1. Login to Heroku CLI and create a new app.
+2. Add the Heroku PostgreSQL add-on for the database.
+3. Push the project to Heroku using Git.
+4. Initialize the database tables in production.
+5. Open the app using the live link below.
+
+The live link can be found here: [Nihongo Quest](https://nihongo-quest-app-54ed3ed7b8f5.herokuapp.com/)
+
 ## Contributing  
 
 Feel free to open issues or submit pull requests to improve Nihongo Quest! 
