@@ -786,7 +786,7 @@ All Python files were checked and formatted before submission to ensure PEP8 com
 Some minor flake8 warnings (e.g., long lines in tests or unused imports) remain but do not affect functionality.
 ## Security and Environment Variables
 
-This project uses environment variables to protect sensitive information.  
+This project uses **environment variables** to protect sensitive information.  
 No credentials are stored directly in the source code, and the `.env` file is excluded from version control using the `.gitignore` configuration.
 
 ### Environment variables used in this project:
@@ -802,6 +802,7 @@ DATABASE_URL="database-url"
 SECRET_KEY="secret-key"
 PEXELS_KEY="pexels-api-key"
 ```
+**Note:** Replace the values above with your own credentials. The ``.env`` file should never be uploaded to GitHub or shared publicly.
 ### Deployment
 The project was deployed to **Heroku** using a PostgreSQL database. The steps to deploy are as follows:
 
