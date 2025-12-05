@@ -4,6 +4,7 @@ import os
 from forms import WordForm, DeleteWordForm, AddWordFromResultForm
 
 # translator.py
+from urllib.parse import quote
 from flask import (
     Blueprint,
     request,
@@ -56,7 +57,7 @@ def get_translation(text_en):
 
     # --- Pexels API Integration ---
     headers = {"Authorization": PEXELS_KEY}
-    image_url = f"https://via.placeholder.com/400x300?text={text_en}"  # fallback
+    image_url = f"https://via.placeholder.com/400x300?text={quote(text_en)}" # fallback
     try:
         pexels_resp = requests.get(
             "https://api.pexels.com/v1/search",
@@ -125,6 +126,7 @@ def add_word_from_result():
         pronunciation=pronunciation or None,
         user_id=current_user.id,
     )
+
     db.session.add(new_word)
     db.session.commit()
     flash("New word added from result!", "success")
