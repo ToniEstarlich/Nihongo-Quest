@@ -96,12 +96,12 @@ This project uses `pytest` for testing the Flask application. Fixtures are defin
 
 ```bash
 Nihongo-Quest/
-├── models/
+├──(🔵) models/
 │ ├── alphabet.py # Hiragana, Katakana, Kanji models
 │ ├── image.py # Image model
 │ ├── user.py # User model
 │ └── word.py # Vocabulary model
-├── routes/
+├──(🟢) routes/
 │ ├── alphabet_routes.py # Routes for alphabets
 │ ├── flashcard_routes.py# Flashcard and quiz routes
 │ ├── image_routes.py # Manual CRUD for images
@@ -110,7 +110,7 @@ Nihongo-Quest/
 │ ├── manga_routes.py # Manga Explorer routes
 │ ├── translator.py # English → Japanese translator
 │ └── words_routes.py # Vocabulary CRUD routes
-├── templates/
+├──(🟠) templates/
 │ ├── add_images/
 │ │ ├── add_image.html
 │ │ ├── delete_image.html
@@ -133,10 +133,10 @@ Nihongo-Quest/
 │ │ ├── login.html
 │ │ └── register.html
 │ └── base.html # Base template (si existe)
-├── forms.py # Flask-WTF forms
+├──(🔵) forms.py # Flask-WTF forms
 ├── extensions.py # DB, Bcrypt, LoginManager, etc.
 ├── config.py # App configuration
-├── app.py # Main Flask app
+├──|🟩| app.py # Main Flask app
 └── README.md
 ```
 ---
@@ -542,10 +542,10 @@ The application uses **Jinja2** for rendering dynamic HTML pages.
 ---
 # Data Model
 # 🗄
+### Nihongo-Quest/(🔵)models/
 
 The Nihongo Quest application uses SQLAlchemy models to store Japanese characters, vocabulary, user data and images. Below is a concise summary of each model and important implementation details.
 # Nihongo-Quest/models/alphabet.py 📘 
-Click for more information[]()
 - This connect to:
 ```html
 |_routes/📁
@@ -689,11 +689,37 @@ User-created vocabulary entries.
 
 # [Comeback to Readme](#nihongo-quest)
 ---
+## Forms (WTForms) — Summary
+# 📄
+### Nihongo-Quest/(🔵)forms.py
+
+The ``forms.py`` file defines all user input forms using **Flask-WTF** and **WTForms**.
+These forms are used to **validate and structure user input** before passing the data to route functions.
+
+**Why?**
+
+- To ensure inputs are safe and valid (e.g., required fields, file uploads, select options).
+
+- To keep business logic separate and clean (MVC structure).
+
+**What forms do:**
+
+- **LoginForm** — handles username/password authentication
+
+- **WordForm / DeleteWordForm** — add or delete vocabulary entries
+
+- **TaskImagenForm / DeleteImageForm** — upload, manage, and categorize images
+
+- **AddWordFromResultForm** — save translated words from the translator tool
+
+Forms do **not** talk to the database directly; they provide validated input that the routes then save using SQLAlchemy models.
+---
  # NIHONGO QUEST — Routes, Functions & Tests Overview 
  # 📘
+ ### Nihongo-Quest/(🟢)routes/
 
 **Legend:**  
-🟢 Implemented / Documented · 🔴 Tests incomplete or failing
+🟢 Implemented / Documented · 🔴 Tests 
 
 This document provides a complete overview of all route modules in the **Nihongo Quest** Flask application, including their functionality and current test coverage. Below you will also find a clear explanation of the **user experience flow** inside the app.
 
@@ -828,6 +854,7 @@ Ensures list and search pages load correctly, handle mocked API responses, displ
 
 ### ✔ All user data, vocabulary, images, and progress are saved per account.
 # [Comeback to Readme](#nihongo-quest)
+### Nihongo-Quest/(🟠)templates/
 After creating an account, the user can:
 # CRUDs
 ### Words
@@ -886,10 +913,38 @@ After creating an account, the user can:
 
 ## Test Results
 # 🧪 
+### Nihongo-Quest/(🔴)tests/
 
 All automated tests for Nihongo Quest passed successfully:
 
 <img src="./static/guide_screenshots/pytest.png" alt="Website Preview" width="500">
+
+🔗 Route documentation:
+
+- [users tests](/docs/tests_README/users_README.md) 🔴  
+Validates authentication workflows: registration, login, logout, session handling, and flash messages across success and failure scenarios.
+
+ - [translator tests](/docs/tests_README/translator_README.md) 🔴  
+Ensures the translation module returns complete, valid dictionaries; handles empty inputs gracefully; validates all fields; and provides reliable image fallback behavior.
+
+ - [words tests](/docs/tests_README/words_README.md) 🔴  
+Verifies correct behavior in listing, adding, editing, and deleting words, ensuring access control, database integrity, and proper flash messaging.
+
+- [flashcard tests](/docs/tests_README/flashcard_README.md) 🔴  
+Validates flashcard loading, correct rendering, quiz evaluation accuracy, and proper feedback messaging.
+
+ - [alphabet tests](/docs/tests_README/alphabet_README.md) 🔴  
+Ensures that alphabet overview and individual pages load successfully with the expected content.
+
+- [image tests](/docs/tests_README/image_README.md) 🔴  
+Ensures the image list loads correctly and displays user-specific images with their Japanese metadata.
+
+- [image translator tests](/docs/tests_README/image_translator_README.md) 🔴  
+Validates complete dictionary responses, safe empty-query handling, preservation of original English words, and the presence of a valid image URL.
+
+- [manga tests](/docs/tests_README/manga_README.md) 🔴  
+Ensures list and search pages load correctly, handle mocked API responses, display content properly, and respond correctly to empty or provided search queries.
+
 
 This demonstrates that:
 - User authentication works correctly
