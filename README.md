@@ -718,6 +718,7 @@ These forms are used to **validate and structure user input** before passing the
 - **AddWordFromResultForm** — save translated words from the translator tool
 
 Forms do **not** talk to the database directly; they provide validated input that the routes then save using SQLAlchemy models.
+
 ---
  # NIHONGO QUEST — Routes, Functions & Tests Overview 
  # 📘
