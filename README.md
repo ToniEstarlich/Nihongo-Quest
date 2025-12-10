@@ -26,11 +26,13 @@ The live version of the project is accessible here:
 
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
+2. [Project Structure](#nihongo-quest--project-structure)
 2. [Wireframes](#wireframes)
 3. [The Loggo](#the-logo)
 4. [Colors](#colors)
 5. [Screenshots](#uiux-screenshots)
 6. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
+2. [Data Model](#data-model)
 7. [Routes, functions & tests](#nihongo-quest--routes-functions--tests-overview)
 8. [CRUDs](#cruds)
 9. [Testing](#test-results)
@@ -90,7 +92,54 @@ This project uses `pytest` for testing the Flask application. Fixtures are defin
 
 # [Comeback to Readme](#nihongo-quest)
 ---
+# Nihongo Quest — Project Structure
 
+```bash
+Nihongo-Quest/
+├── models/
+│ ├── alphabet.py # Hiragana, Katakana, Kanji models
+│ ├── image.py # Image model
+│ ├── user.py # User model
+│ └── word.py # Vocabulary model
+├── routes/
+│ ├── alphabet_routes.py # Routes for alphabets
+│ ├── flashcard_routes.py# Flashcard and quiz routes
+│ ├── image_routes.py # Manual CRUD for images
+│ ├── image_translator.py# Translate images
+│ ├── login_routes.py # User authentication (login/register)
+│ ├── manga_routes.py # Manga Explorer routes
+│ ├── translator.py # English → Japanese translator
+│ └── words_routes.py # Vocabulary CRUD routes
+├── templates/
+│ ├── add_images/
+│ │ ├── add_image.html
+│ │ ├── delete_image.html
+│ │ ├── edit_image.html
+│ │ └── image_.html
+│ ├── add_word/
+│ │ ├── add_words.html
+│ │ ├── delete_word.html
+│ │ ├── edit_word.html
+│ │ └── word.html
+│ ├── alphabet/
+│ │ ├── alphabet.html
+│ │ ├── hiragana.html
+│ │ ├── katakana.html
+│ │ └── kanji.html
+│ ├── flashcards/
+│ │ ├── flashcards.html
+│ │ └── quiz.html
+│ ├── users/
+│ │ ├── login.html
+│ │ └── register.html
+│ └── base.html # Base template (si existe)
+├── forms.py # Flask-WTF forms
+├── extensions.py # DB, Bcrypt, LoginManager, etc.
+├── config.py # App configuration
+├── app.py # Main Flask app
+└── README.md
+```
+---
 # WIREFRAMES  
 # 📐 
 
@@ -491,6 +540,155 @@ The application uses **Jinja2** for rendering dynamic HTML pages.
 
 # [Comeback to Readme](#nihongo-quest)
 ---
+# Data Model
+# 🗄
+
+The Nihongo Quest application uses SQLAlchemy models to store Japanese characters, vocabulary, user data and images. Below is a concise summary of each model and important implementation details.
+# Nihongo-Quest/models/alphabet.py 📘 
+Click for more information[]()
+- This connect to:
+```html
+|_routes/📁
+ |_ alphabet_routes.py🟩 <!--hiragana, katakana and Kanji Alphabet content -->
+|_templates/📁
+ |_alphabet/📁
+  |_alphabet.html🟧
+  |_hiragana.html🟧
+  |_katakana.html🟧
+  |_kanji.html🟧
+```
+## Hiragana🟦
+Stores basic Japanese hiragana characters.
+
+| Field         | Type               | Description                          |
+| ------------- | ------------------ | ------------------------------------ |
+| id            | Integer (PK)       | Unique identifier                    |
+| character     | String(5)          | Hiragana symbol (あ, し, etc.)        |
+| romaji        | String(10)         | Latin transcription                  |
+| pronunciation | String(100)        | Character pronunciation (required)   |
+| meaning       | String(100)        | Optional meaning                     |
+
+## Katakana🟦
+Same structure as Hiragana, for Katakana characters.
+
+| Field         | Type               | Description                          |
+| ------------- | ------------------ | ------------------------------------ |
+| id            | Integer (PK)       | Unique identifier                    |
+| character     | String(5)          | Katakana symbol                      |
+| romaji        | String(10)         | Latin transcription                  |
+| pronunciation | String(100)        | Character pronunciation (required)   |
+| meaning       | String(100)        | Optional meaning                     |
+
+## Kanji🟦
+Stores kanji symbols and readings.
+
+| Field     | Type            | Description                         |
+| --------- | --------------- | ----------------------------------- |
+| id        | Integer (PK)    | Unique identifier                   |
+| character | String(10)      | Kanji character                     |
+| onyomi    | String(100)     | Chinese-origin reading (required)   |
+| kunyomi   | String(100)     | Native Japanese reading (optional)  |
+| meaning   | String(100)     | Meaning of the kanji                |
+
+🔗 Route documentation:
+- [**alphabet_routes.py🟩**](#alphabet)
+# Nihongo-Quest/models/user.py 📘
+## User🟦
+```html
+|_routes/📁
+  |_login_routes.py🟩 <!--User CRUD-->
+|_templates/📁
+ |_users/📁
+  |_ login.html🟧
+  |_ register.html🟧
+```
+Represents registered users. Passwords are hashed using `flask_bcrypt`.
+
+| Field         | Type            | Description            |
+| ------------- | --------------- | ---------------------- |
+| id            | Integer (PK)    | Unique identifier      |
+| username      | String(50)      | Login name (unique)    |
+| password_hash | String(128)     | Hashed password        |
+| email         | String(120)     | Optional email (unique)|
+
+🔗 Route documentation:
+- [**login_routes.py🟩**](#users--authentication)
+
+# Nihongo-Quest/models/image.py 📘
+## Image🟦
+Stores images linked to vocabulary entries.
+```html
+|_routes/📁
+ |_ image_routes.py🟩 <!--this the manual CRUD -->
+ |_ image_translator.py🟩 <!--the translate image-->
+|_templates/📁
+ |_add_images/📁
+  |_ add_image.html🟧
+  |_ delete_image.html🟧
+  |_ edit_image.html🟧
+  |_ image_.html🟧
+```
+> Note: the model uses a custom tablename: `task_imagen`.
+
+| Field         | Type                | Description                            |
+| ------------- | ------------------- | -------------------------------------- |
+| id            | Integer (PK)        | Unique identifier                      |
+| image_path    | String(255)         | File path or URL                       |
+| category      | String(50)          | Category (Object, Verb, Animals, etc.) |
+| japanese_word | String(100)         | Word associated with the image         |
+| pronunciation | String(100)         | Pronunciation                          |
+| data          | LargeBinary         | Optional binary image data             |
+| thumb         | LargeBinary         | Optional thumbnail binary data         |
+| content_type  | String(128)         | MIME type (e.g. image/png)             |
+| user_id       | FK → user.id        | Owner of the image                     |
+
+🔗 Route documentation:
+- [**image_routes.py🟩**](#image-manager)
+- [**image_translator.py🟩**](#image-translator)
+
+
+# Nihongo-Quest/models/word.py 📘
+## Word🟦
+```html
+|_routes/📁
+ |_ words_routes.py🟩 <!-- this is the manual CRUD to add_word/📁-->
+ |_ translator.py🟩   <!-- the translate to add_word/📁-->
+ |_ flashcard_routes.py🟩 <!--flashcard Game in flashcards/📁 -->
+|_templates/📁
+ |_add_word/📁
+  |_ add_words.html🟧
+  |_ delete_word.html🟧
+  |_ edit_word.html🟧
+  |_ word.html🟧
+ |_flashcards/📁
+  |_ flascards.html🟧
+  |_ quiz.html🟧
+```
+
+User-created vocabulary entries.
+
+| Field         | Type            | Description                    |
+| ------------- | --------------- | ------------------------------ |
+| id            | Integer (PK)    | Unique identifier              |
+| japanese      | String(100)     | Japanese word                  |
+| english       | String(100)     | English translation            |
+| pronunciation | String(100)     | Optional pronunciation         |
+| user_id       | FK → user.id    | Owner of the entry (nullable)  |
+
+ 🔗 Route documentation:
+- [**words_routes.py🟩**](#words)
+- [**translator.py🟩**](#translator)
+- [**flashcard_routes.py🟩**](#flashcards--quiz)
+
+## Relationships
+- User 1 → N Words  
+- User 1 → N Images  
+- Hiragana, Katakana, Kanji are standalone reference tables (no foreign keys)
+
+**Implementation notes:** models use **SQLAlchemy** (`extensions.db`), password hashing via **flask_bcrypt**, and images can be stored either as a file path (`image_path`) or directly in the DB as binary (`data`, `thumb`).
+
+# [Comeback to Readme](#nihongo-quest)
+---
  # NIHONGO QUEST — Routes, Functions & Tests Overview 
  # 📘
 
@@ -503,7 +701,9 @@ This document provides a complete overview of all route modules in the **Nihongo
 
 # 🚏 Routes & Tests
 
-## 👤 Users — Authentication  
+## Users — Authentication  
+# 👤
+
 ### Route Documentation: [users](/docs/routes_README/users_README.md) 🟢  
 Handles user registration, login, and logout with hashed passwords, form validation, and session management using Flask-Login.
 
@@ -512,7 +712,10 @@ Validates authentication workflows: registration, login, logout, session handlin
 
 ---
 
-## 🔤 Translator — English → Japanese  
+## Translator
+### — English → Japanese 
+#  🔤 
+
 ### Route Documentation: [translator](/docs/routes_README/translator_README.md) 🟢  
 Translates English words into Japanese (Kanji, Kana, Romaji) using external APIs and `pykakasi`. Also fetches a related image from Pexels and integrates the results into Flask forms for saving.
 
@@ -521,7 +724,10 @@ Ensures the translation module returns complete, valid dictionaries; handles emp
 
 ---
 
-## 📝 Words — Vocabulary CRUD  
+## Words
+### — Vocabulary CRUD 
+# 📝
+
 ### Route Documentation: [words](/docs/routes_README/words_README.md) 🟢  
 Provides full CRUD functionality for user-saved vocabulary (English ⇄ Japanese) using authenticated Flask routes and WTForms.
 
@@ -530,7 +736,9 @@ Verifies correct behavior in listing, adding, editing, and deleting words, ensur
 
 ---
 
-## 🃏 Flashcards & Quiz  
+## Flashcards & Quiz  
+# 🃏
+
 ### Route Documentation: [flashcard](/docs/routes_README/flashcards_README.md) 🟢  
 Generates 5-word flashcards from user vocabulary and provides an interactive quiz system with answer checking, visual feedback, and score-based flash messages.
 
@@ -539,7 +747,10 @@ Validates flashcard loading, correct rendering, quiz evaluation accuracy, and pr
 
 ---
 
-## 🈁 Alphabet — Hiragana, Katakana, Kanji  
+## Alphabet 
+### — Hiragana, Katakana, Kanji  
+# 🈁 
+
 ### Route Documentation: [alphabet](/docs/routes_README/alphabet_README.md) 🟢  
 Serves Japanese alphabets and Kanji, querying the database and rendering characters with readings and meanings.
 
@@ -548,7 +759,9 @@ Ensures that alphabet overview and individual pages load successfully with the e
 
 ---
 
-## 🖼️ Image Manager  
+## Image Manager  
+# 🖼️ 
+
 ### Route Documentation: [image](/docs/routes_README/image_README.md) 🟢  
 Allows authenticated users to upload, view, edit, and delete images, each linked to Japanese word metadata. Includes file validation and DB integration.
 
@@ -557,7 +770,9 @@ Ensures the image list loads correctly and displays user-specific images with th
 
 ---
 
-## 🌉 Image Translator — English → Japanese + Image Fetch  
+## Image Translator 
+# 🌉 
+
 ### Route Documentation: [image translator](/docs/routes_README/image_translator_README.md) 🟢  
 Translates English queries into Japanese, converts them to Kana/Romaji, fetches a related Pexels image, and allows saving metadata and images to the database.
 
