@@ -1,4 +1,5 @@
-## Comeback [README](../../README.m#nihongo-quest--routes-functions--tests-overviewd)
+## Comeback [README](../../README.md#nihongo-quest--routes-functions--tests-overview)
+
 # tests/test_user.py
 ## /register (POST)
 
