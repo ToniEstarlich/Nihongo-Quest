@@ -27,19 +27,19 @@ The live version of the project is accessible here:
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
 2. [Project Structure](#nihongo-quest--project-structure)
-2. [Wireframes](#wireframes)
-3. [The Loggo](#the-logo)
-4. [Colors](#colors)
-5. [Screenshots](#uiux-screenshots)
-6. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
-2. [Data Model](#data-model)
-7. [Routes, functions & tests](#nihongo-quest--routes-functions--tests-overview)
-8. [CRUDs](#cruds)
-9. [Testing](#test-results)
-10. [Problems & Solutions](#problems-and-solutions)
-11. [**flake8** and **black**](#code-style-and-pep8-compliance)
-12. [Segurity and environment variables](#security-and-environment-variables)
-13. [Deployment](#deployment)
+3. [Wireframes](#wireframes)
+4. [The Loggo](#the-logo)
+5. [Colors](#colors)
+6. [Screenshots](#uiux-screenshots)
+7. [Nihongo Quest The process](#nihongo-quest---flask--postgresql-setup-guide-example)
+8. [Data Model](#data-model)
+9. [Routes, functions & tests](#nihongo-quest--routes-functions--tests-overview)
+10. [CRUDs](#cruds)
+11. [Testing](#test-results)
+12. [Problems & Solutions](#problems-and-solutions)
+13. [**flake8** and **black**](#code-style-and-pep8-compliance)
+14. [Segurity and environment variables](#security-and-environment-variables)
+15. [Deployment](#deployment)
 
 ### Objective  
 The goal of Nihongo Quest is to provide an engaging platform for learning Japanese vocabulary. The app allows users to take quizzes, track their progress, and improve their understanding of the language through repetition and interaction.
@@ -351,24 +351,27 @@ Each layer has a clear responsibility and works together to build a scalable web
 
 # [Comeback to Readme](#nihongo-quest)
 
-#  Nihongo Quest - Flask & PostgreSQL Setup Guide example
+# Nihongo Quest - Flask & PostgreSQL Setup Guide Example
 # 📚
 
 <img src="./static/screenshots/fullStack.png" alt="Mobile Screenshot" width="450">
 
 # Nihongo Quest
 
-A Flask-based web application for learning Japanese vocabulary by adding, managing, and practicing words with their pronunciation and meanings.
+A Flask-based web application for learning Japanese vocabulary by adding, managing, and practicing words with their pronunciation and meanings.  
+
+The project was initiated by setting up the PostgreSQL database `nihongo_db` using **pgAdmin4**, which allowed efficient management of Japanese alphabets and vocabulary for Nihongo Quest.
 
 ## Table of Contents
-1. [Database](#1-database)
-2. [Back-end](#2-back-end-flask--sqlalchemy)
-3. [Front-end](#3-front-end-html--jinja2-templates)
+1. [(🔵)Database](#1-database-)
+2. [(🔴)Back-end](#2-back-end-flask--sqlalchemy)
+3. [(🟡)Front-end](#3-front-end-html--jinja2-templates)
 
 ---
 
 ## 1. Database
-The project uses **PostgreSQL** as its database, managed via **pgAdmin4**.
+# (🔵)
+The project uses **PostgreSQL** as its database, managed via **pgAdmin4**: I applied pgAdmin4/SQL knowledge learned in an internal Amazon Career course **SQL** to efficiently populate the database with Japanese alphabets and vocabulary for Nihongo Quest.
 
 ### Pages to references: 
  - **[NEON](https://neon.tech/postgresql/tutorial)** 
@@ -400,6 +403,7 @@ The project uses **PostgreSQL** as its database, managed via **pgAdmin4**.
 ---
 
 ## 2. Back-end (Flask + SQLAlchemy)
+# (🔴)
 The back-end is built using Flask and SQLAlchemy.
 
 ### Pages to references: 
@@ -495,6 +499,7 @@ def add_word():
 ---
 
 ## 3. Front-end (HTML + Jinja2 Templates)
+# (🟡)
 The application uses **Jinja2** for rendering dynamic HTML pages.
 ### Pages to references: 
  **[JINJA](https://jinja.palletsprojects.com/en/stable/)** 
